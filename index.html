@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Picasso — стоматологический центр в Рудном</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Manrope:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#FFFCF5;--surface:#FFFFFF;--ink:#2A2112;--muted:#6B5D42;--blue:#B8892B;--rose:#F1C9C0;--ochre:#C9A24B;--mint:#9CC9BC;--gold:#B8892B;--champ:#F3E3B3;--line:#EBDFC2;--btn:#B8892B;--btnink:#2A2112;
+--serif:'Fraunces',Georgia,'Times New Roman',serif;--sans:'Manrope',system-ui,-apple-system,'Segoe UI',Arial,sans-serif;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#14110A;--surface:#1E1A10;--ink:#F8F1DC;--muted:#C2B48F;--gold:#E2B857;--ochre:#E2B857;--line:#3A3220;--btn:#E2B857;--btnink:#14110A}}
+:root[data-theme="dark"]{--bg:#14110A;--surface:#1E1A10;--ink:#F8F1DC;--muted:#C2B48F;--gold:#E2B857;--ochre:#E2B857;--line:#3A3220;--btn:#E2B857;--btnink:#14110A}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth;scroll-padding-top:calc(72px + env(safe-area-inset-top,0px))}
+body{background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.6;font-size:17px;overflow-x:hidden}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--bg);z-index:30}
+a{color:inherit}
+.wrap{width:min(1120px,100% - 40px);margin-inline:auto}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+header .wrap{display:flex;align-items:center;justify-content:space-between;height:64px;gap:16px}
+.logo{font-family:var(--serif);font-weight:700;font-size:26px;text-decoration:none;letter-spacing:-.5px}
+nav{display:flex;gap:26px;font-weight:500;font-size:15px}
+nav a{text-decoration:none;color:var(--muted)}
+nav a:hover{color:var(--ink)}
+.btn{display:inline-block;background:var(--btn);color:var(--btnink);padding:14px 26px;border-radius:999px;font-weight:700;text-decoration:none;border:0;font:inherit;font-weight:700;cursor:pointer;transition:transform .2s}
+.btn:hover{transform:translateY(-2px)}
+.btn.ghost{background:transparent;color:var(--ink);border:2px solid var(--ink)}
+:focus-visible{outline:3px solid var(--ochre);outline-offset:3px}
+.hero{padding:56px 0 80px}
+.hero .wrap{display:grid;grid-template-columns:1.05fr .95fr;gap:40px;align-items:center}
+h1{font-family:var(--serif);font-weight:700;font-size:clamp(40px,6vw,76px);line-height:1.02;letter-spacing:-1.5px}
+.lead{margin:24px 0 32px;font-size:19px;color:var(--muted);max-width:30em}
+.cta{display:flex;gap:14px;flex-wrap:wrap}
+.hero small{display:block;margin-top:22px;color:var(--muted);font-size:14px}
+.art{width:100%;max-width:520px;margin-inline:auto;overflow:visible}
+.art .p{transform-box:fill-box;transform-origin:center;opacity:0;animation:land 1.1s cubic-bezier(.2,.9,.3,1) forwards,drift 9s ease-in-out 1.2s infinite alternate}
+.art .p:nth-child(1){--x:-90px;--y:-60px;--r:-25deg;animation-delay:.1s,1.2s}
+.art .p:nth-child(2){--x:110px;--y:-70px;--r:20deg;animation-delay:.25s,1.4s}
+.art .p:nth-child(3){--x:-80px;--y:90px;--r:18deg;animation-delay:.4s,1.6s}
+.art .p:nth-child(4){--x:100px;--y:80px;--r:-22deg;animation-delay:.55s,1.8s}
+.art .tooth{opacity:0;animation:fade .9s ease 1.1s forwards}
+@keyframes land{from{opacity:0;transform:translate(var(--x),var(--y)) rotate(var(--r))}to{opacity:1;transform:none}}
+@keyframes drift{from{transform:translate(0,0) rotate(0)}to{transform:translate(5px,-9px) rotate(2deg)}}
+@keyframes fade{to{opacity:1}}
+section{padding:80px 0}
+h2{font-family:var(--serif);font-weight:700;font-size:clamp(30px,4.4vw,52px);line-height:1.08;letter-spacing:-1px;max-width:16em}
+.sub{margin-top:14px;color:var(--muted);max-width:34em}
+.services{margin-top:44px;border-top:2px solid var(--ink)}
+details{border-bottom:1px solid var(--line)}
+summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:18px;padding:22px 4px;font-family:var(--serif);font-size:clamp(22px,3vw,32px);font-weight:500}
+summary::-webkit-details-marker{display:none}
+summary i{width:14px;height:14px;border-radius:3px;flex:none;transform:rotate(12deg);transition:transform .3s}
+summary::after{content:"+";margin-left:auto;font-family:var(--sans);font-size:30px;color:var(--muted);transition:transform .3s}
+details[open] summary::after{transform:rotate(45deg)}
+details[open] summary i{transform:rotate(135deg) scale(1.3)}
+details p{padding:0 4px 26px 36px;color:var(--muted);max-width:44em}
+.tech{background:var(--ink);color:var(--bg)}
+.tech h2{max-width:14em}
+.tech .sub{color:color-mix(in srgb,var(--bg) 70%,transparent)}
+.tgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin-top:48px}
+.tgrid div{padding:8px 28px 8px 0}
+.tgrid div+div{padding-left:28px;border-left:1px solid color-mix(in srgb,var(--bg) 25%,transparent)}
+.tgrid h3{font-family:var(--serif);font-size:26px;margin-bottom:8px}
+.tgrid p{color:color-mix(in srgb,var(--bg) 72%,transparent);font-size:16px}
+.rate{display:grid;grid-template-columns:auto 1fr;gap:40px;align-items:center}
+.big{font-family:var(--serif);font-size:clamp(96px,16vw,180px);font-weight:700;line-height:.9;color:var(--blue)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .big{color:var(--ochre)}}
+:root[data-theme="dark"] .big{color:var(--ochre)}
+.rate p{max-width:30em;color:var(--muted);font-size:18px}
+.rate a{font-weight:700}
+.book .wrap{display:grid;grid-template-columns:1fr 1fr;gap:56px}
+form{display:grid;gap:14px;background:var(--surface);padding:30px;border-radius:22px;border:1px solid var(--line)}
+label{font-weight:700;font-size:15px;display:grid;gap:6px}
+input,select{font:inherit;padding:13px 14px;border-radius:12px;border:1px solid var(--line);background:var(--bg);color:var(--ink)}
+form small{color:var(--muted);font-size:13px}
+.contacts{display:grid;gap:18px;align-content:start;margin-top:26px}
+.contacts a{font-family:var(--serif);font-size:24px;text-decoration:none;border-bottom:2px solid var(--line);padding-bottom:10px;display:block;transition:border-color .2s}
+.contacts a:hover{border-color:var(--ochre)}
+.contacts span{display:block;font-family:var(--sans);font-size:14px;color:var(--muted)}
+footer{padding:30px 0 40px;border-top:1px solid var(--line);color:var(--muted);font-size:14px}
+.rv{opacity:0;transform:translateY(34px);transition:opacity .9s ease var(--d,0ms),transform .9s cubic-bezier(.2,.8,.2,1) var(--d,0ms)}
+.services details.rv{transform:translateX(-40px)}
+.services details.rv.in{transform:none}
+.rv.in{opacity:1;transform:none}
+@media (max-width:860px){nav{display:none}.hero .wrap,.book .wrap,.rate{grid-template-columns:1fr}.tgrid{grid-template-columns:1fr;gap:28px}.tgrid div+div{padding-left:0;border-left:0;border-top:1px solid color-mix(in srgb,var(--bg) 25%,transparent);padding-top:24px}.art{max-width:380px}section{padding:56px 0}details p{padding-left:4px}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.art .p,.art .tooth,.rv{opacity:1;transform:none}}
+.btn{background:linear-gradient(135deg,#EDCB72,#B8892B);color:#2A2112}
+.btn.ghost{background:transparent;color:var(--ink);border:2px solid var(--gold)}
+.hero{background:radial-gradient(60% 60% at 80% 20%,color-mix(in srgb,var(--champ) 60%,transparent),transparent)}
+.art .p:nth-child(1){fill:#F3E3B3}.art .p:nth-child(2){fill:#C9A24B}.art .p:nth-child(3){fill:#F1C9C0}.art .p:nth-child(4){fill:#9CC9BC}
+.art .tooth path{stroke:#2A2112}.art .tooth path:nth-child(3){stroke:#B8892B}
+.services details:nth-child(4n+1) summary i{background:#C9A24B!important}.services details:nth-child(4n+2) summary i{background:#F3E3B3!important}.services details:nth-child(4n+3) summary i{background:#9CC9BC!important}.services details:nth-child(4n) summary i{background:#F1C9C0!important}
+.big{background:linear-gradient(135deg,#EDCB72,#A67C1E);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent}
+.tgrid h3{color:#E8C466}
+h2::after{content:"";display:block;width:90px;height:4px;margin-top:18px;background:linear-gradient(90deg,var(--gold),var(--champ));transform:scaleX(0);transform-origin:left;transition:transform .9s .3s}
+h2.rv.in::after,.rv.in h2::after{transform:scaleX(1)}
+#pg{position:fixed;top:env(safe-area-inset-top,0px);left:0;height:3px;width:100%;background:linear-gradient(90deg,var(--champ),var(--gold));transform:scaleX(0);transform-origin:left;z-index:40}
+header .wrap{transition:height .3s}header.s{box-shadow:0 6px 24px rgba(120,90,20,.14)}header.s .wrap{height:54px}
+.logo{display:flex;align-items:center;gap:10px}.logo span{display:grid;line-height:1.1}.logo b{font-size:24px}.logo em{font-style:normal;font-size:11px;color:var(--muted);font-weight:500}
+.tech{position:relative;overflow:hidden}.tech .wrap{position:relative}.glow{position:absolute;right:-120px;top:-40px;width:520px;height:520px;border-radius:50%;background:radial-gradient(circle,rgba(226,184,87,.45),transparent 65%);pointer-events:none}
+@media (prefers-reduced-motion:reduce){.services details.rv{transform:none}h2::after{transform:scaleX(1)}}
+.rv{transition:opacity .9s ease var(--d,0ms),transform .9s cubic-bezier(.2,.8,.2,1) var(--d,0ms),translate .3s}
+.hero{position:relative;overflow:hidden}.hero .wrap{position:relative;z-index:1}
+.art{filter:drop-shadow(0 28px 28px rgba(120,90,20,.28))}
+.art .tooth{animation:fade .9s ease 1.1s forwards,sway 5s ease-in-out 2.2s infinite;transform-box:fill-box;transform-origin:center}
+@keyframes sway{0%,100%{transform:scaleX(1) skewY(0)}50%{transform:scaleX(.9) skewY(-2deg)}}
+.cubes{position:absolute;inset:0;perspective:800px;pointer-events:none}
+.cube{--s:48px;position:absolute;width:var(--s);height:var(--s);transform-style:preserve-3d;animation:spin3d 16s linear infinite}
+.cube b{position:absolute;inset:0;border:1px solid rgba(184,137,43,.55);background:linear-gradient(135deg,rgba(243,227,181,.6),rgba(201,162,75,.22))}
+.cube b:nth-child(1){transform:translateZ(calc(var(--s)/2))}.cube b:nth-child(2){transform:rotateY(90deg) translateZ(calc(var(--s)/2))}.cube b:nth-child(3){transform:rotateY(180deg) translateZ(calc(var(--s)/2))}.cube b:nth-child(4){transform:rotateY(-90deg) translateZ(calc(var(--s)/2))}.cube b:nth-child(5){transform:rotateX(90deg) translateZ(calc(var(--s)/2))}.cube b:nth-child(6){transform:rotateX(-90deg) translateZ(calc(var(--s)/2))}
+.c1{left:4%;top:16%}.c2{left:46%;top:7%;--s:30px;animation-duration:11s;animation-direction:reverse}.c3{right:5%;bottom:9%;--s:66px;animation-duration:22s}
+@keyframes spin3d{to{transform:rotateX(360deg) rotateY(360deg)}}
+@media (max-width:860px){.c2{display:none}}
+.btn{position:relative;overflow:hidden;transition:transform .2s,box-shadow .3s}
+.btn::before{content:"";position:absolute;top:0;left:-70%;width:45%;height:100%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.7),transparent);transform:skewX(-20deg);animation:shine 3.6s ease-in-out infinite;pointer-events:none}
+@keyframes shine{0%,55%{left:-70%}100%{left:130%}}
+.btn:hover{transform:translateY(-3px) scale(1.03);box-shadow:0 12px 28px rgba(184,137,43,.42)}
+.btn:active{transform:scale(.96)}
+.hero .cta .btn:first-child{animation:pulse 2.4s infinite}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(201,162,75,.55)}70%{box-shadow:0 0 0 16px rgba(201,162,75,0)}100%{box-shadow:0 0 0 0 rgba(201,162,75,0)}}
+.rip{position:absolute;border-radius:50%;background:rgba(255,255,255,.6);transform:scale(0);animation:rip .65s ease-out forwards;pointer-events:none}
+@keyframes rip{to{transform:scale(4);opacity:0}}
+nav a{position:relative}nav a::after{content:"";position:absolute;left:0;bottom:-5px;height:2px;width:100%;background:var(--gold);transform:scaleX(0);transform-origin:left;transition:transform .3s}nav a:hover::after{transform:scaleX(1)}
+.logo svg{animation:coin 1.6s ease .4s 1}.logo:hover svg{animation:coin2 1s ease}
+@keyframes coin{from{transform:perspective(200px) rotateY(0)}to{transform:perspective(200px) rotateY(360deg)}}
+@keyframes coin2{from{transform:perspective(200px) rotateY(0)}to{transform:perspective(200px) rotateY(360deg)}}
+details:not([open]) summary:hover i{transform:perspective(120px) rotateY(180deg) rotate(12deg)}
+.tgrid>div.tilt,form.tilt{transform:perspective(700px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg));transition:transform .15s ease-out!important}
+.contacts a:hover{translate:8px 0}
+.big{filter:drop-shadow(0 8px 0 rgba(120,90,20,.22))}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><linearGradient id="gg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#F3D98A"/><stop offset="1" stop-color="#B8892B"/></linearGradient></defs><symbol id="lg" viewBox="0 0 48 48"><circle cx="24" cy="24" r="22" fill="url(#gg)"/><path d="M14.5 18c0-6.5 7.500-6.500 9.500-3 2-3.500 9.500-3.500 9.500 3 0 7.500-3 9.500-3.500 15.500-.3 4.500-2.700 5-3.200-.5-.5-4.500-3-4.500-3.600 0-.5 5.500-2.800 5-3.200.5C17.500 27.500 14.500 25.500 14.500 18z" fill="#fff"/></symbol></svg><a class="logo" href="#top" aria-label="Picasso, на главную"><svg width="40" height="40"><use href="#lg"/></svg><span><b>Picasso</b><em>стоматологический центр</em></span></a>
+<nav><a href="#services">Услуги</a><a href="#tech">Технологии</a><a href="#reviews">Оценка</a><a href="#book">Запись</a></nav>
+<a class="btn" href="#book">Записаться</a>
+</div></header>
+
+<div id="pg"></div><main id="top">
+<div class="hero"><div class="cubes" aria-hidden="true"><i class="cube c1"><b></b><b></b><b></b><b></b><b></b><b></b></i><i class="cube c2"><b></b><b></b><b></b><b></b><b></b><b></b></i><i class="cube c3"><b></b><b></b><b></b><b></b><b></b><b></b></i></div><div class="wrap">
+<div>
+<h1>Улыбку собирают как картину: точно и без спешки</h1>
+<p class="lead">Стоматологический центр в Рудном. Лечение под микроскопом, имплантация, протезирование, цифровая и лазерная стоматология. Первая консультация бесплатная.</p>
+<div class="cta"><a class="btn" href="#book">Записаться на консультацию</a><a class="btn ghost" href="#services">Посмотреть услуги</a></div>
+<small>Улица 40 лет Октября, 7, Рудный. Есть пандус.</small>
+</div>
+<svg class="art" viewBox="0 0 480 520" role="img" aria-label="Абстрактная композиция из цветных граней с зубом в центре">
+<polygon class="p" fill="#F2A7B5" points="60,120 260,40 300,230 120,300"/>
+<polygon class="p" fill="#2447B8" points="200,90 420,150 380,360 230,300"/>
+<polygon class="p" fill="#F0B84B" points="110,260 300,230 340,430 150,470"/>
+<polygon class="p" fill="#8FD9C9" points="280,300 440,330 400,480 300,450"/>
+<g class="tooth">
+<path d="M170 150C170 105 230 105 240 135C250 105 310 105 310 150C310 215 290 235 285 295C282 335 262 345 258 302C254 262 226 262 222 302C218 345 198 335 195 295C190 235 170 215 170 150Z" fill="#fff" stroke="#0E1F45" stroke-width="6" stroke-linejoin="round"/>
+<path d="M200 160C215 185 265 185 280 160" fill="none" stroke="#0E1F45" stroke-width="5" stroke-linecap="round"/>
+<path d="M205 135l14 10M255 130l12 12" stroke="#2447B8" stroke-width="5" stroke-linecap="round"/>
+</g>
+</svg>
+</div></div>
+
+<section id="services"><div class="wrap">
+<h2 class="rv">Всё, что нужно для здоровых зубов</h2>
+<p class="sub rv">Нажмите на направление, чтобы узнать подробнее. Стоимость лечения врач называет после осмотра.</p>
+<div class="services rv">
+<details><summary><i style="background:#2447B8"></i>Лечение зубов под микроскопом</summary><p>Микроскоп увеличивает область лечения, поэтому врач видит мельчайшие каналы и трещины и работает аккуратнее. Подходит для лечения кариеса и каналов.</p></details>
+<details><summary><i style="background:#F2A7B5"></i>Имплантация</summary><p>Восстановление утраченных зубов с опорой на имплант. Планирование начинается с консультации и снимка.</p></details>
+<details><summary><i style="background:#F0B84B"></i>Ортопедия</summary><p>Протезирование и восстановление формы зуба, когда обычной пломбы уже недостаточно. Принимает взрослый стоматолог-ортопед.</p></details>
+<details><summary><i style="background:#8FD9C9"></i>Хирургия</summary><p>Консультации и операции у взрослого стоматолога-хирурга, в том числе удаление зубов и подготовка к имплантации.</p></details>
+<details><summary><i style="background:#2447B8"></i>Лазерная стоматология</summary><p>Лазерные методики лечения, которые в ряде случаев делают процедуры мягче и быстрее.</p></details>
+<details><summary><i style="background:#F2A7B5"></i>Бесплатная консультация</summary><p>Расскажите, что беспокоит, и врач предложит план лечения. Запишитесь через форму ниже или напишите в мессенджер.</p></details>
+</div></div></section>
+
+<section class="tech" id="tech"><div class="glow" aria-hidden="true"></div><div class="wrap">
+<h2 class="rv">Современное оборудование вместо догадок</h2>
+<p class="sub rv">Врач опирается на то, что видит, а не на предположения.</p>
+<div class="tgrid rv">
+<div><h3>Микроскоп</h3><p>Работа с многократным увеличением для точного лечения.</p></div>
+<div><h3>Цифровая стоматология</h3><p>Прицельный снимок зуба, чтобы увидеть проблему до начала лечения.</p></div>
+<div><h3>Лазер</h3><p>Бережные методики для тех, кто боится сверла и боли.</p></div>
+</div></div></section>
+
+<section id="reviews"><div class="wrap rate">
+<div class="big rv" data-n="5">5</div>
+<div class="rv"><h2>Пациенты ставят высшую оценку</h2>
+<p style="margin-top:14px">Средняя оценка центра в 2ГИС — 5 из 5. Отзывы и фотографии можно посмотреть на <a href="https://2gis.kz/kostanay/firm/70000001092071793/tab/reviews" target="_blank" rel="noopener">странице Picasso в 2ГИС</a>.</p></div>
+</div></section>
+
+<section class="book" id="book"><div class="wrap">
+<div class="rv">
+<h2>Запишитесь на приём</h2>
+<p class="sub">Выберите направление и напишите нам: заявка откроется в WhatsApp, и администратор подтвердит время.</p>
+<div class="contacts">
+<a href="https://wa.me/77476870748" target="_blank" rel="noopener"><span>WhatsApp</span>+7 747 687 07 48</a>
+<a href="https://t.me/+77476870748" target="_blank" rel="noopener"><span>Telegram</span>Написать в Telegram</a>
+<a href="https://instagram.com/stomatologiya.rudnyy" target="_blank" rel="noopener"><span>Instagram</span>@stomatologiya.rudnyy</a>
+<a href="https://2gis.kz/kostanay/firm/70000001092071793" target="_blank" rel="noopener"><span>Улица 40 лет Октября, 7, Рудный</span>Построить маршрут в 2ГИС</a>
+</div></div>
+<form id="f" class="rv">
+<label>Ваше имя<input id="n" required autocomplete="name" placeholder="Как к вам обращаться"></label>
+<label>Что вас беспокоит<select id="s">
+<option>Бесплатная консультация</option><option>Лечение зубов под микроскопом</option><option>Имплантация</option><option>Ортопедия</option><option>Хирургия</option><option>Лазерная стоматология</option></select></label>
+<button class="btn" type="submit">Отправить в WhatsApp</button>
+<small>Форма только открывает чат с готовым сообщением. Данные на сайте не сохраняются.</small>
+</form>
+</div></section>
+</main>
+
+<footer><div class="wrap"><svg width="34" height="34" style="vertical-align:middle;margin-right:10px" aria-hidden="true"><use href="#lg"/></svg>© <span id="y"></span> Picasso, стоматологический центр, Рудный. Имеются противопоказания, необходима консультация специалиста.</div></footer>
+
+<script>
+document.getElementById('y').textContent=new Date().getFullYear();
+document.getElementById('f').addEventListener('submit',function(e){
+e.preventDefault();
+var t='Здравствуйте! Меня зовут '+document.getElementById('n').value.trim()+'. Хочу записаться: '+document.getElementById('s').value+'.';
+window.open('https://wa.me/77476870748?text='+encodeURIComponent(t),'_blank','noopener');
+});
+var rm=matchMedia('(prefers-reduced-motion:reduce)').matches;
+document.querySelectorAll('.services details,.tgrid>div,.contacts a').forEach(function(el,i){el.classList.add('rv');el.style.setProperty('--d',(i%6)*90+'ms')});
+function cnt(el){var to=+el.dataset.n,t0=performance.now();(function f(t){var p=Math.min((t-t0)/1400,1);el.textContent=Math.round(to*(1-Math.pow(1-p,3)));if(p<1)requestAnimationFrame(f)})(t0)}
+var io=new IntersectionObserver(function(es){es.forEach(function(x){if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target);if(x.target.dataset.n&&!rm)cnt(x.target)}})},{threshold:.15});
+document.querySelectorAll('.rv').forEach(function(el){io.observe(el)});
+var pg=document.getElementById('pg'),hd=document.querySelector('header'),art=document.querySelector('.art'),gl=document.querySelector('.glow'),tc=document.getElementById('tech');
+function sc(){var y=scrollY,h=document.documentElement.scrollHeight-innerHeight;pg.style.transform='scaleX('+(h>0?y/h:0)+')';hd.classList.toggle('s',y>20);if(!rm){art.style.transform='perspective(900px) translateY('+Math.min(y*.12,60)+'px) rotateX('+(-my*8)+'deg) rotateY('+(mx*10)+'deg) rotate('+Math.min(y*.01,4)+'deg)';gl.style.transform='translateY('+(tc.getBoundingClientRect().top*-.18)+'px)'}}
+var mx=0,my=0,fine=matchMedia('(hover:hover) and (pointer:fine)').matches;
+addEventListener('scroll',sc,{passive:true});
+if(fine&&!rm){
+addEventListener('mousemove',function(e){mx=e.clientX/innerWidth-.5;my=e.clientY/innerHeight-.5;sc()},{passive:true});
+document.querySelectorAll('.tgrid>div,form').forEach(function(el){
+el.addEventListener('mouseenter',function(){el.style.setProperty('--d','0ms')});
+el.addEventListener('mousemove',function(e){var r=el.getBoundingClientRect(),px=(e.clientX-r.left)/r.width-.5,py=(e.clientY-r.top)/r.height-.5;el.style.setProperty('--rx',(-py*10)+'deg');el.style.setProperty('--ry',(px*12)+'deg');el.classList.add('tilt')});
+el.addEventListener('mouseleave',function(){el.classList.remove('tilt')})});
+document.querySelectorAll('.btn').forEach(function(b){
+b.addEventListener('mousemove',function(e){var r=b.getBoundingClientRect();b.style.transform='translate('+((e.clientX-r.left-r.width/2)*.2)+'px,'+((e.clientY-r.top-r.height/2)*.3)+'px) scale(1.05)'});
+b.addEventListener('mouseleave',function(){b.style.transform=''})})}
+document.querySelectorAll('.btn').forEach(function(b){b.addEventListener('click',function(e){if(rm)return;var r=b.getBoundingClientRect(),s=document.createElement('span'),d=Math.max(r.width,r.height)/2;s.className='rip';s.style.cssText='width:'+d+'px;height:'+d+'px;left:'+(e.clientX-r.left-d/2)+'px;top:'+(e.clientY-r.top-d/2)+'px';b.appendChild(s);setTimeout(function(){s.remove()},650)})});
+sc();
+</script>
+</body>
+</html>
