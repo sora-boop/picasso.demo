@@ -1,1 +1,2 @@
 @AI-RULES.md
+@NOTES.md
