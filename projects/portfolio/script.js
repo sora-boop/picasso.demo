@@ -7,7 +7,7 @@
 /* ---------------------------------------------------------------------
    1. ДАННЫЕ
    --------------------------------------------------------------------- */
-const ME = { whatsapp: '77000000000', telegram: 'username' };
+const ME = { whatsapp: '77057266334', telegram: 'theeyesofdeceased' };
 
 const WORKS = [
   { name: 'ҚАЙРАҚ', meta: 'Барбершоп / Рудный / концепт', img: 'assets/works/kairak-hero-desk.jpg',
@@ -29,7 +29,6 @@ const WORKS = [
 
 const MORE = [
   { name: 'Soprano Barbershop', niche: 'Барбершоп', city: 'Рудный', url: 'https://claude.ai/artifact/8CTeCKfzyGoA2sVEQXhned' },
-  { name: 'Imran dent', niche: 'Стоматология', city: 'Казахстан', url: 'https://claude.ai/artifact/NUADWW9aLqHbnFbF6z7DaT' },
   { name: 'NRD Clinic', niche: 'Детская стоматология', city: 'Астана', url: 'https://claude.ai/artifact/5biNjpER24VseRpZBusHyT' },
   { name: 'Династия', niche: 'Семейная стоматология', city: 'Алматы', url: 'https://claude.ai/artifact/62sW9RHHtvy8DZiKnxcvHT' },
   { name: 'English NU school', niche: 'Школа английского', city: 'Костанай', url: 'https://claude.ai/artifact/AjphzRTK59ivr7FnFmSrkV' },
@@ -39,10 +38,10 @@ const MORE = [
 ];
 
 const PROCESS = [
-  { t: 'Структура', time: '1–2 дня', d: 'Разбираю ваш бизнес и конкурентов. Собираю каркас: какие блоки, в каком порядке и что должен сделать посетитель.' },
-  { t: 'Дизайн', time: '3–5 дней', d: 'Шрифты, цвета и фото по смыслу. Показываю первый экран, и только после вашего «да» рисую остальное.' },
-  { t: 'Код', time: '5–7 дней', d: 'Пишу код сам, без конструкторов. 3D, анимации, запись и заказы в WhatsApp, быстрая загрузка на телефоне.' },
-  { t: 'Запуск', time: '1 день', d: 'Домен, хостинг, карточка в 2ГИС и Google. Код и доступы передаю вам полностью.' },
+  { t: 'Структура', time: 'день 1', d: 'Разбираю ваш бизнес и конкурентов. Собираю каркас: какие блоки, в каком порядке и что должен сделать посетитель.' },
+  { t: 'Дизайн', time: 'дни 1–2', d: 'Шрифты, цвета и фото по смыслу. Показываю первый экран, и только после вашего «да» рисую остальное.' },
+  { t: 'Код', time: 'дни 2–4', d: 'Пишу код сам, без конструкторов. 3D, анимации, запись и заказы в WhatsApp, быстрая загрузка на телефоне.' },
+  { t: 'Запуск', time: 'день 5', d: 'Домен, хостинг, карточка в 2ГИС и Google. Код и доступы передаю вам полностью.' },
 ];
 
 const PILLARS = [
@@ -53,35 +52,35 @@ const PILLARS = [
 ];
 
 const PRICES = [
-  { t: 'Лендинг', cost: 'от 150 000 ₸', time: '7–10 дней', d: 'Одна страница, которая ведёт к заявке: услуги, цены, отзывы и запись в WhatsApp.' },
-  { t: 'Сайт для бизнеса', cost: 'от 250 000 ₸', time: '2–3 недели', d: 'Несколько разделов, меню или каталог, онлайн-запись, карточки мастеров и врачей.' },
-  { t: 'Сайт с 3D', cost: 'от 400 000 ₸', time: '3–4 недели', d: 'Ваш продукт в 3D и анимации на скролле, как в работах выше. Запоминается с первого экрана.', acc: true },
-  { t: 'Поддержка', cost: '30 000 ₸ в месяц', time: 'по запросу', d: 'Правки, новые цены и акции, хостинг и резервные копии.' },
+  { t: 'Лендинг', cost: 'от 20 000 ₸', time: '4–5 дней', d: 'Одна страница, которая ведёт к заявке: услуги, цены, отзывы и запись в WhatsApp.' },
+  { t: 'Сайт для бизнеса', cost: 'от 35 000 ₸', time: '4–5 дней', d: 'Несколько разделов, меню или каталог, онлайн-запись, карточки мастеров и врачей.' },
+  { t: 'Сайт с 3D', cost: 'от 45 000 ₸', time: '4–5 дней', d: 'Ваш продукт в 3D и анимации на скролле, как в работах выше. Запоминается с первого экрана.', acc: true },
+  { t: 'Поддержка', cost: 'договоримся', time: 'после запуска', d: 'Правки, новые цены и акции, помощь с хостингом.' },
 ];
 
 const CALC = {
   type: [
-    { v: 'Лендинг', price: 150000, days: [7, 10] },
-    { v: 'Сайт для бизнеса', price: 250000, days: [14, 21] },
-    { v: 'Сайт с 3D', price: 400000, days: [21, 28] },
+    { v: 'Лендинг', price: 20000 },
+    { v: 'Сайт для бизнеса', price: 35000 },
+    { v: 'Сайт с 3D', price: 45000 },
   ],
   extras: [
-    { v: 'Онлайн-запись', price: 40000, days: 2 },
-    { v: 'Меню или каталог с корзиной', price: 60000, days: 3 },
-    { v: 'Казахская версия', price: 50000, days: 2 },
-    { v: 'Анимации на скролле', price: 60000, days: 3, no3d: true },
-    { v: 'Тексты под ключ', price: 30000, days: 1 },
-    { v: 'Подбор фото', price: 20000, days: 1 },
+    { v: 'Онлайн-запись' },
+    { v: 'Меню или каталог с корзиной' },
+    { v: 'Казахская версия' },
+    { v: 'Анимации на скролле', no3d: true },
+    { v: 'Тексты под ключ' },
+    { v: 'Подбор фото' },
   ],
   speed: [
-    { v: 'Обычные', k: 1, dk: 1 },
-    { v: 'Срочно', k: 1.3, dk: 0.6, note: '+30%' },
+    { v: 'Обычные', days: [4, 5], note: '4–5 дней' },
+    { v: 'Срочно', days: [2, 3], note: '2–3 дня' },
   ],
 };
 
 const FAQ = [
-  { q: 'Сколько стоит сайт?', a: 'Лендинг от 150 000 ₸, сайт с 3D от 400 000 ₸. Точную цену назову после короткого разговора, а примерную можно посчитать в калькуляторе выше.' },
-  { q: 'Сколько времени займёт работа?', a: 'Лендинг от недели, сайт с 3D за 3–4 недели. Срок фиксирую в начале, и на каждом этапе вы видите результат.' },
+  { q: 'Сколько стоит сайт?', a: 'Лендинг от 20 000 ₸, сайт для бизнеса от 35 000 ₸, сайт с 3D от 45 000 ₸. Примерную цену можно посчитать в калькуляторе выше, точную назову после короткого разговора.' },
+  { q: 'Сколько времени займёт работа?', a: 'Обычно 4–5 дней, срочно 2–3 дня. Срок фиксирую в начале, и на каждом этапе вы видите результат.' },
   { q: 'У меня нет текстов и фото. Это проблема?', a: 'Нет. Напишу тексты по вашим ответам и подберу фото по смыслу. Если есть свои снимки, используем их: живые фото работают лучше стоковых.' },
   { q: 'Сайт будет нормально работать на телефоне?', a: 'Да. Почти все ваши клиенты придут с телефона, поэтому проверяю сайт в первую очередь на iPhone и Android.' },
   { q: 'Кто занимается доменом и хостингом?', a: 'Я. Помогу купить домен, настрою хостинг и оформлю всё на вас, чтобы сайт принадлежал вам, а не подрядчику.' },
@@ -180,22 +179,15 @@ $('.faq__list').addEventListener('click', (e) => {
 const calc = { type: 0, extras: new Set(), speed: 0 };
 const chip = (v, i, extra = '') => `<button class="chip" type="button" data-i="${i}" aria-pressed="false">${esc(v)}${extra}</button>`;
 const boxType = $('[data-chips="type"]'), boxExtras = $('[data-chips="extras"]'), boxSpeed = $('[data-chips="speed"]');
-boxType.innerHTML = CALC.type.map((t, i) => chip(t.v, i, `<small>${money(t.price / 1000)}k</small>`)).join('');
-boxExtras.innerHTML = CALC.extras.map((t, i) => chip(t.v, i, `<small>+${money(t.price / 1000)}k</small>`)).join('');
+boxType.innerHTML = CALC.type.map((t, i) => chip(t.v, i, `<small>${money(t.price)} ₸</small>`)).join('');
+boxExtras.innerHTML = CALC.extras.map((t, i) => chip(t.v, i)).join('');
 boxSpeed.innerHTML = CALC.speed.map((t, i) => chip(t.v, i, t.note ? `<small>${t.note}</small>` : '')).join('');
 const numEl = $('.calc__num');
 let shownPrice = CALC.type[0].price;
 function calcTotal() {
-  const t = CALC.type[calc.type];
-  let price = t.price, days = 0;
-  calc.extras.forEach((i) => {
-    const e = CALC.extras[i];
-    if (e.no3d && calc.type === 2) return;
-    price += e.price; days += e.days;
-  });
-  const s = CALC.speed[calc.speed];
-  price = Math.round((price * s.k) / 5000) * 5000;
-  const d0 = Math.max(5, Math.round((t.days[0] + days) * s.dk)), d1 = Math.max(d0 + 2, Math.round((t.days[1] + days) * s.dk));
+  // допы на цену не влияют: их обсуждаем в переписке
+  const price = CALC.type[calc.type].price;
+  const [d0, d1] = CALC.speed[calc.speed].days;
   return { price, d0, d1 };
 }
 function renderCalc() {
@@ -206,12 +198,12 @@ function renderCalc() {
   // в сайте с 3D анимации уже включены
   $$('.chip', boxExtras).forEach((c) => { const e = CALC.extras[Number(c.dataset.i)]; c.hidden = !!(e.no3d && calc.type === 2); });
   const { price, d0, d1 } = calcTotal();
-  $('.calc__time').textContent = `Срок ${d0}–${d1} дней. Цена фиксируется до начала работы`;
+  $('.calc__time').textContent = `Срок ${d0}–${d1} ${d1 < 5 ? 'дня' : 'дней'}. Допы обсудим в переписке`;
   const from = shownPrice;
   shownPrice = price;
   if (window.gsap && !reduce) {
     const o = { v: from };
-    window.gsap.to(o, { v: price, duration: 0.9, ease: 'expo.out', onUpdate: () => { numEl.textContent = money(Math.round(o.v / 1000) * 1000); } });
+    window.gsap.to(o, { v: price, duration: 0.9, ease: 'expo.out', onUpdate: () => { numEl.textContent = money(Math.round(o.v / 500) * 500); } });
   } else numEl.textContent = money(price);
 }
 boxType.addEventListener('click', (e) => { const c = e.target.closest('.chip'); if (c) { calc.type = Number(c.dataset.i); renderCalc(); } });
@@ -226,7 +218,7 @@ $('#calc-form').addEventListener('submit', (e) => {
     `Тип: ${CALC.type[calc.type].v}`,
     `Добавить: ${extras.length ? extras.join(', ') : 'ничего'}`,
     `Сроки: ${CALC.speed[calc.speed].v.toLowerCase()}`,
-    `Примерно: ${money(price).replace(/ /g, ' ')} ₸, ${d0}–${d1} дней`,
+    `Примерно: ${money(price).replace(/ /g, ' ')} ₸, ${d0}–${d1} ${d1 < 5 ? 'дня' : 'дней'}`,
   ].join('\n');
   window.open(`https://wa.me/${ME.whatsapp}?text=${encodeURIComponent(text)}`, '_blank', 'noopener');
 });
