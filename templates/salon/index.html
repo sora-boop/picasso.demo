@@ -1,0 +1,218 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Салон</title>
+<meta name="description" content="">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Onest:wght@300;400&display=swap">
+<link rel="stylesheet" href="styles.css">
+<script src="script.js" defer></script>
+</head>
+<body>
+
+<!-- Компактная шапка: появляется, когда первый экран ушёл вверх -->
+<header class="bar" aria-label="Навигация">
+  <a class="bar__logo" href="#top" data-bind="name"></a>
+  <nav class="bar__nav">
+    <a href="#services">Услуги</a>
+    <a href="#works">Галерея</a>
+    <a href="#team">Мастера</a>
+    <a href="#contacts">Контакты</a>
+  </nav>
+  <a class="btn btn--solid btn--sm" href="#book">
+    <span class="btn__fill" aria-hidden="true"></span>
+    <span class="btn__label">Записаться</span>
+  </a>
+</header>
+
+<main>
+
+  <!-- 1. Первый экран: схема C, 60/40 -->
+  <section class="hero" id="top" data-reveal-now>
+    <div class="hero__text">
+      <div class="hero__top">
+        <a class="logo rise d-300" href="#top" data-bind="name"></a>
+        <nav class="hero__nav rise d-420" aria-label="Разделы">
+          <a class="ulink" href="#services">Услуги</a>
+          <a class="ulink" href="#works">Галерея</a>
+          <a class="ulink" href="#team">Мастера</a>
+          <a class="ulink" href="#contacts">Контакты</a>
+        </nav>
+      </div>
+      <div class="hero__body">
+        <h1 class="rise d-900" data-lines="heroTitle"></h1>
+        <p class="hero__lead rise d-1040" data-bind="heroLead"></p>
+        <div class="cta-row rise d-1200">
+          <a class="btn btn--solid" href="#book">
+            <span class="btn__fill" aria-hidden="true"></span>
+            <span class="btn__label">Записаться онлайн</span>
+            <svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>
+          </a>
+          <span class="hint" data-bind="heroHint"></span>
+        </div>
+      </div>
+    </div>
+    <figure class="hero__media"><img data-photo="hero" alt="" fetchpriority="high"></figure>
+  </section>
+
+  <!-- 2. О салоне и цифры -->
+  <section class="about" data-reveal>
+    <p class="about__text rise" data-bind="about"></p>
+    <dl class="facts" data-list="facts"></dl>
+  </section>
+
+  <!-- 3. Услуги и цены. Сигнатура: фото категории сменяется шторкой -->
+  <section class="services" id="services" data-reveal>
+    <div class="head">
+      <h2 class="rise">Услуги и&nbsp;цены</h2>
+      <p class="head__lead rise d-100" data-bind="servicesLead"></p>
+    </div>
+    <div class="tabs rise d-100" role="tablist" aria-label="Категории услуг" data-list="tabs"></div>
+    <div class="services__grid">
+      <figure class="services__photo" aria-hidden="true"><img alt=""><img alt=""></figure>
+      <div class="services__lists" data-list="services"></div>
+    </div>
+  </section>
+
+  <!-- 4. Работы -->
+  <section class="works" id="works" data-reveal>
+    <div class="head">
+      <h2 class="rise" data-bind="worksTitle"></h2>
+      <div class="works__ctrl rise d-100">
+        <button class="round" type="button" data-scroll="-1" aria-label="Назад">
+          <svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg>
+        </button>
+        <button class="round" type="button" data-scroll="1" aria-label="Вперёд">
+          <svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>
+        </button>
+      </div>
+    </div>
+    <div class="works__track" data-list="works" tabindex="0" aria-label="Галерея работ"></div>
+  </section>
+
+  <!-- 5. Мастера -->
+  <section class="team" id="team" data-reveal>
+    <div class="head">
+      <h2 class="rise">Мастера</h2>
+      <p class="head__lead rise d-100" data-bind="teamLead"></p>
+    </div>
+    <div class="team__grid" data-list="team"></div>
+  </section>
+
+  <!-- 6. Онлайн-запись -->
+  <section class="book" id="book" data-reveal>
+    <div class="book__aside">
+      <h2 class="rise" data-lines="bookTitle"></h2>
+      <p class="muted rise d-100" data-bind="bookLead"></p>
+      <dl class="book__info rise d-200">
+        <div><dt>Телефон</dt><dd><a class="ulink" data-href="tel" data-bind="phone"></a></dd></div>
+        <div><dt>Часы работы</dt><dd data-bind="hours"></dd></div>
+      </dl>
+    </div>
+
+    <form class="booking rise d-200" id="booking" novalidate>
+      <fieldset class="step">
+        <legend class="step__name"><span class="step__n">01</span>Услуга</legend>
+        <div class="select">
+          <select name="service" data-options="services" aria-label="Услуга"></select>
+          <svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+        </div>
+      </fieldset>
+
+      <fieldset class="step">
+        <legend class="step__name"><span class="step__n">02</span>Мастер</legend>
+        <div class="chips" data-chips="master"></div>
+      </fieldset>
+
+      <fieldset class="step">
+        <legend class="step__name"><span class="step__n">03</span>День</legend>
+        <div class="chips chips--days" data-chips="day"></div>
+      </fieldset>
+
+      <fieldset class="step">
+        <legend class="step__name"><span class="step__n">04</span>Время</legend>
+        <div class="chips chips--time" data-chips="time"></div>
+      </fieldset>
+
+      <fieldset class="step step--contacts">
+        <legend class="step__name"><span class="step__n">05</span>Контакты</legend>
+        <label class="field">
+          <span class="field__name">Имя</span>
+          <input name="name" autocomplete="given-name" required>
+        </label>
+        <label class="field">
+          <span class="field__name">Телефон</span>
+          <input name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="+7 (___) ___-__-__" required>
+        </label>
+      </fieldset>
+
+      <div class="summary" aria-live="polite">
+        <p class="summary__text"></p>
+        <p class="summary__price"></p>
+      </div>
+
+      <div class="cta-row">
+        <button class="btn btn--solid" type="submit">
+          <span class="btn__fill" aria-hidden="true"></span>
+          <span class="btn__label">Записаться через WhatsApp</span>
+          <svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>
+        </button>
+        <span class="hint">Без предоплаты. Отменить можно в&nbsp;любой момент</span>
+      </div>
+      <p class="booking__error" role="alert" hidden></p>
+    </form>
+  </section>
+
+  <!-- 7. Отзывы: рейтинг и ссылка на 2ГИС -->
+  <section class="reviews" data-reveal>
+    <div class="reviews__score rise">
+      <span class="reviews__num" data-bind="rating"></span>
+      <span class="stars" aria-hidden="true"></span>
+    </div>
+    <div class="reviews__text">
+      <h2 class="rise d-100" data-lines="reviewsTitle"></h2>
+      <p class="muted rise d-200" data-bind="reviewsLead"></p>
+      <div class="cta-row rise d-200">
+        <a class="btn btn--line" data-href="reviews" target="_blank" rel="noopener">
+          <span class="btn__fill" aria-hidden="true"></span>
+          <span class="btn__label">Читать отзывы в&nbsp;2ГИС</span>
+          <svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>
+        </a>
+      </div>
+    </div>
+    <div class="reviews__list" data-list="reviews"></div>
+  </section>
+
+  <!-- 8. Контакты: схема C зеркально -->
+  <section class="contacts" id="contacts" data-reveal>
+    <figure class="contacts__media"><img data-photo="place" alt="" loading="lazy"></figure>
+    <div class="contacts__info">
+      <h2 class="rise" data-lines="contactsTitle"></h2>
+      <dl class="contacts__list rise d-100">
+        <div><dt>Адрес</dt><dd data-bind="address"></dd></div>
+        <div><dt>Часы работы</dt><dd data-bind="hours"></dd></div>
+        <div><dt>Телефон</dt><dd><a class="ulink" data-href="tel" data-bind="phone"></a></dd></div>
+      </dl>
+      <div class="cta-row rise d-200">
+        <a class="btn btn--line" data-href="gis" target="_blank" rel="noopener">
+          <span class="btn__fill" aria-hidden="true"></span>
+          <span class="btn__label">Построить маршрут в&nbsp;2ГИС</span>
+          <svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>
+        </a>
+        <a class="ulink" data-href="wa" target="_blank" rel="noopener">WhatsApp</a>
+        <a class="ulink" data-href="instagram" target="_blank" rel="noopener">Instagram</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <span data-bind="name"></span>
+  <span class="faint" data-bind="footer"></span>
+</footer>
+
+</body>
+</html>
