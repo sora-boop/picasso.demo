@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Салон</title>
+<meta name="description" content="">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400&family=Playfair+Display:wght@400&display=swap">
+<link rel="stylesheet" href="styles.css">
+<script src="script.js" defer></script>
+</head>
+<body>
+
+<header class="top" data-reveal-now>
+  <a class="logo rise d-300" href="#top" data-bind="name"></a>
+  <nav class="nav rise d-420" aria-label="Разделы">
+    <a class="nav__link" href="#services">Услуги</a>
+    <a class="nav__link" href="#team">Мастера</a>
+    <a class="nav__link" href="#contacts">Контакты</a>
+    <a class="nav__link nav__link--main" href="#book">Запись</a>
+  </nav>
+</header>
+
+<main>
+  <section class="hero" id="top" data-reveal-now>
+    <div class="hero__media"><img data-photo="hero" alt="" fetchpriority="high"></div>
+    <div class="hero__content">
+      <div class="hero__veil" aria-hidden="true"></div>
+      <h1 class="hero__title rise d-900" data-lines="heroTitle"></h1>
+      <p class="hero__lead rise d-1040" data-bind="heroLead"></p>
+      <div class="cta-row rise d-1200">
+        <a class="btn btn--solid" href="#book">
+          <span class="btn__fill" aria-hidden="true"></span>
+          <span class="btn__label">Записаться онлайн</span>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg>
+        </a>
+        <span class="hint" data-bind="heroHint"></span>
+      </div>
+    </div>
+
+    <div class="intro" data-reveal>
+      <p class="intro__text rise" data-bind="intro"></p>
+      <dl class="facts" data-list="facts"></dl>
+    </div>
+  </section>
+
+  <section class="services" id="services" data-reveal>
+    <div class="section-head">
+      <h2 class="rise">Услуги и&nbsp;цены</h2>
+      <p class="muted rise d-100" data-bind="servicesLead"></p>
+    </div>
+    <div class="svc-list" data-list="services"></div>
+    <div class="peek" aria-hidden="true"><img alt=""></div>
+  </section>
+
+  <section class="team" id="team" data-reveal>
+    <div class="section-head">
+      <h2 class="rise">Наши мастера</h2>
+      <p class="muted rise d-100" data-bind="teamLead"></p>
+    </div>
+    <div class="team__grid" data-list="team"></div>
+  </section>
+
+  <section class="book" id="book" data-reveal>
+    <div class="book__aside">
+      <h2 class="rise" data-lines="bookTitle"></h2>
+      <p class="muted rise d-100" data-bind="bookLead"></p>
+      <a class="book__phone rise d-200" data-href="tel" data-bind="phone"></a>
+    </div>
+
+    <form class="form rise d-200" id="book-form" novalidate>
+      <label class="field">
+        <span class="field__name">Имя</span>
+        <input name="name" autocomplete="given-name" required>
+      </label>
+      <label class="field">
+        <span class="field__name">Телефон</span>
+        <input name="phone" type="tel" autocomplete="tel" inputmode="tel" required>
+      </label>
+      <label class="field field--wide">
+        <span class="field__name">Услуга</span>
+        <select name="service" data-options="services"></select>
+      </label>
+      <label class="field field--wide">
+        <span class="field__name">Мастер</span>
+        <select name="master" data-options="team"></select>
+      </label>
+      <label class="field">
+        <span class="field__name">Дата</span>
+        <input name="date" type="date" required>
+      </label>
+      <label class="field">
+        <span class="field__name">Время</span>
+        <select name="time" data-options="slots"></select>
+      </label>
+      <div class="cta-row field--wide">
+        <button class="btn btn--solid" type="submit">
+          <span class="btn__fill" aria-hidden="true"></span>
+          <span class="btn__label">Записаться через WhatsApp</span>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg>
+        </button>
+        <span class="hint">Без предоплаты, отменить можно в&nbsp;любой момент</span>
+      </div>
+      <p class="form__error" role="alert" hidden>Укажите имя, телефон и&nbsp;дату</p>
+    </form>
+  </section>
+
+  <section class="contacts" id="contacts" data-reveal>
+    <div class="contacts__info">
+      <h2 class="rise" data-lines="contactsTitle"></h2>
+      <dl class="contacts__list rise d-100">
+        <div><dt class="faint">Адрес</dt><dd data-bind="address"></dd></div>
+        <div><dt class="faint">Часы работы</dt><dd data-bind="hours"></dd></div>
+        <div><dt class="faint">Телефон</dt><dd><a data-href="tel" data-bind="phone"></a></dd></div>
+      </dl>
+      <div class="cta-row rise d-200">
+        <a class="btn btn--line" data-href="gis" target="_blank" rel="noopener">
+          <span class="btn__fill" aria-hidden="true"></span>
+          <span class="btn__label">Проложить маршрут в&nbsp;2ГИС</span>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg>
+        </a>
+        <a class="link" data-href="instagram" target="_blank" rel="noopener">Instagram</a>
+        <a class="link" data-href="wa" target="_blank" rel="noopener">WhatsApp</a>
+      </div>
+    </div>
+    <div class="contacts__media"><img data-photo="place" alt="" loading="lazy"></div>
+  </section>
+</main>
+
+<footer class="foot">
+  <span data-bind="name"></span>
+  <span class="faint" data-bind="footer"></span>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Меню</title>
+<meta name="description" content="">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400&family=Oswald:wght@400&display=swap">
+<link rel="stylesheet" href="styles.css">
+<script src="script.js" defer></script>
+</head>
+<body>
+
+<header class="top" data-reveal-now>
+  <a class="logo rise d-300" href="#top" data-bind="name"></a>
+  <nav class="nav rise d-420" aria-label="Разделы">
+    <a class="nav__link" href="#menu">Меню</a>
+    <a class="nav__link" href="#reserve">Бронь</a>
+    <a class="nav__link" href="#contacts">Контакты</a>
+  </nav>
+</header>
+
+<main>
+  <section class="hero" id="top" data-reveal-now>
+    <div class="hero__media"><img data-photo="hero" alt="" fetchpriority="high"></div>
+    <div class="hero__content">
+      <div class="hero__veil" aria-hidden="true"></div>
+      <h1 class="rise d-900" data-lines="heroTitle"></h1>
+      <p class="hero__lead rise d-1040" data-bind="heroLead"></p>
+      <div class="cta-row rise d-1200">
+        <a class="btn btn--solid" href="#menu">
+          <span class="btn__fill" aria-hidden="true"></span>
+          <span class="btn__label">Открыть меню</span>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+        </a>
+        <span class="hint" data-bind="heroHint"></span>
+      </div>
+    </div>
+  </section>
+
+  <section class="menu" id="menu">
+    <div class="menu__head" data-reveal>
+      <h2 class="rise">Меню</h2>
+      <p class="muted rise d-100"><span class="table-tag" hidden></span><span data-bind="menuLead"></span></p>
+    </div>
+    <div class="tabs" role="tablist" aria-label="Категории меню">
+      <div class="tabs__track" data-list="tabs"></div>
+      <span class="tabs__bar" aria-hidden="true"></span>
+    </div>
+    <div class="menu__body" data-list="menu"></div>
+  </section>
+
+  <section class="mood" data-reveal aria-label="Атмосфера">
+    <img class="rise" data-photo="mood1" alt="" loading="lazy">
+    <img class="rise d-100" data-photo="mood2" alt="" loading="lazy">
+    <img class="rise d-200" data-photo="mood3" alt="" loading="lazy">
+  </section>
+
+  <section class="reserve" id="reserve" data-reveal>
+    <div class="reserve__aside">
+      <h2 class="rise" data-lines="reserveTitle"></h2>
+      <p class="muted rise d-100" data-bind="reserveLead"></p>
+    </div>
+    <form class="form rise d-200" id="reserve-form" novalidate>
+      <label class="field">
+        <span class="field__name">Имя</span>
+        <input name="name" autocomplete="given-name" required>
+      </label>
+      <label class="field">
+        <span class="field__name">Телефон</span>
+        <input name="phone" type="tel" inputmode="tel" autocomplete="tel" required>
+      </label>
+      <label class="field">
+        <span class="field__name">Дата</span>
+        <input name="date" type="date" required>
+      </label>
+      <label class="field">
+        <span class="field__name">Время</span>
+        <select name="time" data-options="slots"></select>
+      </label>
+      <label class="field field--wide">
+        <span class="field__name">Гостей</span>
+        <select name="guests" data-options="guests"></select>
+      </label>
+      <div class="cta-row field--wide">
+        <button class="btn btn--solid" type="submit">
+          <span class="btn__fill" aria-hidden="true"></span>
+          <span class="btn__label">Забронировать стол</span>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg>
+        </button>
+        <span class="hint">Ответим в&nbsp;WhatsApp за&nbsp;15 минут, без депозита</span>
+      </div>
+      <p class="form__error" role="alert" hidden>Укажите имя, телефон и&nbsp;дату</p>
+    </form>
+  </section>
+
+  <section class="contacts" id="contacts" data-reveal>
+    <h2 class="rise" data-lines="contactsTitle"></h2>
+    <dl class="contacts__list rise d-100">
+      <div><dt class="faint">Адрес</dt><dd data-bind="address"></dd></div>
+      <div><dt class="faint">Часы работы</dt><dd data-bind="hours"></dd></div>
+      <div><dt class="faint">Телефон</dt><dd><a data-href="tel" data-bind="phone"></a></dd></div>
+    </dl>
+    <div class="cta-row rise d-200">
+      <a class="btn btn--line" data-href="gis" target="_blank" rel="noopener">
+        <span class="btn__fill" aria-hidden="true"></span>
+        <span class="btn__label">Проложить маршрут в&nbsp;2ГИС</span>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg>
+      </a>
+      <a class="link" data-href="instagram" target="_blank" rel="noopener">Instagram</a>
+      <a class="link" data-href="wa" target="_blank" rel="noopener">WhatsApp</a>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <span data-bind="name"></span>
+  <span class="faint" data-bind="footer"></span>
+</footer>
+
+<!-- «Мой выбор»: гость отмечает позиции и показывает экран официанту -->
+<div class="tray" hidden>
+  <button class="tray__open" type="button">
+    <span class="tray__count"></span>
+    <span class="tray__sum"></span>
+    <span class="tray__go">Показать официанту</span>
+  </button>
+</div>
+
+<dialog class="sheet" aria-labelledby="sheet-title">
+  <div class="sheet__head">
+    <h3 id="sheet-title">Мой выбор<span class="table-tag" hidden></span></h3>
+    <button class="icon-btn" type="button" data-close aria-label="Закрыть">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg>
+    </button>
+  </div>
+  <ul class="sheet__list"></ul>
+  <div class="sheet__total"><span>Итого</span><span class="sheet__sum"></span></div>
+  <p class="hint">Покажите этот экран официанту. Онлайн-оплаты нет, рассчитаетесь на&nbsp;месте.</p>
+  <button class="btn btn--line" type="button" data-clear>
+    <span class="btn__fill" aria-hidden="true"></span>
+    <span class="btn__label">Очистить выбор</span>
+  </button>
+</dialog>
+
+</body>
+</html>
