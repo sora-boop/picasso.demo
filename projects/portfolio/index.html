@@ -1,0 +1,218 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Илья, дизайн и разработка сайтов</title>
+<meta name="description" content="Илья: дизайн и разработка сайтов для бизнеса в Казахстане. Лендинги, сайты с 3D, онлайн-запись и заказы в WhatsApp. Работы, цены и калькулятор стоимости.">
+<meta name="theme-color" content="#0b0b0b">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Wix+Madefor+Display:wght@500&family=Wix+Madefor+Text:wght@400&display=swap">
+<link rel="stylesheet" href="styles.css">
+<script type="importmap">
+{ "imports": { "three": "https://unpkg.com/three@0.160.0/build/three.module.js" } }
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+<script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js" defer></script>
+<script type="module" src="script.js"></script>
+</head>
+<body class="is-loading">
+
+<div class="loader" aria-hidden="true">
+  <span class="loader__word">Илья / сайты</span>
+  <span class="loader__count">00</span>
+  <span class="loader__bar"><i></i></span>
+</div>
+
+<canvas class="stage" aria-hidden="true"></canvas>
+<img class="stage-fallback" src="assets/studio.png" alt="" aria-hidden="true">
+
+<div class="cursor" aria-hidden="true"><span class="cursor__label"></span></div>
+
+<header class="nav">
+  <a class="nav__logo" href="#top" aria-label="Илья, наверх">Илья<span class="nav__dot" aria-hidden="true"></span></a>
+  <nav class="nav__links" aria-label="Разделы">
+    <a href="#works">Работы</a>
+    <a href="#process">Процесс</a>
+    <a href="#prices">Цены</a>
+    <a href="#faq">Вопросы</a>
+  </nav>
+  <a class="btn btn--line btn--sm magnetic" href="#contact" data-cursor="Написать">
+    <span class="btn__fill" aria-hidden="true"></span>
+    <span class="btn__label">Обсудить проект</span>
+  </a>
+</header>
+
+<main>
+
+  <!-- 1. Первый экран: схема B, разобранная страница между строками -->
+  <section class="hero" id="top">
+    <h1 class="sr-only">Илья: дизайн и разработка сайтов для бизнеса</h1>
+    <div class="hero__word" aria-hidden="true">
+      <span class="hero__w1" data-split>Делаю</span>
+      <span class="hero__w2" data-split>сайты</span>
+    </div>
+    <div class="hero__meta">
+      <p class="hero__lead" data-fade>Меня зовут Илья. Проектирую, рисую и&nbsp;программирую сайты для бизнеса в&nbsp;Казахстане: от&nbsp;лендинга до&nbsp;сайта с&nbsp;3D и&nbsp;онлайн-записью.</p>
+      <div class="cta-row" data-fade>
+        <a class="btn btn--solid magnetic" href="#contact" data-cursor="Написать">
+          <span class="btn__fill" aria-hidden="true"></span>
+          <span class="btn__label">Обсудить проект</span>
+          <svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>
+        </a>
+        <span class="hint">Отвечу в&nbsp;течение часа, консультация бесплатно</span>
+      </div>
+    </div>
+    <span class="hero__scroll" data-fade aria-hidden="true">Листайте, соберём&nbsp;сайт</span>
+  </section>
+
+  <!-- 2. Процесс: страница собирается в 3D -->
+  <section class="process" id="process">
+    <div class="process__pin">
+      <div class="process__head">
+        <h2 data-reveal>Как появляется сайт</h2>
+        <p class="muted">Четыре этапа. На&nbsp;каждом вы видите результат и&nbsp;говорите «да» или «поправим».</p>
+      </div>
+      <ol class="process__steps" data-list="process"></ol>
+      <div class="rail" aria-hidden="true">
+        <div class="rail__labels" data-list="process-labels"></div>
+        <div class="rail__progress"><i></i></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. Работы: экран показывает проекты -->
+  <section class="works" id="works">
+    <div class="works__pin">
+      <div class="works__head">
+        <h2 data-reveal>Работы</h2>
+        <span class="works__count"><span class="works__cur">01</span> / <span class="works__total">05</span></span>
+      </div>
+      <div class="works__list" data-list="works"></div>
+      <div class="rail" aria-hidden="true">
+        <div class="rail__labels rail__labels--works" data-list="works-labels"></div>
+        <div class="rail__progress"><i></i></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3б. Ещё работы: типографский список -->
+  <section class="more">
+    <div class="more__head">
+      <h2 data-reveal>Ещё работы</h2>
+      <p class="muted" data-fade>Сайты для стоматологий, школ, барбершопов и&nbsp;магазинов. Откройте любой, они живые.</p>
+    </div>
+    <ul class="more__list" data-list="more"></ul>
+  </section>
+
+  <!-- 4. Принципы: текст проявляется по словам -->
+  <section class="manifest">
+    <p class="manifest__text" data-words>Я не&nbsp;собираю сайты из&nbsp;шаблонов конструктора. Каждый проект рисую под нишу и&nbsp;пишу код сам, поэтому сайт быстрый, лёгкий и&nbsp;не&nbsp;похож на&nbsp;соседей.</p>
+    <ul class="pillars" data-list="pillars"></ul>
+  </section>
+
+  <!-- 5. Цены -->
+  <section class="prices" id="prices">
+    <div class="prices__head">
+      <h2 data-reveal>Цены</h2>
+      <p class="muted" data-fade>Фиксирую стоимость до&nbsp;начала работы. Оплата 50% на&nbsp;старте и&nbsp;50% после запуска.</p>
+    </div>
+    <div class="prices__list" data-list="prices"></div>
+  </section>
+
+  <!-- 6. Калькулятор -->
+  <section class="calc" id="calc">
+    <div class="calc__aside">
+      <h2 data-reveal>Сколько стоит<br>ваш сайт</h2>
+      <p class="muted" data-fade>Отметьте, что нужно, и&nbsp;отправьте расчёт мне в&nbsp;WhatsApp. Уточню детали и&nbsp;назову точную цену.</p>
+    </div>
+    <form class="calc__form" id="calc-form">
+      <fieldset class="step">
+        <legend class="step__name"><span class="step__n">01</span>Какой сайт</legend>
+        <div class="chips" data-chips="type"></div>
+      </fieldset>
+      <fieldset class="step">
+        <legend class="step__name"><span class="step__n">02</span>Что добавить</legend>
+        <div class="chips" data-chips="extras"></div>
+      </fieldset>
+      <fieldset class="step">
+        <legend class="step__name"><span class="step__n">03</span>Сроки</legend>
+        <div class="chips" data-chips="speed"></div>
+      </fieldset>
+      <div class="calc__result" aria-live="polite">
+        <div>
+          <span class="calc__label">Примерно</span>
+          <p class="calc__price"><span class="calc__num">150 000</span>&nbsp;₸</p>
+        </div>
+        <p class="calc__time"></p>
+      </div>
+      <div class="cta-row">
+        <button class="btn btn--solid magnetic" type="submit" data-cursor="WhatsApp">
+          <span class="btn__fill" aria-hidden="true"></span>
+          <span class="btn__label">Отправить расчёт в&nbsp;WhatsApp</span>
+          <svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>
+        </button>
+        <span class="hint">Расчёт ни&nbsp;к&nbsp;чему не&nbsp;обязывает</span>
+      </div>
+    </form>
+  </section>
+
+  <!-- 7. Вопросы -->
+  <section class="faq" id="faq">
+    <h2 data-reveal>Вопросы</h2>
+    <div class="faq__list" data-list="faq"></div>
+  </section>
+
+  <!-- 8. Контакты -->
+  <section class="contact" id="contact">
+    <div class="contact__aside">
+      <h2 data-reveal>Расскажите<br>о&nbsp;бизнесе</h2>
+      <p class="muted" data-fade>Напишите пару строк о&nbsp;том, чем занимаетесь. Предложу структуру сайта и&nbsp;цену в&nbsp;тот&nbsp;же день.</p>
+      <div class="contact__direct" data-fade>
+        <a class="btn btn--line magnetic" href="https://wa.me/77000000000" target="_blank" rel="noopener" data-cursor="WhatsApp">
+          <span class="btn__fill" aria-hidden="true"></span><span class="btn__label">Написать в&nbsp;WhatsApp</span>
+        </a>
+        <a class="btn btn--line magnetic" href="https://t.me/username" target="_blank" rel="noopener" data-cursor="Telegram">
+          <span class="btn__fill" aria-hidden="true"></span><span class="btn__label">Написать в&nbsp;Telegram</span>
+        </a>
+      </div>
+    </div>
+    <form class="booking" id="contact-form" novalidate>
+      <fieldset class="step">
+        <legend class="step__name"><span class="step__n">01</span>Ваша ниша</legend>
+        <div class="chips" data-chips="niche"></div>
+      </fieldset>
+      <fieldset class="step step--contacts">
+        <legend class="step__name"><span class="step__n">02</span>Контакты</legend>
+        <label class="field"><span class="field__name">Имя</span><input name="name" autocomplete="given-name" required></label>
+        <label class="field"><span class="field__name">Телефон</span><input name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="+7 (___) ___-__-__" required></label>
+        <label class="field field--wide"><span class="field__name">О&nbsp;бизнесе, по&nbsp;желанию</span><input name="about" placeholder="Например: кофейня в Костанае, нужен сайт с меню"></label>
+      </fieldset>
+      <div class="cta-row">
+        <button class="btn btn--solid magnetic" type="submit" data-cursor="Отправить">
+          <span class="btn__fill" aria-hidden="true"></span>
+          <span class="btn__label">Получить структуру и&nbsp;цену</span>
+          <svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>
+        </button>
+        <span class="hint">Заявка уйдёт мне в&nbsp;WhatsApp, отвечу за&nbsp;час</span>
+      </div>
+      <p class="booking__error" role="alert" hidden></p>
+    </form>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="foot__grid">
+    <div><span class="foot__label">Работаю</span><p>По&nbsp;всему Казахстану, удалённо</p></div>
+    <div><span class="foot__label">Связь</span><p><a class="ulink" href="https://wa.me/77000000000" target="_blank" rel="noopener">WhatsApp</a> / <a class="ulink" href="https://t.me/username" target="_blank" rel="noopener">Telegram</a></p></div>
+    <div><span class="foot__label">Ответ</span><p>Ежедневно, 9:00–22:00</p></div>
+    <div class="foot__top"><a class="ulink" href="#top">Наверх</a></div>
+  </div>
+  <div class="foot__word" aria-hidden="true" data-split>Илья</div>
+  <p class="foot__note">© 2026. Дизайн и&nbsp;код: Илья. Часть работ на&nbsp;сайте выполнена как концепты.</p>
+</footer>
+
+</body>
+</html>
