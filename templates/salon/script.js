@@ -254,7 +254,7 @@ $$('[data-reveal]').forEach((el) => io.observe(el));
 const peek = $('.peek');
 if (!reduce && matchMedia('(hover: hover) and (pointer: fine)').matches) {
   const peekImg = $('img', peek);
-  let x = 0, y = 0, raf = 0;
+  let x = 0, y = 0, raf = 0, want = '';
   const place = () => {
     raf = 0;
     const w = peek.offsetWidth, h = peek.offsetHeight;
@@ -266,14 +266,17 @@ if (!reduce && matchMedia('(hover: hover) and (pointer: fine)').matches) {
     g.addEventListener('pointerenter', (e) => {
       const key = g.dataset.photoKey;
       if (!key) return;
-      peekImg.src = imgSrc(key);
+      const src = imgSrc(key);
       x = e.clientX; y = e.clientY;
       if (!peek.classList.contains('is-on')) {
         peek.style.transition = 'none'; place(); peek.offsetWidth; peek.style.transition = '';
       }
-      peek.classList.add('is-on');
+      want = src;
+      const probe = new Image();
+      probe.onload = () => { if (want !== src) return; peekImg.src = src; peek.classList.add('is-on'); };
+      probe.src = src; // битое фото не показываем вовсе
     });
-    g.addEventListener('pointerleave', () => peek.classList.remove('is-on'));
+    g.addEventListener('pointerleave', () => { want = ''; peek.classList.remove('is-on'); });
     g.addEventListener('pointermove', (e) => { x = e.clientX; y = e.clientY; if (!raf) raf = requestAnimationFrame(place); });
   });
 } else {
