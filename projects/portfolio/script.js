@@ -22,15 +22,17 @@ const WORKS = [
   { name: 'Ақ Тіс Clinic', meta: 'Стоматология / Костанай / концепт', img: 'assets/works/aktis-hero-desk.jpg',
     d: 'Под курсором зуб просвечивается рентгеном. На скролле сканер находит кариес, пломба твердеет под лампой, вкручивается имплант.',
     tags: ['3D', 'Рентген под курсором', 'Запись к врачу'], url: 'https://claude.ai/artifact/VS7sfS2c8Efv7HTLoguEvJ' },
-  { name: 'Barber Room', meta: 'Шаблон для салонов / три ниши', img: 'assets/works/salon-hero-desk.jpg',
-    d: 'Один шаблон на барбершоп, парикмахерскую и салон красоты. Под нового клиента меняю название, цвета и фото за день.',
-    tags: ['Шаблон', 'Запись онлайн', 'Быстрый запуск'], url: 'https://claude.ai/artifact/Fc13geJN5BaRokCebDvZuf' },
-  { name: 'Picasso', meta: 'Стоматология / Рудный', img: 'assets/works/picasso-hero-desk.jpg',
-    d: 'Сайт стоматологического центра: услуги и технологии, оценка стоимости лечения и запись на бесплатную консультацию.',
-    tags: ['Медицина', 'Запись', 'Калькулятор'], url: 'https://claude.ai/artifact/15kZKXwZHyX1qtpFpQwC9o' },
+  { name: 'TORQUE 52', meta: 'Автосервис / Рудный / концепт', img: 'assets/works/torque-hero-desk.jpg',
+    d: 'Тормозной узел крутится от скролла и раскаляется, если листать быстро. Потом разбирается по винтику с ценой каждой детали.',
+    tags: ['3D', 'Калькулятор ремонта', 'Запись'], url: 'https://claude.ai/artifact/3DTwwoFgYSKrRnNbac27Xg' },
+  { name: 'Pulse Arena', meta: 'Фитнес-клуб / Костанай / концепт', img: 'assets/works/pulse-hero-desk.jpg',
+    d: 'Гиря в облаке частиц, которое бьётся в ритме сердца, и живая ЭКГ. На скролле четыре зоны пульса, расписание и запись на пробную.',
+    tags: ['3D', 'Расписание', 'Пробная тренировка'], url: 'https://claude.ai/artifact/X5RTX6m4Q3CvjxUSNHSuX6' },
 ];
 
 const MORE = [
+  { name: 'Picasso', niche: 'Стоматология', city: 'Рудный', url: 'https://claude.ai/artifact/15kZKXwZHyX1qtpFpQwC9o' },
+  { name: 'Barber Room', niche: 'Шаблон для барбершопов и салонов', city: 'Казахстан', url: 'https://claude.ai/artifact/Fc13geJN5BaRokCebDvZuf' },
   { name: 'Soprano Barbershop', niche: 'Барбершоп', city: 'Рудный', url: 'https://claude.ai/artifact/8CTeCKfzyGoA2sVEQXhned' },
   { name: 'NRD Clinic', niche: 'Детская стоматология', city: 'Астана', url: 'https://claude.ai/artifact/5biNjpER24VseRpZBusHyT' },
   { name: 'Династия', niche: 'Семейная стоматология', city: 'Алматы', url: 'https://claude.ai/artifact/62sW9RHHtvy8DZiKnxcvHT' },
