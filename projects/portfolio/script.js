@@ -107,7 +107,11 @@ const clamp01 = (v) => Math.max(0, Math.min(1, v));
 const smooth = (t) => t * t * (3 - 2 * t);
 const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
 const fine = matchMedia('(hover: hover) and (pointer: fine)').matches;
-const isMobile = () => innerWidth <= 760;
+// телефон или планшет вертикально: одна колонка, 3D по центру, работы списком
+const MOBILE_Q = '(max-width: 760px), (max-width: 1100px) and (orientation: portrait)';
+const isMobile = () => matchMedia(MOBILE_Q).matches;
+// ровно противоположное условие: закреплённые работы с 3D-экраном
+const DESK_Q = '(min-width: 1101px), (min-width: 761px) and (orientation: landscape)';
 const pad2 = (n) => String(n).padStart(2, '0');
 const ARROW = '<svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>';
 const PLUS = '<svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>';
@@ -316,18 +320,23 @@ const BASE = { x: 0, y: 0, z: 0, rx: 0.28, ry: -0.55, rz: 0, scale: 1, explode: 
 const S = (o) => ({ ...BASE, ...o });
 function keyStates() {
   const m = isMobile();
-  const pos = m ? { x: 0, y: 0.22, scale: 0.4 } : { x: 1.6, y: 0.05, scale: 0.88 };
+  // на планшете вертикально экран шире телефона: объект растёт вместе с ним
+  const f = m ? Math.min(1.6, Math.max(1, (innerWidth / innerHeight) / 0.46)) : 1;
+  const pos = m ? { x: 0, y: innerHeight < 700 ? 0.02 : 0.22, scale: 0.4 * f } : { x: 1.6, y: 0.05, scale: 0.88 };
   const launch = { explode: 0, wire: 0, fill: 1, code: 0, screen: 1, rx: 0.1, ry: -0.24, idle: 0.3 };
-  return {
-    intro: S(m ? { y: -3.4, scale: 0.4, rx: 0.9, grid: 0 } : { x: 1.5, y: -4, scale: 0.9, rx: 0.9, grid: 0 }),
-    hero: S(m ? { x: 0, y: 0.6, scale: 0.4, accent: 1 } : { x: 1.85, y: -0.3, scale: 0.86, accent: 1 }),
+  // позиции подобраны под 16:9; на экранах уже (iPad горизонтально, 4:3) сдвигаем и уменьшаем
+  const d = m ? 1 : Math.min(1, (innerWidth / innerHeight) / 1.6);
+  const fit = (states) => (m ? states : Object.fromEntries(Object.entries(states).map(([k, o]) => [k, { ...o, x: o.x * d, scale: o.scale * d }])));
+  return fit({
+    intro: S(m ? { y: -3.4, scale: 0.4 * f, rx: 0.9, grid: 0 } : { x: 1.5, y: -4, scale: 0.9, rx: 0.9, grid: 0 }),
+    hero: S(m ? { x: 0, y: 0.6, scale: 0.4 * f, accent: 1 } : { x: 1.85, y: -0.3, scale: 0.86, accent: 1 }),
     p0: S({ ...pos }),
     p1: S({ ...pos, fill: 1, wire: 0.25, ry: -0.5 }),
     p2: S({ ...pos, fill: 1, wire: 0, explode: 0.12, code: 1, ry: -0.38, idle: 0.5 }),
     p3: S({ ...pos, ...launch, ...(m ? {} : { x: 1.4, scale: 0.86 }) }),
     works: m ? S({ ...pos, ...launch, alpha: 0, y: 3 }) : S({ x: 1.32, y: 0.02, scale: 0.86, ...launch }),
     gone: S({ x: m ? 0 : 1.2, y: 4.2, scale: 0.6, ...launch, alpha: 0, grid: 0.4 }),
-  };
+  });
 }
 const mixState = (a, b, t) => Object.fromEntries(Object.keys(a).map((k) => [k, a[k] + (b[k] - a[k]) * t]));
 const pageY = (el) => el.getBoundingClientRect().top + scrollY;
@@ -476,12 +485,13 @@ async function boot() {
     });
     $$('[data-fade]').forEach((el) => {
       if (el.closest('.hero')) return;
-      g.from(el, { autoAlpha: 0, y: 28, filter: 'blur(14px)', duration: 0.9, ease: 'expo.out', scrollTrigger: { trigger: el, start: 'top 90%' } });
+      // opacity, а не autoAlpha: элемент остаётся доступен с клавиатуры до того, как до него докрутили
+      g.from(el, { opacity: 0, y: 28, filter: 'blur(14px)', duration: 0.9, ease: 'expo.out', scrollTrigger: { trigger: el, start: 'top 90%' } });
     });
     g.to(manifestWords, { opacity: 1, stagger: 0.12, ease: 'none', scrollTrigger: { trigger: '.manifest__text', start: 'top 78%', end: 'bottom 45%', scrub: true } });
-    g.from('.more__row', { y: 30, autoAlpha: 0, duration: 0.9, ease: 'expo.out', stagger: 0.06, scrollTrigger: { trigger: '.more__list', start: 'top 82%' } });
-    $$('.chips', $('.calc')).forEach((box) => g.from($$('.chip', box), { y: 18, autoAlpha: 0, duration: 0.7, ease: 'expo.out', stagger: 0.04, scrollTrigger: { trigger: box, start: 'top 90%' } }));
-    g.from('.qa', { y: 24, autoAlpha: 0, duration: 0.8, ease: 'expo.out', stagger: 0.06, scrollTrigger: { trigger: '.faq__list', start: 'top 85%' } });
+    g.from('.more__row', { y: 30, opacity: 0, duration: 0.9, ease: 'expo.out', stagger: 0.06, scrollTrigger: { trigger: '.more__list', start: 'top 82%' } });
+    $$('.chips', $('.calc')).forEach((box) => g.from($$('.chip', box), { y: 18, opacity: 0, duration: 0.7, ease: 'expo.out', stagger: 0.04, scrollTrigger: { trigger: box, start: 'top 90%' } }));
+    g.from('.qa', { y: 24, opacity: 0, duration: 0.8, ease: 'expo.out', stagger: 0.06, scrollTrigger: { trigger: '.faq__list', start: 'top 85%' } });
     g.from('.foot__word .split-char', { yPercent: 110, duration: 1.4, ease: 'expo.out', stagger: 0.07, scrollTrigger: { trigger: '.foot__word', start: 'top 95%' } });
     if (isMobile()) $$('.work__img').forEach((el) => g.from(el, { clipPath: 'inset(100% 0 0 0)', duration: 1.2, ease: 'expo.out', scrollTrigger: { trigger: el, start: 'top 88%' } }));
   } else {
@@ -489,15 +499,20 @@ async function boot() {
   }
 
   /* переключатель слайдов в закреплённых сценах */
-  function switcher(items, labels, onChange) {
+  // focusable: скрытые слайды остаются доступны с клавиатуры (только прозрачность),
+  // а мышь проходит сквозь них благодаря классу is-current
+  function switcher(items, labels, onChange, focusable) {
     let current = 0;
-    g.set(items, { autoAlpha: 0, y: 40 });
-    g.set(items[0], { autoAlpha: 1, y: 0 });
+    const A = focusable ? 'opacity' : 'autoAlpha';
+    g.set(items, { [A]: 0, y: 40 });
+    g.set(items[0], { [A]: 1, y: 0 });
+    items.forEach((el, j) => el.classList.toggle('is-current', j === 0));
     return (i) => {
       if (i === current) return;
       const dir = i > current ? 1 : -1;
-      g.to(items[current], { autoAlpha: 0, y: -40 * dir, filter: 'blur(10px)', duration: 0.6, ease: 'expo.out', overwrite: true });
-      g.fromTo(items[i], { autoAlpha: 0, y: 40 * dir, filter: 'blur(10px)' }, { autoAlpha: 1, y: 0, filter: 'blur(0px)', duration: 0.9, ease: 'expo.out', overwrite: true });
+      g.to(items[current], { [A]: 0, y: -40 * dir, filter: 'blur(10px)', duration: 0.6, ease: 'expo.out', overwrite: true });
+      g.fromTo(items[i], { [A]: 0, y: 40 * dir, filter: 'blur(10px)' }, { [A]: 1, y: 0, filter: 'blur(0px)', duration: 0.9, ease: 'expo.out', overwrite: true });
+      items.forEach((el, j) => el.classList.toggle('is-current', j === i));
       labels.forEach((l, j) => l.classList.toggle('is-on', j === i));
       current = i;
       onChange && onChange(i);
@@ -513,13 +528,13 @@ async function boot() {
   });
 
   const mm = g.matchMedia();
-  mm.add('(min-width: 761px)', () => {
+  mm.add(DESK_Q, () => {
     const showWork = switcher(works, wlabels, (i) => {
       workIdx = i;
       $('.works__cur').textContent = pad2(i + 1);
       if (studio) studio.setWork(i);
       update();
-    });
+    }, true);
     const t = ST.create({
       trigger: '.works', start: 'top top', end: 'bottom bottom',
       onUpdate: (self) => {
@@ -527,7 +542,17 @@ async function boot() {
         showWork(Math.min(works.length - 1, Math.floor(self.progress * works.length * 0.999)));
       },
     });
-    return () => { t.kill(); g.set(works, { clearProps: 'all' }); };
+    // клавиатура: ссылка работы в фокусе — прокручиваем к её слайду, чтобы она была на экране
+    const onFocus = (e) => {
+      const w = e.target.closest('.work');
+      if (!w) return;
+      const i = works.indexOf(w);
+      const y = t.start + (t.end - t.start) * ((i + 0.5) / works.length);
+      if (lenis) lenis.scrollTo(y, { immediate: true }); else scrollTo(0, y);
+      showWork(i);
+    };
+    $('.works__list').addEventListener('focusin', onFocus);
+    return () => { t.kill(); $('.works__list').removeEventListener('focusin', onFocus); g.set(works, { clearProps: 'all' }); };
   });
 
   const nav = $('.nav');

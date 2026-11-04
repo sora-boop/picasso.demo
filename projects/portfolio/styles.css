@@ -69,14 +69,15 @@ p  { margin: 0; max-width: 56ch; text-wrap: pretty; }
 .no-webgl .stage { display: none; }
 .no-webgl .stage-fallback {
   display: block; position: absolute; z-index: 5; pointer-events: none;
-  top: 18vh; right: 2vw; width: min(60vw, 860px);
+  top: 13vh; right: 3vw; width: min(34vw, 520px);
 }
 main, .foot, .nav { position: relative; z-index: 10; }
 main { z-index: auto; }
 main > section { position: relative; }
 .hero__word { position: relative; z-index: 1; }
 .hero__meta, .hero__scroll, .process__pin, .works__pin, .more, .manifest, .prices, .calc, .faq, .contact, .foot__grid, .foot__note { position: relative; z-index: 10; }
-.process, .works { z-index: 0; }
+/* текст закреплённых сцен поверх 3D: фона у этих секций нет */
+.process, .works { z-index: auto; }
 
 /* ---------- предзагрузка ---------- */
 .loader {
@@ -145,7 +146,7 @@ main > section { position: relative; }
 .nav__logo { display: inline-flex; align-items: baseline; gap: 3px; min-height: 44px; align-items: center; font-family: var(--display); font-size: 22px; letter-spacing: -.03em; }
 .nav__dot { width: 7px; height: 7px; border-radius: 50%; background: var(--accent); margin-top: 10px; }
 .nav__links { display: flex; gap: var(--s3); margin-left: auto; font-size: 14px; }
-.nav__links a { opacity: .7; transition: opacity 320ms var(--ease); min-height: 44px; display: inline-flex; align-items: center; }
+.nav__links a { opacity: .7; transition: opacity 320ms var(--ease); min-height: 44px; min-width: 44px; padding: 0 4px; justify-content: center; display: inline-flex; align-items: center; }
 .nav__links a:hover { opacity: 1; }
 
 /* ---------- 1. первый экран ---------- */
@@ -338,7 +339,7 @@ main > section { position: relative; }
   .pillars { grid-template-columns: 1fr 1fr; }
   .foot__grid { grid-template-columns: 1fr 1fr; }
 }
-@media (max-width: 760px) {
+@media (max-width: 760px), (max-width: 1100px) and (orientation: portrait) {
   .hero__word { font-size: 27vw; }
   .hero__w1 { top: 14svh; }
   .hero__w2 { top: 36svh; right: var(--pad); }
@@ -376,4 +377,47 @@ main > section { position: relative; }
   .loader { display: none; }
   body.is-loading { overflow: auto; }
   .manifest__text .word { opacity: 1 !important; }
+}
+
+/* невысокие экраны ноутбуков: закреплённые сцены компактнее, чтобы текст шага не обрезался */
+@media (max-height: 820px) and (min-width: 761px) and (orientation: landscape) {
+  .process__pin, .works__pin { padding-top: calc(var(--s5) + 24px); padding-bottom: var(--s3); gap: var(--s2) var(--s5); }
+  .process__head h2, .works__head h2 { font-size: clamp(2.4rem, 4.2vw, 4.6rem); }
+  .process__head .muted { font-size: 15px; }
+  .process__steps, .works__list { min-height: 260px; }
+  .pstep__n { font-size: clamp(3.6rem, 6vw, 6rem); }
+  .pstep h3 { font-size: clamp(26px, 2.6vw, 40px); }
+  .pstep, .work { gap: 10px; }
+  .work h3 { font-size: clamp(32px, 3.6vw, 56px); }
+}
+
+/* телефоны: заголовок закреплённой сцены в две строки, на коротких экранах без подзаголовка */
+@media (max-width: 760px) {
+  .process__head h2 { font-size: clamp(2rem, 10vw, 3.2rem); }
+}
+@media (max-width: 760px) and (max-height: 700px) {
+  .process__head .muted { display: none; }
+  .process__steps { min-height: 200px; }
+  .pstep p { font-size: 14px; }
+}
+
+/* без WebGL на компьютере: скриншот работы стоит справа вместо 3D-экрана */
+@media (min-width: 1101px), (min-width: 761px) and (orientation: landscape) {
+  .no-webgl .works__pin .work__img {
+    display: block; position: absolute; left: calc(100% + var(--s5)); bottom: 0;
+    width: min(52vw, 760px); aspect-ratio: 16 / 10; overflow: hidden;
+  }
+  .no-webgl .works__pin .work__img img { width: 100%; height: 100%; object-fit: cover; }
+}
+@media (max-width: 760px), (max-width: 1100px) and (orientation: portrait) {
+  /* на узком экране картинка неизбежно режет текст первого экрана: без неё чище */
+  .no-webgl .stage-fallback { display: none; }
+}
+
+/* поле в фокусе заметно: акцентная линия */
+.field input:focus { border-color: var(--accent); box-shadow: 0 1px 0 0 var(--accent); }
+
+/* слайды работ: невидимые не перехватывают клики у текущего */
+@media (min-width: 1101px), (min-width: 761px) and (orientation: landscape) {
+  .works__pin .work:not(.is-current) { pointer-events: none; }
 }
