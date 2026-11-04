@@ -7,7 +7,7 @@
 /* ---------------------------------------------------------------------
    1. ДАННЫЕ
    --------------------------------------------------------------------- */
-const ME = { whatsapp: '77057266334', telegram: 'theeyesofdeceased' };
+const ME = { whatsapp: '77057266334', telegram: 'pharmacyonhome' };
 
 const WORKS = [
   { name: 'ҚАЙРАҚ', meta: 'Барбершоп / Рудный / концепт', img: 'assets/works/kairak-hero-desk.jpg',
