@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Бакс, барбершоп в Астане</title>
+<meta name="description" content="Барбершоп «Бакс» в ЖК «Азия Плюс», Астана. Стрижка с маской и массажем головы в подарок. Каждый день с 9:00 до 24:00 по записи.">
+<meta name="theme-color" content="#e9e5de">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Wix+Madefor+Display:wght@500&family=Wix+Madefor+Text:wght@400&display=swap">
+<link rel="stylesheet" href="styles.css">
+<script type="importmap">
+{ "imports": {
+  "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+  "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+} }
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+<script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js" defer></script>
+<script type="module" src="script.js"></script>
+</head>
+<body>
+
+<!-- 3D-сцена: одна машинка на всю страницу -->
+<canvas class="stage" aria-hidden="true"></canvas>
+<img class="stage-fallback" src="assets/clipper.png" alt="" aria-hidden="true">
+
+<header class="nav">
+  <a class="nav__logo" href="#top" aria-label="Бакс, наверх">Бакс</a>
+  <nav class="nav__links" aria-label="Разделы">
+    <a href="#guards">Насадки</a>
+    <a href="#price">Цены</a>
+    <a href="#masters">Мастера</a>
+    <a href="#reviews">Отзывы</a>
+  </nav>
+  <span class="status" data-status><i aria-hidden="true"></i><span class="status__text">Каждый день 9:00–24:00</span></span>
+  <a class="btn btn--line btn--sm" href="#book">
+    <span class="btn__fill" aria-hidden="true"></span>
+    <span class="btn__label">Записаться</span>
+  </a>
+</header>
+
+<main>
+
+  <!-- 1. Первый экран: схема C, фото справа в край, машинка на стыке -->
+  <section class="hero" id="top">
+    <div class="hero__text">
+      <h1 class="hero__title" data-lines>Стрижка<br>с&nbsp;массажем<br>в&nbsp;подарок</h1>
+      <p class="hero__lead" data-in>Барбершоп «Бакс» в&nbsp;ЖК&nbsp;«Азия Плюс». К&nbsp;каждой стрижке маска и&nbsp;массаж головы. Каждый день с&nbsp;9:00 до&nbsp;24:00, по&nbsp;записи.</p>
+      <div class="cta-row" data-in>
+        <a class="btn btn--solid" href="#book">
+          <span class="btn__fill" aria-hidden="true"></span>
+          <span class="btn__label">Выбрать время</span>
+          <svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>
+        </a>
+        <span class="hint">Без предоплаты, подтвердим в&nbsp;WhatsApp</span>
+      </div>
+      <a class="rating" href="https://2gis.kz/astana/firm/70000001112607806/tab/reviews" target="_blank" rel="noopener" data-in>
+        <span class="rating__num">5,0</span>
+        <span class="rating__text">108&nbsp;оценок<br>в&nbsp;2ГИС</span>
+      </a>
+    </div>
+    <figure class="hero__photo" data-in>
+      <img src="assets/hero.jpg" alt="Кресло барбера в зале" fetchpriority="high">
+    </figure>
+  </section>
+
+  <!-- 2. Что входит в визит -->
+  <section class="visit" id="visit">
+    <div class="visit__head">
+      <h2 data-lines>Одна стрижка,<br>четыре шага</h2>
+      <p class="muted" data-in>Цена одна, всё остальное входит в&nbsp;неё. Вы приходите постричься, а&nbsp;уходите отдохнувшим.</p>
+    </div>
+    <ol class="visit__steps" data-list="visit"></ol>
+  </section>
+
+  <!-- 3. Насадки: закреплённая сцена, на машинку по очереди надеваются насадки -->
+  <section class="guards" id="guards">
+    <div class="guards__pin">
+      <div class="guards__text">
+        <p class="guards__kicker">Шкала насадок</p>
+        <h2 class="guards__title">Скажите номер,<br>мастер поймёт</h2>
+        <div class="guards__now" aria-live="polite">
+          <span class="guards__num" data-g="num">0</span>
+          <span class="guards__mm" data-g="mm">0,5&nbsp;мм</span>
+        </div>
+        <h3 class="guards__name" data-g="name"></h3>
+        <p class="guards__desc muted" data-g="desc"></p>
+      </div>
+      <div class="guards__scale" role="group" aria-label="Насадки" data-list="guards"></div>
+      <p class="guards__note muted">Не&nbsp;знаете, какую длину попросить? Покажите фото, мастер подберёт насадку сам.</p>
+    </div>
+  </section>
+
+  <!-- 4. Цены -->
+  <section class="price" id="price">
+    <div class="price__head">
+      <h2 data-lines>Цены</h2>
+      <p class="muted" data-in>Точную цену мастер скажет до&nbsp;начала. Она зависит от&nbsp;длины и&nbsp;сложности стрижки.</p>
+    </div>
+    <div class="price__list" data-list="services"></div>
+  </section>
+
+  <!-- 5. Мастера -->
+  <section class="masters" id="masters">
+    <div class="masters__head">
+      <h2 data-lines>Мастера</h2>
+      <p class="muted" data-in>Трое за&nbsp;креслами. Выберите мастера, и&nbsp;он сразу подставится в&nbsp;запись.</p>
+    </div>
+    <div class="masters__grid" data-list="masters"></div>
+  </section>
+
+  <!-- 6. Отзывы из 2ГИС -->
+  <section class="reviews" id="reviews">
+    <div class="reviews__score">
+      <span class="reviews__big" data-in>5,0</span>
+      <p data-in>108&nbsp;оценок и&nbsp;86&nbsp;отзывов в&nbsp;2ГИС</p>
+      <a class="btn btn--line" href="https://2gis.kz/astana/firm/70000001112607806/tab/reviews" target="_blank" rel="noopener" data-in>
+        <span class="btn__fill" aria-hidden="true"></span>
+        <span class="btn__label">Читать все отзывы</span>
+        <svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>
+      </a>
+    </div>
+    <div class="reviews__list" data-list="reviews"></div>
+  </section>
+
+  <!-- 7. Где мы: фото во всю ширину -->
+  <section class="place" id="place">
+    <img class="place__img" src="assets/hall.jpg" alt="Зал барбершопа" loading="lazy">
+    <div class="place__card">
+      <h2 data-lines>Сарайшык,<br>ЖК&nbsp;«Азия Плюс»</h2>
+      <p>Улица Жумекена Нажимеденова,&nbsp;16а. Работаем без выходных с&nbsp;9:00 до&nbsp;24:00. Приходите по&nbsp;записи, тогда ждать не&nbsp;придётся.</p>
+      <a class="btn btn--line btn--light" href="https://2gis.kz/astana/firm/70000001112607806" target="_blank" rel="noopener">
+        <span class="btn__fill" aria-hidden="true"></span>
+        <span class="btn__label">Построить маршрут</span>
+        <svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>
+      </a>
+    </div>
+  </section>
+
+  <!-- 8. Запись -->
+  <section class="book" id="book">
+    <div class="book__aside">
+      <h2 data-lines>Выберите<br>своё время</h2>
+      <p class="muted" data-in>Заявка уйдёт в&nbsp;WhatsApp барбершопа. Мастер подтвердит время или предложит ближайшее свободное.</p>
+    </div>
+    <form class="booking" id="booking" novalidate>
+      <fieldset class="step">
+        <legend class="step__name"><span class="step__n">01</span>Услуга</legend>
+        <div class="chips chips--wide" data-chips="service"></div>
+      </fieldset>
+      <fieldset class="step">
+        <legend class="step__name"><span class="step__n">02</span>Мастер</legend>
+        <div class="chips" data-chips="master"></div>
+      </fieldset>
+      <fieldset class="step">
+        <legend class="step__name"><span class="step__n">03</span>День</legend>
+        <div class="chips chips--days" data-chips="day"></div>
+      </fieldset>
+      <fieldset class="step">
+        <legend class="step__name"><span class="step__n">04</span>Время</legend>
+        <div class="chips chips--time" data-chips="time"></div>
+      </fieldset>
+      <fieldset class="step step--contacts">
+        <legend class="step__name"><span class="step__n">05</span>Контакты</legend>
+        <label class="field"><span class="field__name">Имя</span><input name="name" autocomplete="given-name" required></label>
+        <label class="field"><span class="field__name">Телефон</span><input name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="+7 (___) ___-__-__" required></label>
+      </fieldset>
+      <div class="summary" aria-live="polite">
+        <p class="summary__text"></p>
+        <p class="summary__price"></p>
+      </div>
+      <div class="cta-row">
+        <button class="btn btn--solid" type="submit">
+          <span class="btn__fill" aria-hidden="true"></span>
+          <span class="btn__label">Записаться через WhatsApp</span>
+          <svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>
+        </button>
+        <span class="hint">Без предоплаты. Отменить можно в&nbsp;любой момент</span>
+      </div>
+      <p class="booking__error" role="alert" hidden></p>
+    </form>
+  </section>
+</main>
+
+<!-- 9. Контакты и большое слово -->
+<footer class="foot" id="contacts">
+  <div class="foot__grid">
+    <div><span class="foot__label">Адрес</span><p>Астана, ул.&nbsp;Жумекена Нажимеденова,&nbsp;16а, ЖК&nbsp;«Азия Плюс»</p></div>
+    <div><span class="foot__label">Часы</span><p>Ежедневно, 9:00–24:00, по&nbsp;записи</p></div>
+    <div><span class="foot__label">Телефон</span><p><a class="ulink" href="tel:+77018200555">+7 701 820 05 55</a></p></div>
+    <div class="foot__links">
+      <a class="ulink" href="https://wa.me/77018200555" target="_blank" rel="noopener">WhatsApp</a>
+      <a class="ulink" href="https://2gis.kz/astana/firm/70000001112607806" target="_blank" rel="noopener">2ГИС</a>
+    </div>
+  </div>
+  <div class="foot__word" aria-hidden="true">Бакс</div>
+  <p class="foot__note">Демо-версия сайта. Фото: Unsplash, заменяются на&nbsp;фото барбершопа.</p>
+</footer>
+
+</body>
+</html>
