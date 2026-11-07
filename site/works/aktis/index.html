@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Ақ Тіс, стоматология в Костанае</title>
+<meta name="description" content="Ақ Тіс Clinic: стоматология в Костанае. Лечение под микроскопом, имплантация с гарантией, гигиена и детский врач. Первый осмотр бесплатно, запись в WhatsApp.">
+<meta name="theme-color" content="#edf1f5">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Onest:wght@300;400&display=swap">
+<link rel="stylesheet" href="styles.css">
+<script type="importmap">
+{ "imports": {
+  "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+  "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+} }
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+<script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js" defer></script>
+<script type="module" src="script.js"></script>
+</head>
+<body class="is-loading">
+
+<div class="loader" aria-hidden="true">
+  <span class="loader__word">Ақ Тіс Clinic</span>
+  <span class="loader__count">00</span>
+  <span class="loader__bar"><i></i></span>
+</div>
+
+<canvas class="stage" aria-hidden="true"></canvas>
+<img class="stage-fallback" src="assets/tooth.png" alt="" aria-hidden="true">
+
+<div class="cursor" aria-hidden="true"><span class="cursor__label"></span></div>
+
+<header class="nav">
+  <a class="nav__logo" href="#top" aria-label="Ақ Тіс, наверх"><span class="nav__mark" aria-hidden="true"></span>Ақ Тіс</a>
+  <nav class="nav__links" aria-label="Разделы">
+    <a href="#prices">Услуги и цены</a>
+    <a href="#doctors">Врачи</a>
+    <a href="#clinic">Клиника</a>
+    <a href="#contacts">Контакты</a>
+  </nav>
+  <a class="btn btn--line btn--sm magnetic" href="#book" data-cursor="Записаться">
+    <span class="btn__fill" aria-hidden="true"></span>
+    <span class="btn__label">Записаться</span>
+  </a>
+</header>
+
+<main>
+
+  <!-- 1. Первый экран: схема B, зуб между строками, под курсором рентген -->
+  <section class="hero" id="top">
+    <h1 class="sr-only">Ақ Тіс Clinic, стоматология в Костанае</h1>
+    <div class="hero__word" aria-hidden="true">
+      <span class="hero__w1" data-split>Ақ</span>
+      <span class="hero__w2" data-split>Тіс</span>
+    </div>
+    <div class="hero__meta">
+      <p class="hero__lead" data-fade>Стоматология в&nbsp;Костанае. Лечим без боли под микроскопом и&nbsp;ставим импланты с&nbsp;гарантией 10&nbsp;лет.</p>
+      <div class="cta-row" data-fade>
+        <a class="btn btn--solid magnetic" href="#book" data-cursor="Записаться">
+          <span class="btn__fill" aria-hidden="true"></span>
+          <span class="btn__label">Записаться на&nbsp;осмотр</span>
+          <svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>
+        </a>
+        <span class="hint">Первый осмотр бесплатно, подтвердим за&nbsp;10&nbsp;минут</span>
+      </div>
+    </div>
+    <span class="hero__scroll" data-fade aria-hidden="true">Наведите на&nbsp;зуб, это&nbsp;рентген</span>
+  </section>
+
+  <!-- 2. Как мы лечим: закреплённая сцена -->
+  <section class="treat" id="treat">
+    <div class="treat__pin">
+      <div class="treat__head">
+        <h2 data-reveal>Как мы лечим</h2>
+        <p class="muted">Один зуб, четыре этапа. Листайте и&nbsp;смотрите, что происходит в&nbsp;кресле.</p>
+      </div>
+      <ol class="treat__steps" data-list="steps"></ol>
+      <div class="rail" aria-hidden="true">
+        <div class="rail__labels" data-list="labels"></div>
+        <div class="rail__progress"><i></i></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. Услуги и цены -->
+  <section class="prices" id="prices">
+    <aside class="prices__aside">
+      <p class="prices__note" data-fade>Рассрочка 0-0-12 на&nbsp;лечение от&nbsp;100&nbsp;000&nbsp;₸. Цена фиксируется в&nbsp;плане лечения и&nbsp;не&nbsp;меняется.</p>
+    </aside>
+    <div class="prices__main">
+      <div class="prices__head">
+        <h2 data-reveal>Услуги и&nbsp;цены</h2>
+        <p class="muted" data-fade>Нажмите на&nbsp;услугу, и&nbsp;она сразу попадёт в&nbsp;запись.</p>
+      </div>
+      <div class="tabs" role="tablist" aria-label="Разделы услуг" data-list="tabs"></div>
+      <div class="prices__panels" data-list="services"></div>
+    </div>
+  </section>
+
+  <!-- 4. Врачи -->
+  <section class="doctors" id="doctors">
+    <div class="doctors__head">
+      <h2 data-reveal>Врачи</h2>
+      <p class="muted" data-fade>Ведёт вас один врач от&nbsp;осмотра до&nbsp;результата. Не&nbsp;передаём из&nbsp;рук в&nbsp;руки.</p>
+    </div>
+    <div class="doctors__list" data-list="doctors"></div>
+  </section>
+
+  <!-- 5. Клиника: фото на весь экран, текст снизу слева -->
+  <section class="clinic" id="clinic">
+    <figure class="clinic__hero">
+      <div class="clinic__img"><img src="assets/clinic.jpg" alt="Светлый кабинет стоматологии с креслом" loading="lazy"></div>
+      <figcaption class="clinic__cap">
+        <h2 data-reveal>Здесь<br>не&nbsp;страшно</h2>
+        <p data-fade>Светлые кабинеты, тихие наконечники и&nbsp;анестезия, которую не&nbsp;чувствуешь. Перед лечением покажем снимок и&nbsp;объясним план.</p>
+      </figcaption>
+    </figure>
+    <div class="clinic__grid">
+      <ul class="facts" data-list="facts"></ul>
+      <figure class="ph ph--a"><div class="ph__img"><img src="assets/consult.jpg" alt="Врач объясняет пациенту план лечения" loading="lazy"></div><figcaption>План лечения до&nbsp;начала работы</figcaption></figure>
+      <figure class="ph ph--b"><div class="ph__img"><img src="assets/xray.jpg" alt="Врач смотрит рентгеновские снимки" loading="lazy"></div><figcaption>Снимки и&nbsp;томограф в&nbsp;клинике</figcaption></figure>
+      <figure class="ph ph--c"><div class="ph__img"><img src="assets/lobby.jpg" alt="Зона ожидания клиники" loading="lazy"></div><figcaption>Ждать почти не&nbsp;придётся</figcaption></figure>
+    </div>
+  </section>
+
+  <!-- 6. Запись -->
+  <section class="book" id="book">
+    <div class="book__aside">
+      <h2 data-reveal>Запись<br>к&nbsp;врачу</h2>
+      <p class="muted" data-fade>Заявка уйдёт администратору в&nbsp;WhatsApp. Он подтвердит время или предложит ближайшее свободное окно.</p>
+    </div>
+    <form class="booking" id="booking" novalidate>
+      <fieldset class="step">
+        <legend class="step__name"><span class="step__n">01</span>Услуга</legend>
+        <div class="select">
+          <select name="service" aria-label="Услуга"></select>
+          <svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+        </div>
+      </fieldset>
+      <fieldset class="step">
+        <legend class="step__name"><span class="step__n">02</span>Врач</legend>
+        <div class="chips" data-chips="doctor"></div>
+      </fieldset>
+      <fieldset class="step">
+        <legend class="step__name"><span class="step__n">03</span>День</legend>
+        <div class="chips chips--days" data-chips="day"></div>
+      </fieldset>
+      <fieldset class="step">
+        <legend class="step__name"><span class="step__n">04</span>Время</legend>
+        <div class="chips chips--time" data-chips="time"></div>
+      </fieldset>
+      <fieldset class="step step--contacts">
+        <legend class="step__name"><span class="step__n">05</span>Контакты</legend>
+        <label class="field"><span class="field__name">Имя</span><input name="name" autocomplete="given-name" required></label>
+        <label class="field"><span class="field__name">Телефон</span><input name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="+7 (___) ___-__-__" required></label>
+      </fieldset>
+      <div class="summary" aria-live="polite">
+        <p class="summary__text"></p>
+        <p class="summary__price"></p>
+      </div>
+      <div class="cta-row">
+        <button class="btn btn--solid magnetic" type="submit" data-cursor="WhatsApp">
+          <span class="btn__fill" aria-hidden="true"></span>
+          <span class="btn__label">Записаться через WhatsApp</span>
+          <svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>
+        </button>
+        <span class="hint">Без предоплаты. Перенести можно в&nbsp;любой момент</span>
+      </div>
+      <p class="booking__error" role="alert" hidden></p>
+    </form>
+  </section>
+</main>
+
+<footer class="foot" id="contacts">
+  <div class="foot__grid">
+    <div><span class="foot__label">Адрес</span><p>Костанай, пр.&nbsp;Абая</p></div>
+    <div><span class="foot__label">Часы</span><p>Пн–Сб 9:00–20:00<br>Вс 10:00–16:00</p></div>
+    <div><span class="foot__label">Телефон</span><p><a class="ulink" href="tel:+77000000000">+7 700 000 00 00</a></p></div>
+    <div class="foot__links">
+      <a class="ulink" href="https://wa.me/77000000000" target="_blank" rel="noopener">WhatsApp</a>
+      <a class="ulink" href="https://instagram.com/" target="_blank" rel="noopener">Instagram</a>
+      <a class="ulink" href="https://2gis.kz/kostanay" target="_blank" rel="noopener">2ГИС</a>
+    </div>
+  </div>
+  <div class="foot__word" aria-hidden="true" data-split>Ақ Тіс</div>
+  <p class="foot__note">Концепт сайта. Клиника вымышленная, фото: Unsplash. Имеются противопоказания, необходима консультация специалиста.</p>
+</footer>
+
+</body>
+</html>

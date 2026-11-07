@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Tobyl Coffee, кофейня в Костанае</title>
+<meta name="description" content="Tobyl Coffee: кофейня на набережной Тобола в Костанае. Своя обжарка, айс-латте, выпечка. Заказ навынос через WhatsApp без очереди.">
+<meta name="theme-color" content="#ece4d6">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400&family=Playfair+Display:wght@400&display=swap">
+<link rel="stylesheet" href="styles.css">
+<script type="importmap">
+{ "imports": { "three": "https://unpkg.com/three@0.160.0/build/three.module.js" } }
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+<script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js" defer></script>
+<script type="module" src="script.js"></script>
+</head>
+<body class="is-loading">
+
+<!-- Предзагрузка: стакан наполняется вместе с процентами -->
+<div class="loader" aria-hidden="true">
+  <span class="loader__word">tobyl coffee</span>
+  <span class="loader__count">00</span>
+  <span class="loader__bar"><i></i></span>
+</div>
+
+<!-- 3D-сцена: одна на всю страницу -->
+<canvas class="stage" aria-hidden="true"></canvas>
+<img class="stage-fallback" src="assets/cup.png" alt="" aria-hidden="true">
+
+<div class="cursor" aria-hidden="true"><span class="cursor__label"></span></div>
+
+<header class="nav">
+  <a class="nav__logo" href="#top" aria-label="Tobyl Coffee, наверх">tobyl</a>
+  <nav class="nav__links" aria-label="Разделы">
+    <a href="#menu">Меню</a>
+    <a href="#roast">Обжарка</a>
+    <a href="#space">Место</a>
+    <a href="#contacts">Контакты</a>
+  </nav>
+  <a class="btn btn--line btn--sm magnetic" href="#order" data-cursor="Навынос">
+    <span class="btn__fill" aria-hidden="true"></span>
+    <span class="btn__label">Заказать навынос</span>
+  </a>
+</header>
+
+<main>
+
+  <!-- 1. Первый экран: схема B, стакан между строками -->
+  <section class="hero" id="top">
+    <h1 class="sr-only">Tobyl Coffee, кофейня в Костанае</h1>
+    <div class="hero__word" aria-hidden="true">
+      <span class="hero__w1" data-split>tobyl</span>
+      <span class="hero__w2" data-split>coffee</span>
+    </div>
+    <div class="hero__meta">
+      <p class="hero__lead" data-fade>Кофейня на&nbsp;набережной Тобола в&nbsp;Костанае. Своя обжарка, тёплый зал и&nbsp;кофе навынос за&nbsp;5&nbsp;минут.</p>
+      <div class="cta-row" data-fade>
+        <a class="btn btn--solid magnetic" href="#menu" data-cursor="Меню">
+          <span class="btn__fill" aria-hidden="true"></span>
+          <span class="btn__label">Собрать заказ</span>
+          <svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>
+        </a>
+        <span class="hint">Заберёте без очереди, оплата на&nbsp;месте</span>
+      </div>
+    </div>
+    <span class="hero__scroll" data-fade aria-hidden="true">Листайте, соберём айс-латте</span>
+  </section>
+
+  <!-- 2. Как собираем айс-латте: закреплённая тёмная сцена -->
+  <section class="brew is-dark" id="brew">
+    <div class="brew__pin">
+      <div class="brew__head">
+        <h2 data-reveal>Айс-латте</h2>
+        <p class="muted">Четыре шага и&nbsp;две минуты. Листайте медленно, так&nbsp;же мы его и&nbsp;собираем.</p>
+      </div>
+      <ol class="brew__steps" data-list="brew"></ol>
+      <div class="brew__rail" aria-hidden="true">
+        <div class="brew__labels" data-list="brew-labels"></div>
+        <div class="brew__progress"><i></i></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. Меню -->
+  <section class="menu" id="menu">
+    <aside class="menu__aside">
+      <p class="menu__note" data-fade>Любой напиток на&nbsp;овсяном или миндальном молоке, +300&nbsp;₸</p>
+    </aside>
+    <div class="menu__main">
+      <div class="menu__head">
+        <h2 data-reveal>Меню</h2>
+        <p class="muted" data-fade>Нажмите на&nbsp;позицию, и&nbsp;она попадёт в&nbsp;заказ. Заберёте у&nbsp;стойки без очереди.</p>
+      </div>
+      <div class="tabs" role="tablist" aria-label="Разделы меню" data-list="tabs"></div>
+      <div class="menu__panels" data-list="menu"></div>
+    </div>
+  </section>
+
+  <!-- 4. Обжарка: схема C, текст слева, фото у края окна -->
+  <section class="roast" id="roast">
+    <div class="roast__text">
+      <h2 data-reveal>Своя<br>обжарка</h2>
+      <p class="roast__lead" data-fade>Каждый вторник обжариваем 12&nbsp;килограммов зерна прямо в&nbsp;зале. Поэтому кофе в&nbsp;вашем стакане никогда не&nbsp;старше двух недель.</p>
+      <ul class="origins" data-list="origins"></ul>
+    </div>
+    <figure class="roast__photo"><img src="assets/beans.jpg" alt="Зерно в барабане ростера после обжарки" loading="lazy"></figure>
+  </section>
+
+  <!-- 5. Место: фото на весь экран, текст в нижнем левом углу -->
+  <section class="space" id="space">
+    <figure class="space__hero">
+      <div class="space__img"><img src="assets/place.jpg" alt="Светлый зал кофейни с растениями и большими окнами" loading="lazy"></div>
+      <figcaption class="space__cap">
+        <h2 data-reveal>Светло<br>и&nbsp;тихо</h2>
+        <p data-fade>Панорамные окна на&nbsp;Тобол, розетки у&nbsp;каждого стола и&nbsp;быстрый Wi-Fi. Можно работать до&nbsp;закрытия.</p>
+      </figcaption>
+    </figure>
+    <div class="space__grid">
+      <figure class="ph ph--a"><div class="ph__img"><img src="assets/tree.jpg" alt="Дерево посреди зала и кофейная стойка" loading="lazy"></div><figcaption>Дерево в&nbsp;центре зала</figcaption></figure>
+      <figure class="ph ph--b"><div class="ph__img"><img src="assets/bar.jpg" alt="Бариста за стойкой" loading="lazy"></div><figcaption>Бар на&nbsp;восемь мест</figcaption></figure>
+      <figure class="ph ph--c"><div class="ph__img"><img src="assets/pour.jpg" alt="Молоко льётся в айс-кофе" loading="lazy"></div><figcaption>Холодное меню круглый год</figcaption></figure>
+      <figure class="ph ph--d"><div class="ph__img"><img src="assets/light.jpg" alt="Светлый зал с высоким потолком" loading="lazy"></div><figcaption>Второй зал для&nbsp;работы</figcaption></figure>
+    </div>
+  </section>
+
+  <!-- 6. Заказ навынос -->
+  <section class="order" id="order">
+    <div class="order__aside">
+      <h2 data-reveal>Заказ<br>навынос</h2>
+      <p class="muted" data-fade>Соберите заказ, и&nbsp;он уйдёт бариста в&nbsp;WhatsApp. Начнём готовить, как только подтвердим.</p>
+    </div>
+    <form class="booking" id="booking" novalidate>
+      <fieldset class="step">
+        <legend class="step__name"><span class="step__n">01</span>Ваш заказ</legend>
+        <ul class="cart" data-list="cart" aria-live="polite"></ul>
+        <a class="cart__empty ulink" href="#menu" hidden>Пока пусто. Выберите напитки в&nbsp;меню</a>
+      </fieldset>
+      <fieldset class="step">
+        <legend class="step__name"><span class="step__n">02</span>Когда заберёте</legend>
+        <div class="chips" data-chips="time"></div>
+      </fieldset>
+      <fieldset class="step step--contacts">
+        <legend class="step__name"><span class="step__n">03</span>Контакты</legend>
+        <label class="field"><span class="field__name">Имя</span><input name="name" autocomplete="given-name" required></label>
+        <label class="field"><span class="field__name">Телефон</span><input name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="+7 (___) ___-__-__" required></label>
+      </fieldset>
+      <div class="summary" aria-live="polite">
+        <p class="summary__text"></p>
+        <p class="summary__price"></p>
+      </div>
+      <div class="cta-row">
+        <button class="btn btn--solid magnetic" type="submit" data-cursor="WhatsApp">
+          <span class="btn__fill" aria-hidden="true"></span>
+          <span class="btn__label">Заказать через WhatsApp</span>
+          <svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>
+        </button>
+        <span class="hint">Оплата при получении, ответим за&nbsp;2&nbsp;минуты</span>
+      </div>
+      <p class="booking__error" role="alert" hidden></p>
+    </form>
+  </section>
+</main>
+
+<!-- Плавающая корзина -->
+<a class="cartbar" href="#order" hidden data-cursor="Оформить">
+  <span class="cartbar__text"></span>
+  <span class="cartbar__go">Оформить</span>
+</a>
+
+<footer class="foot" id="contacts">
+  <div class="foot__grid">
+    <div><span class="foot__label">Адрес</span><p>Костанай, набережная Тобола</p></div>
+    <div><span class="foot__label">Часы</span><p>Будни 7:30–22:00<br>Выходные 9:00–23:00</p></div>
+    <div><span class="foot__label">Телефон</span><p><a class="ulink" href="tel:+77000000000">+7 700 000 00 00</a></p></div>
+    <div class="foot__links">
+      <a class="ulink" href="https://wa.me/77000000000" target="_blank" rel="noopener">WhatsApp</a>
+      <a class="ulink" href="https://instagram.com/" target="_blank" rel="noopener">Instagram</a>
+      <a class="ulink" href="https://2gis.kz/kostanay" target="_blank" rel="noopener">2ГИС</a>
+    </div>
+  </div>
+  <div class="foot__word" aria-hidden="true" data-split>tobyl</div>
+  <p class="foot__note">Концепт сайта. Кофейня вымышленная, фото: Unsplash.</p>
+</footer>
+
+</body>
+</html>
