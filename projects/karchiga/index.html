@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Karchiga Lash, ресницы и брови в Костанае</title>
+<meta name="description" content="Karchiga Lash: студия красоты в Костанае, проспект Назарбаева, 193. Наращивание ресниц, брови, маникюр и эпиляция. Каждый день 10:00–20:00. Демо-версия сайта.">
+<meta name="theme-color" content="#f5eeec">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&family=Manrope:wght@400&display=swap">
+<link rel="stylesheet" href="styles.css">
+<script type="importmap">
+{ "imports": {
+  "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+  "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+} }
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+<script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js" defer></script>
+<script type="module" src="script.js"></script>
+</head>
+<body>
+
+<!-- 3D-сцена: ряд ресниц на всю страницу -->
+<canvas class="stage" aria-hidden="true"></canvas>
+<img class="stage-fallback" src="assets/lash.png" alt="" aria-hidden="true">
+
+<header class="nav">
+  <a class="nav__logo" href="#top" aria-label="Karchiga Lash, наверх">Karchiga Lash</a>
+  <nav class="nav__links" aria-label="Разделы">
+    <a href="#guards">Объём</a>
+    <a href="#price">Цены</a>
+    <a href="#masters">Мастера</a>
+    <a href="#place">Где мы</a>
+  </nav>
+  <span class="status" data-status><i aria-hidden="true"></i><span class="status__text">Каждый день 10:00–20:00</span></span>
+  <a class="btn btn--line btn--sm" href="#book">
+    <span class="btn__fill" aria-hidden="true"></span>
+    <span class="btn__label">Записаться</span>
+  </a>
+</header>
+
+<main>
+
+  <!-- 1. Первый экран: схема C, фото справа в край, ресницы над заголовком -->
+  <section class="hero" id="top">
+    <div class="hero__text">
+      <h1 class="hero__title" data-lines>Взгляд,<br>который<br>запоминают</h1>
+      <p class="hero__lead" data-in>Студия Karchiga Lash в&nbsp;Костанае: наращивание ресниц, брови, маникюр и&nbsp;эпиляция. Проспект Назарбаева,&nbsp;193, каждый день с&nbsp;10:00 до&nbsp;20:00.</p>
+      <div class="cta-row" data-in>
+        <a class="btn btn--solid" href="#book">
+          <span class="btn__fill" aria-hidden="true"></span>
+          <span class="btn__label">Записаться онлайн</span>
+          <svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>
+        </a>
+        <span class="hint">Запись в&nbsp;пару касаний, без звонков</span>
+      </div>
+    </div>
+    <figure class="hero__photo" data-in>
+      <img src="assets/hero.jpg" alt="Мастер наращивает ресницы клиентке" fetchpriority="high">
+    </figure>
+  </section>
+
+  <!-- 2. Что входит в визит -->
+  <section class="visit" id="visit">
+    <div class="visit__head">
+      <h2 data-lines>Как проходит<br>наращивание</h2>
+      <p class="muted" data-in>Четыре шага, чтобы ресницы держались и&nbsp;выглядели естественно до&nbsp;коррекции.</p>
+    </div>
+    <ol class="visit__steps" data-list="visit"></ol>
+  </section>
+
+  <!-- 3. Объём: закреплённая сцена, пучки ресниц становятся гуще -->
+  <section class="guards" id="guards">
+    <div class="guards__pin">
+      <div class="guards__text">
+        <p class="guards__kicker">Объём ресниц</p>
+        <h2 class="guards__title">Какой объём<br>выбрать</h2>
+        <div class="guards__now" aria-live="polite">
+          <span class="guards__num" data-g="num">1:1</span>
+          <span class="guards__mm" data-g="mm">1 ресница в&nbsp;пучке</span>
+        </div>
+        <h3 class="guards__name" data-g="name"></h3>
+        <p class="guards__desc muted" data-g="desc"></p>
+      </div>
+      <div class="guards__scale" role="group" aria-label="Объём ресниц" data-list="guards"></div>
+      <p class="guards__note muted">Не&nbsp;знаете, что выбрать? Мастер подберёт объём и&nbsp;изгиб под форму ваших глаз.</p>
+    </div>
+  </section>
+
+  <!-- 4. Цены -->
+  <section class="price" id="price">
+    <div class="price__head">
+      <h2 data-lines>Цены</h2>
+      <p class="muted" data-in>Цены подставим из&nbsp;прайса студии. Пока здесь все направления.</p>
+    </div>
+    <div class="price__list" data-list="services"></div>
+  </section>
+
+  <!-- 5. Мастера -->
+  <section class="masters" id="masters">
+    <div class="masters__head">
+      <h2 data-lines>Мастера</h2>
+      <p class="muted" data-in>Здесь будут мастера студии: имя, фото и&nbsp;работы каждого.</p>
+    </div>
+    <div class="masters__grid" data-list="masters"></div>
+  </section>
+
+  <!-- 7. Где мы: фото во всю ширину -->
+  <section class="place" id="place">
+    <img class="place__img" src="assets/hall.jpg" alt="Зал студии красоты" loading="lazy">
+    <div class="place__card">
+      <h2 data-lines>Проспект<br>Назарбаева,&nbsp;193</h2>
+      <p>Костанай. Работаем каждый день с&nbsp;10:00 до&nbsp;20:00. Записывайтесь заранее: в&nbsp;выходные окна разбирают быстрее.</p>
+    </div>
+  </section>
+
+  <!-- 8. Запись -->
+  <section class="book" id="book">
+    <div class="book__aside">
+      <h2 data-lines>Выберите<br>своё время</h2>
+      <p class="muted" data-in>Заявка уйдёт в&nbsp;WhatsApp студии. Мастер подтвердит время или предложит ближайшее свободное.</p>
+    </div>
+    <form class="booking" id="booking" novalidate>
+      <fieldset class="step">
+        <legend class="step__name"><span class="step__n">01</span>Услуга</legend>
+        <div class="chips chips--wide" data-chips="service"></div>
+      </fieldset>
+      <fieldset class="step">
+        <legend class="step__name"><span class="step__n">02</span>Мастер</legend>
+        <div class="chips" data-chips="master"></div>
+      </fieldset>
+      <fieldset class="step">
+        <legend class="step__name"><span class="step__n">03</span>День</legend>
+        <div class="chips chips--days" data-chips="day"></div>
+      </fieldset>
+      <fieldset class="step">
+        <legend class="step__name"><span class="step__n">04</span>Время</legend>
+        <div class="chips chips--time" data-chips="time"></div>
+      </fieldset>
+      <fieldset class="step step--contacts">
+        <legend class="step__name"><span class="step__n">05</span>Контакты</legend>
+        <label class="field"><span class="field__name">Имя</span><input name="name" autocomplete="given-name" required></label>
+        <label class="field"><span class="field__name">Телефон</span><input name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="+7 (___) ___-__-__" required></label>
+      </fieldset>
+      <div class="summary" aria-live="polite">
+        <p class="summary__text"></p>
+        <p class="summary__price"></p>
+      </div>
+      <div class="cta-row">
+        <button class="btn btn--solid" type="submit">
+          <span class="btn__fill" aria-hidden="true"></span>
+          <span class="btn__label">Записаться через WhatsApp</span>
+          <svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>
+        </button>
+        <span class="hint">Без предоплаты. Отменить можно в&nbsp;любой момент</span>
+      </div>
+      <p class="booking__error" role="alert" hidden></p>
+    </form>
+  </section>
+</main>
+
+<!-- 9. Контакты и большое слово -->
+<footer class="foot" id="contacts">
+  <div class="foot__grid">
+    <div><span class="foot__label">Адрес</span><p>Костанай, проспект Назарбаева,&nbsp;193</p></div>
+    <div><span class="foot__label">Часы</span><p>Ежедневно, 10:00–20:00</p></div>
+    <div><span class="foot__label">Телефон</span><p><a class="ulink" href="tel:+77076641394">+7 707 664 13 94</a></p></div>
+    <div class="foot__links">
+      <a class="ulink" href="https://wa.me/77076641394" target="_blank" rel="noopener">WhatsApp</a>
+    </div>
+  </div>
+  <div class="foot__word" aria-hidden="true">Karchiga</div>
+  <p class="foot__note">Демо-версия сайта для Karchiga Lash. Фото: Unsplash, заменим на&nbsp;фото студии. Разработка: Илья, <a class="ulink" href="https://ilya-webdesign.netlify.app" target="_blank" rel="noopener">ilya-webdesign.netlify.app</a>.</p>
+</footer>
+<p class="demo-tag" role="note">Демо-версия сайта для&nbsp;Karchiga Lash</p>
+
+</body>
+</html>
