@@ -1,0 +1,5 @@
+{
+  "name": "ilya-office-local",
+  "owner": { "name": "Ilya Web Design" },
+  "plugins": [{ "name": "ilya-office", "source": "./" }]
+}

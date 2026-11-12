@@ -1,0 +1,1 @@
+{ "name": "ilya-office", "version": "0.1.0", "description": "Пиксельный офис: панель со статусами агентов Ilya Web Design и сводкой по клиентам", "types": "./types/index.d.ts" }
