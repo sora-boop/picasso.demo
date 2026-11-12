@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>REforma, фитнес-студия в Костанае</title>
+<meta name="description" content="REforma: фитнес-студия в Костанае, проспект Абая, 161. Джампинг, стретчинг, хатха-йога, функциональный тренинг и танцы. Демо-версия сайта.">
+<meta name="theme-color" content="#f4efea">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Wix+Madefor+Display:wght@500&family=Wix+Madefor+Text:wght@400&display=swap">
+<link rel="stylesheet" href="styles.css">
+<script type="importmap">
+{ "imports": { "three": "https://unpkg.com/three@0.160.0/build/three.module.js" } }
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+<script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js" defer></script>
+<script type="module" src="script.js"></script>
+</head>
+<body class="is-loading">
+
+<div class="loader" aria-hidden="true">
+  <span class="loader__word">REforma</span>
+  <span class="loader__count">00</span>
+  <span class="loader__bar"><i></i></span>
+</div>
+
+<canvas class="stage" aria-hidden="true"></canvas>
+<img class="stage-fallback" src="assets/bell.png" alt="" aria-hidden="true">
+
+<!-- живой пульс: ЭКГ и удары в минуту -->
+<div class="meter" aria-hidden="true">
+  <canvas class="meter__ecg" width="220" height="56"></canvas>
+  <div class="meter__val"><span class="meter__bpm">72</span><span class="meter__unit">уд/мин</span></div>
+</div>
+
+<div class="cursor" aria-hidden="true"><span class="cursor__label"></span></div>
+
+<header class="nav">
+  <a class="nav__logo" href="#top" aria-label="REforma, наверх"><span class="nav__mark" aria-hidden="true"></span>REforma</a>
+  <nav class="nav__links" aria-label="Разделы">
+    <a href="#programs">Направления</a>
+    <a href="#schedule">Расписание</a>
+    <a href="#prices">Абонементы</a>
+    <a href="#contacts">Контакты</a>
+  </nav>
+  <a class="btn btn--line btn--sm magnetic" href="#book" data-cursor="Пробная">
+    <span class="btn__fill" aria-hidden="true"></span>
+    <span class="btn__label">Пробное занятие</span>
+  </a>
+</header>
+
+<main>
+
+  <!-- 1. Первый экран: схема B, гиря в облаке пульса между строками -->
+  <section class="hero" id="top">
+    <h1 class="sr-only">REforma, фитнес-студия в Костанае</h1>
+    <div class="hero__word" aria-hidden="true">
+      <span class="hero__w1" data-split>RE</span>
+      <span class="hero__w2" data-split>forma</span>
+    </div>
+    <div class="hero__meta">
+      <p class="hero__lead" data-fade>Фитнес-студия в&nbsp;Костанае на&nbsp;проспекте Абая. Джампинг, стретчинг, йога, функционал и&nbsp;танцы. Каждый день с&nbsp;8:00 до&nbsp;22:00.</p>
+      <div class="cta-row" data-fade>
+        <a class="btn btn--solid magnetic" href="#book" data-cursor="Пробная">
+          <span class="btn__fill" aria-hidden="true"></span>
+          <span class="btn__label">Записаться на&nbsp;пробное</span>
+          <svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>
+        </a>
+        <span class="hint">Без предоплаты, администратор подтвердит время</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. Четыре зоны пульса: закреплённая сцена -->
+  <section class="zones" id="zones">
+    <div class="zones__pin">
+      <div class="zones__head">
+        <h2 data-reveal>Одно занятие, четыре фазы</h2>
+        <p class="muted">Листайте и&nbsp;следите за&nbsp;пульсом внизу экрана: так меняется нагрузка за&nbsp;одно занятие.</p>
+      </div>
+      <ol class="zones__steps" data-list="zones"></ol>
+      <div class="rail" aria-hidden="true">
+        <div class="rail__labels" data-list="labels"></div>
+        <div class="rail__progress"><i></i></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. Направления -->
+  <section class="programs" id="programs">
+    <aside class="programs__aside">
+      <div class="programs__photo" data-list="program-photos"></div>
+    </aside>
+    <div class="programs__main">
+      <div class="programs__head">
+        <h2 data-reveal>Направления</h2>
+        <p class="muted" data-fade>Наведите на&nbsp;направление, чтобы посмотреть фото. Все направления в&nbsp;одном абонементе.</p>
+      </div>
+      <ul class="programs__list" data-list="programs"></ul>
+    </div>
+  </section>
+
+  <!-- 4. Расписание -->
+  <section class="schedule" id="schedule">
+    <div class="schedule__head">
+      <h2 data-reveal>Расписание</h2>
+      <p class="muted" data-fade>Групповые тренировки по&nbsp;будням и&nbsp;выходным. Нажмите «Записаться», и&nbsp;тренировка попадёт в&nbsp;заявку.</p>
+    </div>
+    <div class="tabs" role="tablist" aria-label="Дни недели" data-list="days"></div>
+    <div class="schedule__list" data-list="classes" aria-live="polite"></div>
+  </section>
+
+  <!-- 5. Абонементы -->
+  <section class="prices" id="prices">
+    <div class="prices__head">
+      <h2 data-reveal>Абонементы</h2>
+      <p class="muted" data-fade>Цены подставим из&nbsp;прайса студии. Пока здесь виды абонементов.</p>
+    </div>
+    <div class="prices__list" data-list="prices"></div>
+  </section>
+
+  <!-- 6. Тренеры -->
+  <section class="coaches" id="coaches">
+    <div class="coaches__head">
+      <h2 data-reveal>Тренеры</h2>
+      <p class="muted" data-fade>Здесь будут тренеры студии: имя, фото и&nbsp;направления каждого.</p>
+    </div>
+    <div class="coaches__list" data-list="coaches"></div>
+  </section>
+
+  <!-- 7. Зал: фото на весь экран -->
+  <section class="hall" id="hall">
+    <figure class="hall__hero">
+      <div class="hall__img"><img src="assets/hall.jpg" alt="Светлый зал фитнес-студии" loading="lazy"></div>
+      <figcaption class="hall__cap">
+        <h2 data-reveal>Открыто<br>с&nbsp;8&nbsp;утра</h2>
+        <p data-fade>Душ, сауна, фен и&nbsp;полотенца, бесплатные чай и&nbsp;вода. Приходите до&nbsp;работы или после неё.</p>
+      </figcaption>
+    </figure>
+    <ul class="facts" data-list="facts"></ul>
+  </section>
+
+  <!-- 8. Запись на пробную -->
+  <section class="book" id="book">
+    <div class="book__aside">
+      <h2 data-reveal>Запись<br>на&nbsp;пробное</h2>
+      <p class="muted" data-fade>Заявка уйдёт администратору в&nbsp;WhatsApp. Он подтвердит время и&nbsp;расскажет, что взять с&nbsp;собой.</p>
+    </div>
+    <form class="booking" id="booking" novalidate>
+      <fieldset class="step">
+        <legend class="step__name"><span class="step__n">01</span>Направление</legend>
+        <div class="chips" data-chips="program"></div>
+      </fieldset>
+      <fieldset class="step">
+        <legend class="step__name"><span class="step__n">02</span>День</legend>
+        <div class="chips chips--days" data-chips="day"></div>
+      </fieldset>
+      <fieldset class="step">
+        <legend class="step__name"><span class="step__n">03</span>Время</legend>
+        <div class="chips chips--time" data-chips="time"></div>
+      </fieldset>
+      <fieldset class="step step--contacts">
+        <legend class="step__name"><span class="step__n">04</span>Контакты</legend>
+        <label class="field"><span class="field__name">Имя</span><input name="name" autocomplete="given-name" required></label>
+        <label class="field"><span class="field__name">Телефон</span><input name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="+7 (___) ___-__-__" required></label>
+      </fieldset>
+      <div class="summary" aria-live="polite"><p class="summary__text"></p></div>
+      <div class="cta-row">
+        <button class="btn btn--solid magnetic" type="submit" data-cursor="WhatsApp">
+          <span class="btn__fill" aria-hidden="true"></span>
+          <span class="btn__label">Записаться через WhatsApp</span>
+          <svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>
+        </button>
+        <span class="hint">Без предоплаты. Полотенце дадим</span>
+      </div>
+      <p class="booking__error" role="alert" hidden></p>
+    </form>
+  </section>
+</main>
+
+<footer class="foot" id="contacts">
+  <div class="foot__grid">
+    <div><span class="foot__label">Адрес</span><p>Костанай, проспект Абая,&nbsp;161</p></div>
+    <div><span class="foot__label">Часы</span><p>Ежедневно 8:00–22:00</p></div>
+    <div><span class="foot__label">Телефон</span><p><a class="ulink" href="tel:+77052155625">+7 705 215 56 25</a></p></div>
+    <div class="foot__links">
+      <a class="ulink" href="https://wa.me/77052155625" target="_blank" rel="noopener">WhatsApp</a>
+      <a class="ulink" href="https://instagram.com/reforma_kst" target="_blank" rel="noopener">Instagram</a>
+    </div>
+  </div>
+  <div class="foot__word" aria-hidden="true" data-split>REforma</div>
+  <p class="foot__note">Демо-версия сайта для REforma. Фото: Unsplash, заменим на&nbsp;фото студии. Разработка: Илья, <a class="ulink" href="https://t.me/pharmacyonhome" target="_blank" rel="noopener">Telegram</a>.</p>
+</footer>
+<p class="demo-tag" role="note">Демо-версия сайта для&nbsp;REforma</p>
+
+</body>
+</html>
