@@ -1,1 +1,4 @@
 data/
+tools/cache/
+tools/*.csv
+tools/crawl.log
