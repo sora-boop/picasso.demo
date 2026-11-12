@@ -107,6 +107,15 @@ tabs.addEventListener('keydown', (e) => {
 });
 showDay(today);
 
+// Расписание из Google Формы (schedule-sheet.js); без ссылки остаётся SCHEDULE выше
+if (window.loadSheetSchedule) loadSheetSchedule(SCHEDULE).then((r) => {
+  if (!r) return;
+  SCHEDULE.splice(0, 7, ...r.schedule);
+  r.touched.forEach((d) => { delete PARTIAL[d]; });
+  const cur = $$('.tab', tabs).findIndex((t) => t.getAttribute('aria-selected') === 'true');
+  showDay(cur < 0 ? today : cur);
+});
+
 /* ---------------------------------------------------------------------
    Запись в WhatsApp
    --------------------------------------------------------------------- */
