@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Бот ReForma, демо</title>
+<meta name="description" content="Демо чат-бота для WhatsApp фитнес-студии ReForma: цены, расписание, адрес и запись на тренировку.">
+<meta name="theme-color" content="#f4efea">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Wix+Madefor+Display:wght@500;600&family=Wix+Madefor+Text:wght@400;500&display=swap">
+<link rel="stylesheet" href="bot.css">
+<script src="../data.js" defer></script>
+<script src="../schedule-sheet.js" defer></script>
+<script src="bot.js" defer></script>
+</head>
+<body>
+
+<main class="page">
+  <section class="intro">
+    <p class="kicker">Демо · бот для WhatsApp</p>
+    <h1>Re<b>Forma</b> отвечает клиентам сама</h1>
+    <p class="lead">Так бот будет отвечать в&nbsp;WhatsApp студии круглые сутки: цены, расписание, адрес и&nbsp;запись на&nbsp;тренировку. Готовые заявки приходят администратору.</p>
+    <p class="try">Попробуйте: нажимайте кнопки в&nbsp;чате или напишите своими словами: «сколько стоит», «расписание на&nbsp;завтра», «хочу на&nbsp;зумбу».</p>
+
+    <div class="admin">
+      <div class="admin__head">
+        <h2>Заявки администратору</h2>
+        <span class="admin__count" data-count>0</span>
+      </div>
+      <ul class="admin__list" data-admin>
+        <li class="admin__empty">Пока пусто. Запишитесь в&nbsp;чате, и&nbsp;заявка появится здесь.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="phone" aria-label="Чат с ботом ReForma">
+    <header class="chat-head">
+      <span class="chat-head__ava" aria-hidden="true">RF</span>
+      <span class="chat-head__who">
+        <b>ReForma</b>
+        <small data-status>бот · отвечает сразу</small>
+      </span>
+      <button class="chat-head__reset" type="button" data-reset title="Начать заново" aria-label="Начать заново">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12a8 8 0 1 0 2.4-5.7M4 4v4h4"/></svg>
+      </button>
+    </header>
+    <div class="chat" data-chat role="log" aria-live="polite"></div>
+    <form class="compose" data-compose autocomplete="off">
+      <input name="text" placeholder="Сообщение" aria-label="Сообщение" enterkeyhint="send">
+      <button type="submit" aria-label="Отправить">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12 20 4l-4 16-4-6-8-2Z"/></svg>
+      </button>
+    </form>
+  </section>
+</main>
+
+<footer class="foot">
+  <p>Демо-версия бота для&nbsp;ReForma: сообщения никуда не&nbsp;отправляются. <a href="../">Сайт студии</a> · Разработка: Илья, <a href="https://t.me/pharmacyonhome" target="_blank" rel="noopener">Telegram</a>.</p>
+</footer>
+
+</body>
+</html>
