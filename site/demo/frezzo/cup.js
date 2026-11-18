@@ -21,7 +21,7 @@ const PY0 = -1.62, PY1 = 1.36, PR0 = 0.66, PR1 = 0.96;
 const pOut = (y) => PR0 + (PR1 - PR0) * ((y - PY0) / (PY1 - PY0));
 
 const rgb = (hex) => new THREE.Vector3(((hex >> 16) & 255) / 255, ((hex >> 8) & 255) / 255, (hex & 255) / 255);
-const INK = 0x121014, OAT = 0xf1ede4;
+const INK = 0x0e0d10, OAT = 0xf4f1ea;
 const clamp01 = (v) => Math.max(0, Math.min(1, v));
 
 const NOISE = /* glsl */`
@@ -43,11 +43,11 @@ function printTexture() {
   g.fillStyle = '#fff';
   g.textAlign = 'center';
   // фирменная надпись спереди (u = 0.5)
-  g.font = '400 124px "Sedgwick Ave Display", "Comic Sans MS", cursive';
-  g.fillText('Scoop Up', W / 2, Hh * 0.47);
+  g.font = '400 100px "Permanent Marker", "Comic Sans MS", cursive';
+  g.fillText('FREZZO', W / 2, Hh * 0.47);
   g.font = '400 30px Manrope, system-ui, sans-serif';
   g.letterSpacing = '9px';
-  g.fillText('COFFEE  /  EIS', W / 2, Hh * 0.47 + 62);
+  g.fillText('ITALIAN TASTE  /  MODERN MOOD', W / 2, Hh * 0.47 + 62);
   g.fillRect(W / 2 - 34, Hh * 0.47 + 96, 68, 3);
   // мерные риски сзади (u = 0): уровни льда, молока и эспрессо
   g.textAlign = 'left';
@@ -72,28 +72,34 @@ function sleeveTexture() {
   const c = document.createElement('canvas');
   c.width = W; c.height = Hh;
   const g = c.getContext('2d');
-  // крафт с гофрой
-  g.fillStyle = '#ff3b30';
+  // чёрный рукав с мазками баллончика, как на стаканах Frezzo
+  g.fillStyle = '#0e0d10';
   g.fillRect(0, 0, W, Hh);
-  for (let x = 0; x < W; x += 8) {
-    g.fillStyle = `rgba(90,10,5,${0.05 + ((x / 8) % 2) * 0.05})`;
-    g.fillRect(x, 0, 4, Hh);
+  const cols = ['#ff2e88', '#19c6c6', '#ffd21f', '#ff7a1a'];
+  let seed = 7; const rnd = () => ((seed = (seed * 16807) % 2147483647) / 2147483647);
+  g.lineCap = 'round';
+  for (let i = 0; i < 46; i++) {
+    const x = rnd() * W, y = rnd() * Hh;
+    if (Math.abs(x - W / 2) < 330 && y > 120 && y < 400) continue;
+    g.strokeStyle = cols[i % cols.length];
+    g.lineWidth = 18 + rnd() * 46;
+    g.beginPath(); g.moveTo(x, y);
+    g.quadraticCurveTo(x + (rnd() - 0.5) * 260, y + (rnd() - 0.5) * 200, x + (rnd() - 0.5) * 320, y + (rnd() - 0.5) * 240);
+    g.stroke();
   }
-  for (let i = 0; i < 2600; i++) {
-    g.fillStyle = `rgba(${Math.random() > 0.5 ? '255,240,220' : '50,30,10'},${Math.random() * 0.08})`;
-    g.fillRect(Math.random() * W, Math.random() * Hh, 2, 2);
-  }
-  // печать
-  g.fillStyle = '#121014';
+  // корона
+  g.strokeStyle = '#ffd21f'; g.lineWidth = 10; g.lineJoin = 'round';
+  g.beginPath(); g.moveTo(W / 2 - 34, 128); g.lineTo(W / 2 - 40, 84); g.lineTo(W / 2 - 14, 108); g.lineTo(W / 2, 72); g.lineTo(W / 2 + 14, 108); g.lineTo(W / 2 + 40, 84); g.lineTo(W / 2 + 34, 128); g.closePath(); g.stroke();
+  g.fillStyle = '#ffffff';
   g.textAlign = 'center';
-  g.font = '400 112px "Sedgwick Ave Display", "Comic Sans MS", cursive';
-  g.fillText('Scoop Up', W / 2, 270);
+  g.font = '400 100px "Permanent Marker", "Comic Sans MS", cursive';
+  g.fillText('FREZZO', W / 2, 270);
   g.font = '400 26px Manrope, system-ui, sans-serif';
-  g.letterSpacing = '9px';
-  g.fillText('COFFEE  /  EIS', W / 2, 335);
-  g.fillRect(W / 2 - 30, 372, 60, 3);
-  g.fillRect(0, 26, W, 3);
-  g.fillRect(0, Hh - 29, W, 3);
+  g.letterSpacing = '8px';
+  g.fillText('ITALIAN TASTE  /  MODERN MOOD', W / 2, 335);
+  g.fillStyle = '#19a34a'; g.fillRect(W / 2 - 45, 368, 30, 6);
+  g.fillStyle = '#ffffff'; g.fillRect(W / 2 - 15, 368, 30, 6);
+  g.fillStyle = '#e0323a'; g.fillRect(W / 2 + 15, 368, 30, 6);
   const t = new THREE.CanvasTexture(c);
   t.colorSpace = THREE.SRGBColorSpace;
   t.anisotropy = 8;

@@ -1,5 +1,5 @@
 /* =====================================================================
-   SCOOP UP. Концепт для Георгия, на основе Tobyl.
+   FREZZO. Концепт для Георгия, на основе Tobyl.
    Анимации: GSAP + ScrollTrigger, плавный скролл: Lenis, 3D: cup.js.
    Если библиотеки или WebGL недоступны, сайт остаётся рабочим.
    ===================================================================== */
@@ -7,7 +7,7 @@
 /* ---------------------------------------------------------------------
    1. ДАННЫЕ
    --------------------------------------------------------------------- */
-const SITE = { name: 'Scoop Up', whatsapp: '77057266334' };
+const SITE = { name: 'Frezzo', whatsapp: '77057266334' };
 
 const MENU = [
   { cat: 'Kaffee', items: [
@@ -16,7 +16,7 @@ const MENU = [
     { name: 'Cappuccino', vol: '250 ml', price: 3.6 },
     { name: 'Flat White', note: 'doppelter Shot, weniger Milch', vol: '200 ml', price: 3.9 },
     { name: 'Latte', vol: '350 ml', price: 3.9 },
-    { name: 'Salted Caramel Latte', note: 'unser Signature Drink', vol: '350 ml', price: 4.6 },
+    { name: 'Frezzo Latte', note: 'Pistazie, Espresso, Sahne', vol: '350 ml', price: 4.6 },
   ]},
   { cat: 'Kalt', items: [
     { name: 'Iced Latte', note: 'der aus dem ersten Bildschirm', vol: '400 ml', price: 4.2 },
@@ -245,7 +245,7 @@ async function initCup() {
     const test = document.createElement('canvas');
     if (!(test.getContext('webgl2') || test.getContext('webgl'))) throw new Error('no webgl');
     const mod = await import('./cup.js');
-    await Promise.all([document.fonts.load('400 40px "Sedgwick Ave Display"'), document.fonts.load('400 20px Manrope')]);
+    await Promise.all([document.fonts.load('400 40px "Permanent Marker"'), document.fonts.load('400 20px Manrope')]);
     cup = mod.createCup(stage, { mobile: isMobile() });
   } catch (e) {
     document.documentElement.classList.add('no-webgl');
@@ -256,7 +256,7 @@ async function initCup() {
 const BASE = {
   x: 0, y: 0, z: 0, rx: 0.1, rz: 0, scale: 1,
   paper: 1, ice: 0, level: 0, esp: 0, lid: 0, straw: 0, cond: 0,
-  steam: 0, beans: 0, dark: 0, shadow: 1, idle: 0, alpha: 1,
+  steam: 0, beans: 0, dark: 1, shadow: 1, idle: 0, alpha: 1,
 };
 const S = (o) => ({ ...BASE, ...o });
 function keyStates() {
@@ -266,7 +266,7 @@ function keyStates() {
   const iced = { ice: 1, level: 0.84, esp: 1, lid: 1, straw: 1, cond: 1 };
   return {
     intro: S(m ? { y: -3.6, scale: 0.4, steam: 0 } : { x: 0.3, y: -4.6, scale: 0.7, steam: 0 }),
-    hero: S(m ? { x: 0.05, y: 0.55, scale: 0.44, steam: 1, beans: 1, idle: 1 } : { x: 0.3, y: -0.12, rz: -0.05, scale: 0.95, steam: 1, beans: 1, idle: 1 }),
+    hero: S(m ? { x: 0.05, y: 0.55, scale: 0.44, steam: 1, beans: 1, idle: 1 } : { x: 0.15, y: -0.2, rz: -0.05, scale: 0.78, steam: 1, beans: 1, idle: 1 }),
     brew0: brew,
     ice: { ...brew, ice: 1 },
     milk: { ...brew, ice: 1, level: 0.62, rz: 0.05 },

@@ -1,5 +1,5 @@
 /* =====================================================================
-   SCOOP UP TV. Данные экранов и их показ.
+   FREZZO TV. Данные экранов и их показ.
    Позже эти списки будут приходить из формы клиента, а не из файла.
    ===================================================================== */
 
@@ -18,7 +18,7 @@ const SLIDE_MS = 8000;
 const BOARD = [
   [
     { title: 'Kaffee', items: [
-      ['Espresso', '2,40'], ['Americano', '2,90'], ['Cappuccino', '3,60'], ['Flat White', '3,90'], ['Latte', '3,90'], ['Salted Caramel Latte', '4,60'],
+      ['Espresso', '2,40'], ['Americano', '2,90'], ['Cappuccino', '3,60'], ['Flat White', '3,90'], ['Latte', '3,90'], ['Frezzo Latte', '4,60'],
     ]},
     { title: 'Kalt', items: [
       ['Iced Latte', '4,20'], ['Cold Brew', '4,20'], ['Espresso Tonic', '4,40'], ['Affogato', '4,90'],
@@ -74,7 +74,8 @@ function promo() {
   const wipe = document.createElement('div');
   wipe.className = 'wipe';
   wipe.setAttribute('aria-hidden', 'true');
-  wipe.innerHTML = `<svg viewBox="0 0 400 100" preserveAspectRatio="none"><path fill="#ff3b30" d="M60 0 H300 Q318 8 306 18 Q326 30 310 44 Q330 58 312 70 Q324 84 300 100 H60 Q44 90 56 78 Q38 64 54 50 Q36 36 52 22 Q40 10 60 0Z"/><circle cx="330" cy="30" r="5" fill="#ff3b30"/><circle cx="344" cy="62" r="3" fill="#ff3b30"/><circle cx="26" cy="70" r="4" fill="#ff3b30"/></svg>`;
+  // три мазка цветов Frezzo: розовый, бирюзовый, жёлтый
+  wipe.innerHTML = `<svg viewBox="0 0 400 100" preserveAspectRatio="none"><path fill="#ffd21f" d="M40 0 H250 Q262 10 254 20 Q268 32 256 46 Q270 60 258 72 Q266 86 250 100 H40 Q30 90 38 78 Q26 64 36 50 Q24 36 34 22 Q26 10 40 0Z"/><path fill="#19c6c6" d="M80 0 H290 Q302 10 294 20 Q308 32 296 46 Q310 60 298 72 Q306 86 290 100 H80 Q70 90 78 78 Q66 64 76 50 Q64 36 74 22 Q66 10 80 0Z"/><path fill="#ff2e88" d="M120 0 H330 Q342 10 334 20 Q348 32 336 46 Q350 60 338 72 Q346 86 330 100 H120 Q110 90 118 78 Q106 64 116 50 Q104 36 114 22 Q106 10 120 0Z"/><circle cx="352" cy="30" r="5" fill="#ff2e88"/><circle cx="364" cy="64" r="3" fill="#ff2e88"/></svg>`;
   $('#stage').append(wipe);
 
   host.innerHTML = SLIDES.map((s) => {

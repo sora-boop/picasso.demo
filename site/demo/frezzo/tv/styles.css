@@ -1,13 +1,15 @@
 /* =====================================================================
-   SCOOP UP TV. Два экрана 1920×1080 + страница-витрина.
-   Токены: Sedgwick Ave Display 400 + Oswald 400 (цены читаются издалека),
-   3 цвета, одна кривая. Отступление от TYP-02: граффити по просьбе клиента.
+   FREZZO TV. Два экрана 1920×1080 + страница-витрина.
+   Токены: Permanent Marker 400 + Oswald 400 (цены читаются издалека), одна кривая.
+   Отступления: TYP-02 и палитра больше 3 цветов, по брендингу клиента Frezzo.
    ===================================================================== */
 :root {
-  --wall: #f1ede4;
-  --ink: #121014;
-  --spray: #ff3b30;
-  --display: 'Sedgwick Ave Display', 'Comic Sans MS', cursive;
+  --wall: #f4f1ea;
+  --ink: #0e0d10;
+  --spray: #ff2e88;
+  --teal: #19c6c6;
+  --yellow: #ffd21f;
+  --display: 'Permanent Marker', 'Comic Sans MS', cursive;
   --body: 'Oswald', 'Arial Narrow', sans-serif;
   --ease: cubic-bezier(.22, 1, .36, 1);
   --pill: 999px;
@@ -41,7 +43,9 @@ body.tv.is-idle { cursor: none; }
 
 /* ---------- логотип ---------- */
 .brand { position: absolute; z-index: 20; left: 88px; top: 64px; --d: 300ms; }
-.brand__name { font-family: var(--display); font-size: 64px; line-height: 1; color: var(--spray); text-shadow: .05em .05em 0 var(--ink); }
+.brand__name { position: relative; display: inline-block; font-family: var(--display); font-size: 64px; line-height: 1; color: var(--wall); text-shadow: .05em .05em 0 #000; }
+.brand__crown { position: absolute; left: 38%; top: -.5em; width: .6em; height: .45em; fill: none; stroke: var(--yellow); stroke-width: 6; stroke-linejoin: round; transform: rotate(8deg); }
+.brand > .brand__crown { left: 30px; top: -30px; width: 46px; height: 34px; }
 .brand__name--sm { font-size: 56px; }
 .brand__drip { display: block; width: 210px; height: 30px; margin-top: 2px; fill: none; stroke: var(--spray); stroke-width: 6; stroke-linecap: round; }
 .tagline { position: absolute; z-index: 20; right: 88px; top: 82px; --d: 420ms; color: var(--wall); }
@@ -75,9 +79,11 @@ body.tv.is-idle { cursor: none; }
 .slide--right .slide__text { left: auto; right: 88px; align-items: flex-end; text-align: right; }
 .slide__text .label { color: var(--wall); text-shadow: 0 1px 12px rgba(0, 0, 0, .55); }
 .slide__title {
-  font-size: 230px; line-height: .86; letter-spacing: -.01em; color: var(--spray);
-  text-shadow: .035em .035em 0 var(--ink);
+  font-size: 190px; line-height: .9; letter-spacing: 0; color: var(--wall);
+  text-shadow: .035em .035em 0 var(--spray);
 }
+.slide:nth-child(3n+2) .slide__title { text-shadow: .035em .035em 0 var(--teal); }
+.slide:nth-child(3n) .slide__title { text-shadow: .035em .035em 0 var(--yellow); }
 .slide__title .ln { display: block; }
 .slide__title .ch { display: inline-block; opacity: 0; transform: translateY(40px) rotate(6deg); filter: blur(14px); }
 .slide.is-on .slide__title .ch { opacity: 1; transform: none; filter: blur(0);
@@ -116,7 +122,10 @@ body.tv.is-idle { cursor: none; }
 .board__cols { flex: 1; display: grid; grid-template-columns: 1fr 1fr; gap: 0 88px; margin-top: 44px; }
 .group { display: flex; flex-direction: column; }
 .group + .group { margin-top: 28px; }
-.group__title { font-size: 76px; line-height: .95; color: var(--spray); text-shadow: .04em .04em 0 #000; margin-bottom: 14px; }
+.group__title { font-size: 64px; line-height: 1; color: var(--spray); text-shadow: .04em .04em 0 #000; margin-bottom: 14px; }
+.col:first-child .group:last-child .group__title { color: var(--teal); }
+.col:last-child .group:first-child .group__title { color: var(--yellow); }
+.col:last-child .group:last-child .group__title { color: var(--teal); }
 .item { position: relative; display: flex; align-items: baseline; gap: 16px; padding: 6px 0; }
 .item__name { font-size: 36px; line-height: 1.1; white-space: nowrap; }
 .item__note { font-size: 20px; opacity: .58; white-space: nowrap; }
@@ -129,7 +138,7 @@ body.tv.is-idle { cursor: none; }
 .item.is-hot .item__ring path { stroke-dashoffset: 0; transition: stroke-dashoffset 1100ms var(--ease); }
 
 .board__flavours { margin-top: 24px; font-size: 26px; line-height: 1.4; opacity: .8; --d: 1300ms; }
-.board__flavours b { font-weight: 400; color: var(--spray); margin-right: 12px; }
+.board__flavours b { font-weight: 400; color: var(--yellow); margin-right: 12px; }
 
 .board__media { position: absolute; top: 0; right: 0; bottom: 0; width: 740px; overflow: hidden; }
 .board__media img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transform: scale(1.08); }
@@ -140,7 +149,7 @@ body.hub { background: var(--ink); color: var(--wall); }
 .hub__wrap { max-width: 1440px; margin: 0 auto; padding: clamp(40px, 7vw, 104px) clamp(16px, 5vw, 88px) 104px; }
 .hub__head { display: grid; grid-template-columns: 1fr minmax(0, 420px); gap: 24px 64px; align-items: end; --d: 300ms; }
 .hub h1, .hub h2 { font-family: var(--body); }
-.hub__head h1 { font-size: clamp(3.4rem, 10vw, 9rem); line-height: .9; letter-spacing: -.03em; text-transform: uppercase; color: var(--spray); text-shadow: .04em .04em 0 #000; }
+.hub__head h1 { font-size: clamp(3.4rem, 10vw, 9rem); line-height: .9; letter-spacing: -.03em; text-transform: uppercase; color: var(--wall); text-shadow: .04em .04em 0 var(--spray); }
 .hub__lead { font-size: clamp(16px, 1.2vw, 19px); line-height: 1.6; max-width: 46ch; opacity: .78; text-wrap: pretty; }
 .hub__screens { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; margin-top: 72px; }
 .screen { display: flex; flex-direction: column; gap: 22px; }

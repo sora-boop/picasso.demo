@@ -3,15 +3,15 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Scoop Up, Coffee &amp; Eis</title>
-<meta name="description" content="Scoop Up: Specialty Coffee, Matcha und hausgemachtes Eis. Online bestellen, per WhatsApp abschicken, ohne Warten abholen.">
+<title>Frezzo, Italian Gelato &amp; Coffee</title>
+<meta name="description" content="Frezzo: italienisches Gelato und Specialty Coffee. Online bestellen, per WhatsApp abschicken, ohne Warten abholen.">
 <meta name="robots" content="noindex">
-<meta name="theme-color" content="#f1ede4">
-<meta property="og:title" content="Scoop Up, Coffee & Eis">
+<meta name="theme-color" content="#0e0d10">
+<meta property="og:title" content="Frezzo, Italian Taste. Modern Mood.">
 <meta property="og:description" content="Konzept: Coffee & Eis mit Bestellung per WhatsApp.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400&family=Sedgwick+Ave+Display&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400&family=Permanent+Marker&display=swap">
 <link rel="stylesheet" href="styles.css">
 <script type="importmap">
 { "imports": { "three": "https://unpkg.com/three@0.160.0/build/three.module.js" } }
@@ -24,7 +24,7 @@
 <body class="is-loading">
 
 <div class="loader" aria-hidden="true">
-  <span class="loader__word">scoop up</span>
+  <span class="loader__word">frezzo</span>
   <span class="loader__count">00</span>
   <span class="loader__bar"><i></i></span>
 </div>
@@ -35,7 +35,7 @@
 <div class="cursor" aria-hidden="true"><span class="cursor__label"></span></div>
 
 <header class="nav">
-  <a class="nav__logo" href="#top" aria-label="Scoop Up, nach oben">Scoop Up</a>
+  <a class="nav__logo" href="#top" aria-label="Frezzo, nach oben">Frezzo</a>
   <nav class="nav__links" aria-label="Bereiche">
     <a href="#menu">Karte</a>
     <a href="#roast">Eis</a>
@@ -51,13 +51,19 @@
 <main>
 
   <section class="hero" id="top">
-    <h1 class="sr-only">Scoop Up, Coffee und Eis</h1>
+    <h1 class="sr-only">Frezzo, italienisches Gelato und Coffee</h1>
+    <svg class="hero__paint" viewBox="0 0 1600 900" preserveAspectRatio="none" aria-hidden="true">
+      <path class="p1" d="M60 210 C320 120 640 150 900 230" />
+      <path class="p2" d="M980 560 C1180 500 1380 520 1560 600" />
+      <path class="p3" d="M120 330 C300 300 470 320 640 360" />
+      <path class="p4" d="M1100 690 C1250 660 1400 680 1520 720" />
+    </svg>
     <div class="hero__word" aria-hidden="true">
-      <span class="hero__w1" data-split>scoop</span>
-      <span class="hero__w2" data-split>up!</span>
+      <span class="hero__w1"><svg class="crown" viewBox="0 0 80 60"><path d="M8 52 L4 12 L24 30 L40 4 L56 30 L76 12 L72 52 Z"/></svg><span data-split>frezzo</span></span>
+      <span class="hero__w2" data-split>mood!</span>
     </div>
     <div class="hero__meta">
-      <p class="hero__lead" data-fade>Specialty Coffee, Matcha und Eis aus eigener Küche. Online bestellen und in&nbsp;5&nbsp;Minuten ohne Schlange abholen.</p>
+      <p class="hero__lead" data-fade>Italian Taste. Modern Mood. Echtes Gelato, Specialty Coffee und Matcha. Online bestellen und in&nbsp;5&nbsp;Minuten ohne Schlange abholen.</p>
       <div class="cta-row" data-fade>
         <a class="btn btn--solid magnetic" href="#menu" data-cursor="Karte">
           <span class="btn__fill" aria-hidden="true"></span>
@@ -70,7 +76,7 @@
     <span class="hero__scroll" data-fade aria-hidden="true">Scrollen, wir mixen einen Iced Latte</span>
   </section>
 
-  <section class="brew is-dark" id="brew">
+  <section class="brew" id="brew">
     <div class="brew__pin">
       <div class="brew__head">
         <h2 data-reveal>Iced Latte</h2>
@@ -100,7 +106,7 @@
 
   <section class="roast" id="roast">
     <div class="roast__text">
-      <h2 data-reveal>Frisch aus<br>der Küche</h2>
+      <h2 data-reveal>Echtes<br>Gelato</h2>
       <p class="roast__lead" data-fade>Jeden Morgen rühren wir zwölf Sorten frisch an. Ohne Pulver, ohne Fertigmix, nur Milch, Sahne und echte Zutaten.</p>
       <ul class="origins" data-list="origins"></ul>
     </div>
@@ -111,12 +117,12 @@
     <figure class="space__hero">
       <div class="space__img"><img src="assets/neon.jpg" alt="Neonschrift an einer Backsteinwand" loading="lazy"></div>
       <figcaption class="space__cap">
-        <h2 data-reveal>Laut<br>und bunt</h2>
+        <h2 data-reveal>Good Food<br>Good Mood</h2>
         <p data-fade>Backstein, Neon und Graffiti an&nbsp;den Wänden. Musik läuft, WLAN ist schnell, und&nbsp;der Platz am Fenster ist&nbsp;frei.</p>
       </figcaption>
     </figure>
     <div class="space__grid">
-      <figure class="ph ph--a"><div class="ph__img"><img src="assets/cones.jpg" alt="Schokoladeneis in Waffeln auf einem dunklen Teller" loading="lazy"></div><figcaption>Waffeln backen wir selbst</figcaption></figure>
+      <figure class="ph ph--a"><div class="ph__img"><img src="assets/frezzo-cups.jpg" alt="Drei Becher Frezzo Gelato" loading="lazy"></div><figcaption>Real Gelato, Real Emotions</figcaption></figure>
       <figure class="ph ph--b"><div class="ph__img"><img src="assets/bar.jpg" alt="Barista an der Theke" loading="lazy"></div><figcaption>Theke mit acht Plätzen</figcaption></figure>
       <figure class="ph ph--c"><div class="ph__img"><img src="assets/pour.jpg" alt="Milch fließt in einen Iced Coffee" loading="lazy"></div><figcaption>Cold Drinks das&nbsp;ganze Jahr</figcaption></figure>
       <figure class="ph ph--d"><div class="ph__img"><img src="assets/hall.jpg" alt="Café mit Tafel, Pflanzen und Industrielampen" loading="lazy"></div><figcaption>Zweiter Raum zum&nbsp;Chillen</figcaption></figure>
@@ -175,7 +181,7 @@
       <a class="ulink" href="https://tiktok.com/" target="_blank" rel="noopener">TikTok</a>
     </div>
   </div>
-  <div class="foot__word" aria-hidden="true" data-split>scoop up</div>
+  <div class="foot__word" aria-hidden="true" data-split>frezzo</div>
   <p class="foot__note">Konzept. Name, Preise und Fotos sind Platzhalter, Fotos: Unsplash.</p>
 </footer>
 
