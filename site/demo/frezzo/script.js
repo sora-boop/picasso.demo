@@ -224,6 +224,48 @@ form.addEventListener('submit', (e) => {
 renderCart();
 
 /* ---------------------------------------------------------------------
+   4b. ТАЮЩЕЕ МОРОЖЕНОЕ: фирменная деталь Frezzo
+   Край секции «плавится»: розовый и сливочный слои стекают каплями.
+   Капли растут и втягиваются, иногда отрывается капля и падает.
+   --------------------------------------------------------------------- */
+function buildMelt(host, seed) {
+  const W = 1600, H = 340;
+  let s = seed;
+  const rnd = () => ((s = (s * 16807) % 2147483647) / 2147483647);
+  const layer = (fill, band, count, maxLen, shift) => {
+    let out = `<rect x="-20" y="-40" width="${W + 40}" height="${band + 40}" fill="${fill}"/>`;
+    for (let i = 0; i < count; i++) {
+      const x = ((i + 0.5) / count) * W + (rnd() - 0.5) * (W / count) * 0.7 + shift;
+      const w = 16 + rnd() * 34;
+      const len = band + 30 + rnd() * maxLen;
+      const t = (5 + rnd() * 5).toFixed(2), dl = (-rnd() * 10).toFixed(2);
+      out += `<g class="melt__drip" data-len="${len.toFixed(0)}" data-t="${t}" data-dl="${dl}">
+        <rect x="${(x - w / 2).toFixed(1)}" y="0" width="${w.toFixed(1)}" height="${len.toFixed(0)}" rx="${(w / 2).toFixed(1)}" fill="${fill}"/>
+        <circle cx="${x.toFixed(1)}" cy="${len.toFixed(0)}" r="${(w * 0.62).toFixed(1)}" fill="${fill}"/>
+      </g>`;
+      if (rnd() > 0.72) out += `<circle class="melt__drop" data-len="${len.toFixed(0)}" data-t="${(t * 1.4).toFixed(2)}" data-dl="${dl}" cx="${x.toFixed(1)}" cy="${len.toFixed(0)}" r="${(w * 0.4).toFixed(1)}" fill="${fill}"/>`;
+    }
+    return out;
+  };
+  const id = 'goo' + seed;
+  host.innerHTML = `<svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="xMidYMin slice">
+    <defs><filter id="${id}" x="-10%" y="-10%" width="120%" height="140%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="9"/>
+      <feColorMatrix values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 24 -10"/>
+    </filter></defs>
+    <g filter="url(#${id})">${layer('#ff2e88', 34, 22, 200, 0)}</g>
+    <g filter="url(#${id})">${layer('#f4f1ea', 16, 18, 120, 37)}</g>
+  </svg>`;
+  // длина и темп каждой капли уходят в CSS-переменные
+  host.querySelectorAll('[data-len]').forEach((el) => {
+    el.style.setProperty('--len', el.dataset.len);
+    el.style.setProperty('--t', el.dataset.t + 's');
+    el.style.setProperty('--dl', el.dataset.dl + 's');
+  });
+}
+$$('[data-melt]').forEach((el, i) => buildMelt(el, 11 + i * 97));
+
+/* ---------------------------------------------------------------------
    5. РАЗБИВКА ТЕКСТА ДЛЯ АНИМАЦИЙ
    --------------------------------------------------------------------- */
 function splitChars(el) {
