@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Scoop Up, Coffee &amp; Eis</title>
+<meta name="description" content="Scoop Up: Specialty Coffee, Matcha und hausgemachtes Eis. Online bestellen, per WhatsApp abschicken, ohne Warten abholen.">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#f1ede4">
+<meta property="og:title" content="Scoop Up, Coffee & Eis">
+<meta property="og:description" content="Konzept: Coffee & Eis mit Bestellung per WhatsApp.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400&family=Sedgwick+Ave+Display&display=swap">
+<link rel="stylesheet" href="styles.css">
+<script type="importmap">
+{ "imports": { "three": "https://unpkg.com/three@0.160.0/build/three.module.js" } }
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+<script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js" defer></script>
+<script type="module" src="script.js"></script>
+</head>
+<body class="is-loading">
+
+<div class="loader" aria-hidden="true">
+  <span class="loader__word">scoop up</span>
+  <span class="loader__count">00</span>
+  <span class="loader__bar"><i></i></span>
+</div>
+
+<canvas class="stage" aria-hidden="true"></canvas>
+<img class="stage-fallback" src="assets/cup.png" alt="" aria-hidden="true">
+
+<div class="cursor" aria-hidden="true"><span class="cursor__label"></span></div>
+
+<header class="nav">
+  <a class="nav__logo" href="#top" aria-label="Scoop Up, nach oben">Scoop Up</a>
+  <nav class="nav__links" aria-label="Bereiche">
+    <a href="#menu">Karte</a>
+    <a href="#roast">Eis</a>
+    <a href="#space">Laden</a>
+    <a href="#contacts">Kontakt</a>
+  </nav>
+  <a class="btn btn--line btn--sm magnetic" href="#order" data-cursor="To go">
+    <span class="btn__fill" aria-hidden="true"></span>
+    <span class="btn__label">To go bestellen</span>
+  </a>
+</header>
+
+<main>
+
+  <section class="hero" id="top">
+    <h1 class="sr-only">Scoop Up, Coffee und Eis</h1>
+    <div class="hero__word" aria-hidden="true">
+      <span class="hero__w1" data-split>scoop</span>
+      <span class="hero__w2" data-split>up!</span>
+    </div>
+    <div class="hero__meta">
+      <p class="hero__lead" data-fade>Specialty Coffee, Matcha und Eis aus eigener Küche. Online bestellen und in&nbsp;5&nbsp;Minuten ohne Schlange abholen.</p>
+      <div class="cta-row" data-fade>
+        <a class="btn btn--solid magnetic" href="#menu" data-cursor="Karte">
+          <span class="btn__fill" aria-hidden="true"></span>
+          <span class="btn__label">Bestellung zusammenstellen</span>
+          <svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>
+        </a>
+        <span class="hint">Bezahlt wird bei&nbsp;der Abholung</span>
+      </div>
+    </div>
+    <span class="hero__scroll" data-fade aria-hidden="true">Scrollen, wir mixen einen Iced Latte</span>
+  </section>
+
+  <section class="brew is-dark" id="brew">
+    <div class="brew__pin">
+      <div class="brew__head">
+        <h2 data-reveal>Iced Latte</h2>
+        <p class="muted">Vier Schritte, zwei Minuten. Langsam scrollen, genau so&nbsp;mixen wir ihn auch.</p>
+      </div>
+      <ol class="brew__steps" data-list="brew"></ol>
+      <div class="brew__rail" aria-hidden="true">
+        <div class="brew__labels" data-list="brew-labels"></div>
+        <div class="brew__progress"><i></i></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="menu" id="menu">
+    <aside class="menu__aside">
+      <p class="menu__note" data-fade>Jedes Getränk auch mit Hafer- oder Mandelmilch, +0,50&nbsp;€</p>
+    </aside>
+    <div class="menu__main">
+      <div class="menu__head">
+        <h2 data-reveal>Karte</h2>
+        <p class="muted" data-fade>Antippen, und es landet in&nbsp;der Bestellung. Abholen an&nbsp;der Theke ohne Warten.</p>
+      </div>
+      <div class="tabs" role="tablist" aria-label="Bereiche der Karte" data-list="tabs"></div>
+      <div class="menu__panels" data-list="menu"></div>
+    </div>
+  </section>
+
+  <section class="roast" id="roast">
+    <div class="roast__text">
+      <h2 data-reveal>Frisch aus<br>der Küche</h2>
+      <p class="roast__lead" data-fade>Jeden Morgen rühren wir zwölf Sorten frisch an. Ohne Pulver, ohne Fertigmix, nur Milch, Sahne und echte Zutaten.</p>
+      <ul class="origins" data-list="origins"></ul>
+    </div>
+    <figure class="roast__photo"><img src="assets/caramel.jpg" alt="Vanilleeis mit Karamell, das von oben darüber läuft" loading="lazy"></figure>
+  </section>
+
+  <section class="space" id="space">
+    <figure class="space__hero">
+      <div class="space__img"><img src="assets/neon.jpg" alt="Neonschrift an einer Backsteinwand" loading="lazy"></div>
+      <figcaption class="space__cap">
+        <h2 data-reveal>Laut<br>und bunt</h2>
+        <p data-fade>Backstein, Neon und Graffiti an&nbsp;den Wänden. Musik läuft, WLAN ist schnell, und&nbsp;der Platz am Fenster ist&nbsp;frei.</p>
+      </figcaption>
+    </figure>
+    <div class="space__grid">
+      <figure class="ph ph--a"><div class="ph__img"><img src="assets/cones.jpg" alt="Schokoladeneis in Waffeln auf einem dunklen Teller" loading="lazy"></div><figcaption>Waffeln backen wir selbst</figcaption></figure>
+      <figure class="ph ph--b"><div class="ph__img"><img src="assets/bar.jpg" alt="Barista an der Theke" loading="lazy"></div><figcaption>Theke mit acht Plätzen</figcaption></figure>
+      <figure class="ph ph--c"><div class="ph__img"><img src="assets/pour.jpg" alt="Milch fließt in einen Iced Coffee" loading="lazy"></div><figcaption>Cold Drinks das&nbsp;ganze Jahr</figcaption></figure>
+      <figure class="ph ph--d"><div class="ph__img"><img src="assets/hall.jpg" alt="Café mit Tafel, Pflanzen und Industrielampen" loading="lazy"></div><figcaption>Zweiter Raum zum&nbsp;Chillen</figcaption></figure>
+    </div>
+  </section>
+
+  <section class="order" id="order">
+    <div class="order__aside">
+      <h2 data-reveal>Zum<br>Mitnehmen</h2>
+      <p class="muted" data-fade>Stellen Sie Ihre Bestellung zusammen, sie&nbsp;geht per WhatsApp direkt an&nbsp;die Theke. Wir starten, sobald wir bestätigen.</p>
+    </div>
+    <form class="booking" id="booking" novalidate>
+      <fieldset class="step">
+        <legend class="step__name"><span class="step__n">01</span>Ihre Bestellung</legend>
+        <ul class="cart" data-list="cart" aria-live="polite"></ul>
+        <a class="cart__empty ulink" href="#menu" hidden>Noch leer. Wählen Sie etwas aus&nbsp;der Karte</a>
+      </fieldset>
+      <fieldset class="step">
+        <legend class="step__name"><span class="step__n">02</span>Wann holen Sie ab</legend>
+        <div class="chips" data-chips="time"></div>
+      </fieldset>
+      <fieldset class="step step--contacts">
+        <legend class="step__name"><span class="step__n">03</span>Kontakt</legend>
+        <label class="field"><span class="field__name">Name</span><input name="name" autocomplete="given-name" required></label>
+        <label class="field"><span class="field__name">Telefon</span><input name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="+49 176 1234567" required></label>
+      </fieldset>
+      <div class="summary" aria-live="polite">
+        <p class="summary__text"></p>
+        <p class="summary__price"></p>
+      </div>
+      <div class="cta-row">
+        <button class="btn btn--solid magnetic" type="submit" data-cursor="WhatsApp">
+          <span class="btn__fill" aria-hidden="true"></span>
+          <span class="btn__label">Per WhatsApp bestellen</span>
+          <svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>
+        </button>
+        <span class="hint">Bezahlen bei&nbsp;Abholung, Antwort in&nbsp;2&nbsp;Minuten</span>
+      </div>
+      <p class="booking__error" role="alert" hidden></p>
+    </form>
+  </section>
+</main>
+
+<a class="cartbar" href="#order" hidden data-cursor="Weiter">
+  <span class="cartbar__text"></span>
+  <span class="cartbar__go">Bestellen</span>
+</a>
+
+<footer class="foot" id="contacts">
+  <div class="foot__grid">
+    <div><span class="foot__label">Adresse</span><p>Karlsruhe, Innenstadt</p></div>
+    <div><span class="foot__label">Öffnungszeiten</span><p>Mo–Fr 8:00–20:00<br>Sa–So 10:00–22:00</p></div>
+    <div><span class="foot__label">Bildschirme</span><p><a class="ulink" href="tv/">Menü für&nbsp;den TV</a></p></div>
+    <div class="foot__links">
+      <a class="ulink" href="https://instagram.com/" target="_blank" rel="noopener">Instagram</a>
+      <a class="ulink" href="https://tiktok.com/" target="_blank" rel="noopener">TikTok</a>
+    </div>
+  </div>
+  <div class="foot__word" aria-hidden="true" data-split>scoop up</div>
+  <p class="foot__note">Konzept. Name, Preise und Fotos sind Platzhalter, Fotos: Unsplash.</p>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,180 @@
+/* =====================================================================
+   SCOOP UP TV. Два экрана 1920×1080 + страница-витрина.
+   Токены: Sedgwick Ave Display 400 + Oswald 400 (цены читаются издалека),
+   3 цвета, одна кривая. Отступление от TYP-02: граффити по просьбе клиента.
+   ===================================================================== */
+:root {
+  --wall: #f1ede4;
+  --ink: #121014;
+  --spray: #ff3b30;
+  --display: 'Sedgwick Ave Display', 'Comic Sans MS', cursive;
+  --body: 'Oswald', 'Arial Narrow', sans-serif;
+  --ease: cubic-bezier(.22, 1, .36, 1);
+  --pill: 999px;
+  --s1: 8px; --s2: 16px; --s3: 24px; --s4: 40px; --s5: 64px; --s6: 104px;
+}
+*, *::before, *::after { box-sizing: border-box; }
+html, body { margin: 0; }
+body { background: var(--ink); color: var(--wall); font-family: var(--body); -webkit-font-smoothing: antialiased; }
+img { display: block; }
+a { color: inherit; text-decoration: none; }
+h1, h2, h3, p { margin: 0; font-weight: 400; }
+h1, h2, h3 { font-family: var(--display); text-wrap: balance; hyphens: none; }
+.label { font-family: var(--body); font-size: 13px; line-height: 1.8; letter-spacing: .18em; text-transform: uppercase; opacity: .7; }
+
+/* ---------- сцена телевизора: всегда 1920×1080, масштаб по окну ---------- */
+body.tv { overflow: hidden; height: 100vh; cursor: default; }
+body.tv.is-idle { cursor: none; }
+.stage {
+  position: absolute; left: 50%; top: 50%; width: 1920px; height: 1080px;
+  overflow: hidden; transform-origin: 0 0; background: var(--ink);
+}
+.grain {
+  position: absolute; inset: 0; z-index: 50; pointer-events: none; opacity: .06;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* вход */
+.rise { opacity: 0; transform: translateY(28px); filter: blur(14px); }
+.is-in .rise { opacity: 1; transform: none; filter: blur(0);
+  transition: opacity 900ms var(--ease) var(--d, 0ms), transform 900ms var(--ease) var(--d, 0ms), filter 900ms var(--ease) var(--d, 0ms); }
+
+/* ---------- логотип ---------- */
+.brand { position: absolute; z-index: 20; left: 88px; top: 64px; --d: 300ms; }
+.brand__name { font-family: var(--display); font-size: 64px; line-height: 1; color: var(--spray); text-shadow: .05em .05em 0 var(--ink); }
+.brand__name--sm { font-size: 56px; }
+.brand__drip { display: block; width: 210px; height: 30px; margin-top: 2px; fill: none; stroke: var(--spray); stroke-width: 6; stroke-linecap: round; }
+.tagline { position: absolute; z-index: 20; right: 88px; top: 82px; --d: 420ms; color: var(--wall); }
+
+/* ---------- экран 1: промо ---------- */
+.slides { position: absolute; inset: 0; }
+.slide { position: absolute; inset: 0; visibility: hidden; }
+.slide.is-on, .slide.is-out { visibility: visible; }
+.slide.is-on { z-index: 2; }
+.slide.is-out { z-index: 1; }
+.slide__media { position: absolute; inset: 0; overflow: hidden; }
+.slide__media img, .slide__media video { width: 100%; height: 100%; object-fit: cover; transform: scale(1.12); }
+.slide.is-on .slide__media img, .slide.is-on .slide__media video { transform: scale(1); transition: transform 9000ms var(--ease); }
+
+/* размытие снизу вместо затемнения */
+.slide__blur {
+  position: absolute; inset: auto 0 0 0; height: 62%; pointer-events: none;
+  backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
+  mask-image: linear-gradient(to top, #000 0%, transparent 45%); -webkit-mask-image: linear-gradient(to top, #000 0%, transparent 45%);
+}
+
+/* разделённый слайд: вертикальное фото справа, стена слева */
+.slide--split { background: var(--ink); }
+.slide--split .slide__media { left: auto; width: 46%; }
+.slide--split .slide__blur { display: none; }
+
+.slide__text {
+  position: absolute; z-index: 3; bottom: 120px; left: 88px; width: 900px;
+  display: flex; flex-direction: column; align-items: flex-start; gap: 22px;
+}
+.slide--right .slide__text { left: auto; right: 88px; align-items: flex-end; text-align: right; }
+.slide__text .label { color: var(--wall); text-shadow: 0 1px 12px rgba(0, 0, 0, .55); }
+.slide__title {
+  font-size: 230px; line-height: .86; letter-spacing: -.01em; color: var(--spray);
+  text-shadow: .035em .035em 0 var(--ink);
+}
+.slide__title .ln { display: block; }
+.slide__title .ch { display: inline-block; opacity: 0; transform: translateY(40px) rotate(6deg); filter: blur(14px); }
+.slide.is-on .slide__title .ch { opacity: 1; transform: none; filter: blur(0);
+  transition: opacity 900ms var(--ease), transform 900ms var(--ease), filter 900ms var(--ease);
+  transition-delay: calc(500ms + var(--i) * 50ms); }
+.slide__sub { max-width: 30ch; font-size: 34px; line-height: 1.3; text-wrap: balance; text-shadow: 0 2px 18px rgba(0, 0, 0, .6);
+  opacity: 0; transform: translateY(28px); filter: blur(14px); }
+.slide.is-on .slide__sub { opacity: 1; transform: none; filter: blur(0);
+  transition: opacity 900ms var(--ease) 1100ms, transform 900ms var(--ease) 1100ms, filter 900ms var(--ease) 1100ms; }
+
+/* ценник-стикер */
+.tag {
+  display: inline-flex; align-items: baseline; gap: 14px; padding: 18px 34px 20px;
+  background: var(--spray); color: var(--ink); border-radius: var(--pill);
+  font-size: 58px; line-height: 1; white-space: nowrap;
+  transform: rotate(-5deg) scale(.4); opacity: 0;
+}
+.tag small { font-size: 28px; opacity: .75; }
+.slide.is-on .tag { transform: rotate(-5deg) scale(1); opacity: 1;
+  transition: transform 700ms cubic-bezier(.34, 1.56, .64, 1) 1300ms, opacity 300ms var(--ease) 1300ms; }
+
+/* фирменный переход: мазок баллончика проходит по экрану */
+.wipe { position: absolute; z-index: 10; inset: -10% -30%; pointer-events: none; transform: translateX(-120%); }
+.wipe svg { width: 100%; height: 100%; display: block; }
+.wipe.is-go { transform: translateX(120%); transition: transform 1500ms var(--ease); }
+
+.progress { position: absolute; z-index: 20; left: 88px; right: 88px; bottom: 56px; display: flex; gap: 12px; }
+.progress span { flex: 1; height: 4px; background: color-mix(in srgb, var(--wall) 28%, transparent); border-radius: 2px; overflow: hidden; }
+.progress i { display: block; height: 100%; background: var(--spray); transform: scaleX(0); transform-origin: left; }
+.progress .is-done i { transform: scaleX(1); }
+.progress .is-now i { transform: scaleX(1); transition: transform var(--dur, 8000ms) linear; }
+
+/* ---------- экран 2: прайс ---------- */
+.board { position: absolute; inset: 0 740px 0 0; padding: 64px 88px 56px; display: flex; flex-direction: column; background: var(--ink); }
+.board__head { display: flex; align-items: baseline; justify-content: space-between; --d: 300ms; }
+.board__cols { flex: 1; display: grid; grid-template-columns: 1fr 1fr; gap: 0 88px; margin-top: 44px; }
+.group { display: flex; flex-direction: column; }
+.group + .group { margin-top: 28px; }
+.group__title { font-size: 76px; line-height: .95; color: var(--spray); text-shadow: .04em .04em 0 #000; margin-bottom: 14px; }
+.item { position: relative; display: flex; align-items: baseline; gap: 16px; padding: 6px 0; }
+.item__name { font-size: 36px; line-height: 1.1; white-space: nowrap; }
+.item__note { font-size: 20px; opacity: .58; white-space: nowrap; }
+.item__dots { flex: 1; min-width: 24px; border-bottom: 2px dotted color-mix(in srgb, var(--wall) 30%, transparent); transform: translateY(-8px); }
+.item__price { position: relative; font-size: 40px; line-height: 1.1; white-space: nowrap; font-variant-numeric: tabular-nums; }
+
+/* фирменная деталь: кружок баллончиком вокруг цены дня */
+.item__ring { position: absolute; left: -26px; top: -18px; width: calc(100% + 52px); height: calc(100% + 36px); overflow: visible; pointer-events: none; }
+.item__ring path { fill: none; stroke: var(--spray); stroke-width: 5; stroke-linecap: round; stroke-dasharray: 520; stroke-dashoffset: 520; }
+.item.is-hot .item__ring path { stroke-dashoffset: 0; transition: stroke-dashoffset 1100ms var(--ease); }
+
+.board__flavours { margin-top: 24px; font-size: 26px; line-height: 1.4; opacity: .8; --d: 1300ms; }
+.board__flavours b { font-weight: 400; color: var(--spray); margin-right: 12px; }
+
+.board__media { position: absolute; top: 0; right: 0; bottom: 0; width: 740px; overflow: hidden; }
+.board__media img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transform: scale(1.08); }
+.board__media img.is-on { opacity: 1; transform: scale(1); transition: opacity 1400ms var(--ease), transform 9000ms var(--ease); }
+
+/* ---------- витрина для клиента ---------- */
+body.hub { background: var(--ink); color: var(--wall); }
+.hub__wrap { max-width: 1440px; margin: 0 auto; padding: clamp(40px, 7vw, 104px) clamp(16px, 5vw, 88px) 104px; }
+.hub__head { display: grid; grid-template-columns: 1fr minmax(0, 420px); gap: 24px 64px; align-items: end; --d: 300ms; }
+.hub h1, .hub h2 { font-family: var(--body); }
+.hub__head h1 { font-size: clamp(3.4rem, 10vw, 9rem); line-height: .9; letter-spacing: -.03em; text-transform: uppercase; color: var(--spray); text-shadow: .04em .04em 0 #000; }
+.hub__lead { font-size: clamp(16px, 1.2vw, 19px); line-height: 1.6; max-width: 46ch; opacity: .78; text-wrap: pretty; }
+.hub__screens { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; margin-top: 72px; }
+.screen { display: flex; flex-direction: column; gap: 22px; }
+.screen:nth-child(1) { --d: 500ms; }
+.screen:nth-child(2) { --d: 600ms; }
+.screen__frame { display: block; position: relative; aspect-ratio: 16 / 9; overflow: hidden; background: #000; }
+.screen__frame iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; pointer-events: none; }
+.screen__frame::after { content: ""; position: absolute; inset: 0; transition: transform 700ms var(--ease); }
+.screen__meta { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 24px; }
+.screen__meta .label { flex-basis: 100%; }
+.screen__meta h2 { font-size: clamp(32px, 3vw, 48px); line-height: 1; letter-spacing: -.02em; margin-right: auto; }
+.btn {
+  position: relative; overflow: hidden; isolation: isolate; display: inline-flex; align-items: center; justify-content: center;
+  min-height: 52px; padding: 0 26px; border-radius: var(--pill); background: var(--spray); color: var(--ink);
+  font-family: var(--body); font-size: 17px; white-space: nowrap; transition: color 320ms var(--ease), transform 620ms var(--ease);
+}
+.btn__fill { position: absolute; inset: 0; z-index: -1; background: var(--wall); transform: scaleX(0); transform-origin: left; transition: transform 500ms var(--ease); }
+.btn__label { position: relative; }
+.btn:hover { transform: translateY(-2px); }
+.btn:hover .btn__fill, .btn:focus-visible .btn__fill { transform: scaleX(1); }
+.btn--line { background: transparent; color: var(--wall); box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--wall) 40%, transparent); }
+.btn--line:hover { color: var(--ink); }
+.hub__site { display: flex; flex-wrap: wrap; align-items: center; gap: 16px 28px; margin-top: 72px; padding-top: 40px; border-top: 1px solid color-mix(in srgb, var(--wall) 18%, transparent); --d: 700ms; }
+.hub__site h2 { font-size: clamp(32px, 3vw, 48px); line-height: 1; letter-spacing: -.02em; }
+.hub__site p { flex-basis: 100%; max-width: 56ch; font-size: 17px; line-height: 1.6; opacity: .72; }
+.hint { font-size: 13px; opacity: .6; }
+.hub__notes { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; margin-top: 72px; --d: 800ms; }
+.hub__notes p { margin-top: 10px; font-size: 17px; line-height: 1.6; opacity: .8; max-width: 40ch; text-wrap: pretty; }
+
+@media (max-width: 900px) {
+  .hub__head, .hub__screens, .hub__notes { grid-template-columns: 1fr; }
+  .hub__screens { gap: 56px; margin-top: 48px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition-delay: 0ms !important; transition-duration: 1ms !important; }
+}

@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Меню для телевизора</title>
+<meta name="robots" content="noindex">
+<meta property="og:title" content="Меню для телевизора: пример">
+<meta property="og:description" content="Два экрана для кофейни с мороженым: промо-ролик и прайс.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400&family=Sedgwick+Ave+Display&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body class="hub">
+  <main class="hub__wrap">
+    <header class="hub__head rise">
+      <h1>Меню<br>на&nbsp;экране</h1>
+      <p class="hub__lead">Пример для кофейни с&nbsp;мороженым. Два телевизора: на&nbsp;первом крутятся напитки и&nbsp;мороженое, на&nbsp;втором прайс. Название, фото и&nbsp;цены временные.</p>
+    </header>
+
+    <section class="hub__screens">
+      <article class="screen rise">
+        <a class="screen__frame" href="promo.html" target="_blank" rel="noopener" aria-label="Открыть экран 1">
+          <iframe src="promo.html" title="Экран 1" loading="lazy" tabindex="-1"></iframe>
+        </a>
+        <div class="screen__meta">
+          <span class="label">Экран 1</span>
+          <h2>Промо-слайды</h2>
+          <a class="btn" href="promo.html" target="_blank" rel="noopener"><span class="btn__fill"></span><span class="btn__label">Открыть на&nbsp;весь экран</span></a>
+        </div>
+      </article>
+      <article class="screen rise">
+        <a class="screen__frame" href="preisliste.html" target="_blank" rel="noopener" aria-label="Открыть экран 2">
+          <iframe src="preisliste.html" title="Экран 2" loading="lazy" tabindex="-1"></iframe>
+        </a>
+        <div class="screen__meta">
+          <span class="label">Экран 2</span>
+          <h2>Прайс</h2>
+          <a class="btn" href="preisliste.html" target="_blank" rel="noopener"><span class="btn__fill"></span><span class="btn__label">Открыть на&nbsp;весь экран</span></a>
+        </div>
+      </article>
+    </section>
+
+    <section class="hub__site rise">
+      <h2>Сайт с&nbsp;заказом</h2>
+      <a class="btn btn--line" href="../" target="_blank" rel="noopener"><span class="btn__fill"></span><span class="btn__label">Попробовать заказ</span></a>
+      <span class="hint">Заказ уйдёт мне в&nbsp;WhatsApp, отвечу сразу</span>
+      <p>В&nbsp;стиле Tobyl, только с&nbsp;граффити: 3D-стакан, меню, мороженое и&nbsp;заказ навынос. Соберите заказ и&nbsp;отправьте, так&nbsp;вы увидите, как&nbsp;он приходит в&nbsp;кафе.</p>
+    </section>
+
+    <section class="hub__notes rise">
+      <div>
+        <span class="label">Как это работает</span>
+        <p>Каждый экран это ссылка. На&nbsp;Samsung или LG она открывается в&nbsp;браузере телевизора на&nbsp;весь экран и&nbsp;крутится сама.</p>
+      </div>
+      <div>
+        <span class="label">Цены и&nbsp;позиции</span>
+        <p>Меняются с&nbsp;телефона через простую форму, телевизор обновится сам за&nbsp;пару минут.</p>
+      </div>
+      <div>
+        <span class="label">Ролики</span>
+        <p>Сейчас стоят фото с&nbsp;движением. Ваши видео встанут на&nbsp;их&nbsp;место, когда снимете их в&nbsp;кафе.</p>
+      </div>
+    </section>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>
