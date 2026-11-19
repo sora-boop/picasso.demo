@@ -10,32 +10,49 @@
 const SITE = { name: 'Frezzo', whatsapp: '77057266334' };
 
 const MENU = [
-  { cat: 'Kaffee', items: [
-    { name: 'Espresso', note: 'doppelt, Specialty Bohnen', vol: '30 ml', price: 2.4 },
-    { name: 'Americano', vol: '350 ml', price: 2.9 },
-    { name: 'Cappuccino', vol: '250 ml', price: 3.6 },
-    { name: 'Flat White', note: 'doppelter Shot, weniger Milch', vol: '200 ml', price: 3.9 },
-    { name: 'Latte', vol: '350 ml', price: 3.9 },
-    { name: 'Frezzo Latte', note: 'Pistazie, Espresso, Sahne', vol: '350 ml', price: 4.6 },
+  { cat: 'Coffee', items: [
+    { name: 'Espresso', vol: '30 ml', price: 2.3 },
+    { name: 'Espresso Doppio', vol: '60 ml', price: 3.7 },
+    { name: 'Espresso Macchiato', vol: '40 ml', price: 2.5 },
+    { name: 'Espresso Doppio Macchiato', vol: '70 ml', price: 3.9 },
+    { name: 'Cortado Natural', vol: '120 ml', price: 3.6 },
+    { name: 'Flat White', vol: '200 ml', price: 4.4 },
+    { name: 'Caffè Lungo', vol: '150 ml', price: 3.3 },
+    { name: 'Grande Caffè Lungo', vol: '250 ml', price: 4.3 },
+    { name: 'Cappuccino', vol: '200 ml', price: 3.7 },
+    { name: 'Grande Cappuccino', vol: '350 ml', price: 4.7 },
+    { name: 'Caffè Latte', vol: '300 ml', price: 4.1 },
+    { name: 'Latte Macchiato', vol: '300 ml', price: 4.1 },
+    { name: 'Extra Shot', note: 'zu jedem Kaffee', vol: '+', price: 1.0 },
+    { name: 'Geeist', note: 'jeder Kaffee auf Eis', vol: '+', price: 0.4 },
   ]},
-  { cat: 'Kalt', items: [
-    { name: 'Iced Latte', note: 'der aus dem ersten Bildschirm', vol: '400 ml', price: 4.2 },
-    { name: 'Cold Brew', note: '12 Stunden kalt extrahiert', vol: '300 ml', price: 4.2 },
-    { name: 'Espresso Tonic', vol: '300 ml', price: 4.4 },
-    { name: 'Affogato', note: 'Vanilleeis mit heißem Espresso', vol: '150 ml', price: 4.9 },
+  { cat: 'Specials', items: [
+    { name: 'Matcha Latte', vol: '300 ml', price: 4.3 },
+    { name: 'Frucht Matcha Latte', note: 'Erdbeere, Himbeere oder Mango', vol: '350 ml', price: 6.3 },
+    { name: 'Heiße Schokolade', note: 'dunkel oder hell', vol: '300 ml', price: 4.3 },
+    { name: 'Chai Latte', vol: '300 ml', price: 4.3 },
+    { name: 'Tee-Auswahl', vol: '400 ml', price: 3.8 },
+    { name: 'Frischer Minz-Ingwertee', vol: '400 ml', price: 4.3 },
+    { name: 'Affogato', note: 'Gelato mit heißem Espresso', vol: '150 ml', price: 3.8 },
+    { name: 'Freddo Cappuccino', vol: '350 ml', price: 4.3 },
+    { name: 'Frappé', vol: '400 ml', price: 4.8 },
+    { name: 'Pflanzliche Milch', note: 'Hafer oder Mandel', vol: '+', price: 0.5 },
+    { name: 'Sahne', vol: '+', price: 0.3 },
   ]},
-  { cat: 'Matcha & Co', items: [
-    { name: 'Matcha Latte', note: 'Ceremonial Grade aus Japan', vol: '350 ml', price: 4.5 },
-    { name: 'Iced Matcha', vol: '400 ml', price: 4.8 },
-    { name: 'Kakao', note: 'belgische Schokolade', vol: '350 ml', price: 3.5 },
-    { name: 'Chai Latte', vol: '350 ml', price: 4.2 },
-  ]},
-  { cat: 'Eis', items: [
-    { name: '1 Kugel', note: 'im Becher oder in der Waffel', vol: '1 Sorte', price: 1.9 },
+  { cat: 'Gelato', items: [
+    { name: '1 Kugel', note: 'im Becher oder in der Waffel', vol: '1 Sorte', price: 1.8 },
     { name: '2 Kugeln', vol: '2 Sorten', price: 3.6 },
-    { name: '3 Kugeln', vol: '3 Sorten', price: 5.0 },
-    { name: 'Eisbecher Caramel', note: 'Vanille, Karamell, Brownie', vol: '250 g', price: 6.9 },
-    { name: 'Milkshake', note: 'Schoko, Erdbeere oder Vanille', vol: '400 ml', price: 5.2 },
+    { name: '3 Kugeln', vol: '3 Sorten', price: 5.4 },
+    { name: 'Sahne extra', vol: '+', price: 0.8 },
+    { name: 'Topping', note: 'Schoko-, Erdbeer- oder Karamellsoße, Streusel, Oreo oder Haselnuss Crunch', vol: '+', price: 0.5 },
+  ]},
+  { cat: 'Eisbecher', items: [
+    { name: 'Frezzo Becher', note: '3 Kugeln, Sahne, Topping', vol: 'Becher', price: 7.5 },
+    { name: 'Unser Liebling', note: '3 Kugeln, Sahne, Erdbeersoße', vol: 'Becher', price: 7.5 },
+    { name: 'Cookies Dream', note: '3 Kugeln, Sahne, Oreo Crunch', vol: 'Becher', price: 7.8 },
+    { name: 'Schoko Deluxe', note: '3 Kugeln, Sahne, Schokosoße, Brownie', vol: 'Becher', price: 7.8 },
+    { name: 'Mango Dream', note: '3 Kugeln, Sahne, Mangosoße', vol: 'Becher', price: 7.8 },
+    { name: 'Berry Love', note: '3 Kugeln, Sahne, Beeren', vol: 'Becher', price: 7.8 },
   ]},
 ];
 
@@ -43,7 +60,7 @@ const BREW = [
   { label: 'Eis', t: 'Eis', d: 'Acht große Würfel aus gefiltertem Wasser. Sie schmelzen langsam und verwässern den Kaffee nicht.', spec: ['8 Würfel', '−18 °C'] },
   { label: 'Milch', t: 'Milch', d: 'Kalte Vollmilch aus der Region. Auf Wunsch Hafer oder Mandel, ohne lange Diskussion.', spec: ['200 ml', '4 °C'] },
   { label: 'Espresso', t: 'Espresso', d: 'Der doppelte Shot kommt zuletzt oben drauf. Der Kaffee sinkt in Wolken nach unten, so entstehen die Schichten.', spec: ['18 g Bohnen', '28 Sekunden'] },
-  { label: 'To go', t: 'To go', d: 'Deckel drauf, Strohhalm rein, los. Ohne Schlange, wenn Sie online bestellen.', spec: ['400 ml', '4,20 €'] },
+  { label: 'To go', t: 'To go', d: 'Deckel drauf, Strohhalm rein, los. Ohne Schlange, wenn Sie online bestellen.', spec: ['400 ml', '4,50 €'] },
 ];
 
 const ORIGINS = [

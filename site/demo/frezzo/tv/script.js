@@ -5,36 +5,43 @@
 
 /* слайды экрана 1. align: где текст, по тихой зоне фото */
 const SLIDES = [
-  { img: '../assets/coldbrew.jpg', label: 'Kalt', title: ['Cold', 'Brew'], sub: '12 Stunden kalt extrahiert, schokoladig und mild', price: '4,20 €', align: 'right' },
-  { img: '../assets/flatwhite.jpg', label: 'Kaffee', title: ['Flat', 'White'], sub: 'Doppelter Espresso und samtige Milch', price: '3,90 €', align: 'left' },
-  { img: '../assets/caramel.jpg', label: 'Eis', title: ['Salted', 'Caramel'], sub: 'Hausgemachtes Eis mit warmem Karamell', price: '3,60 €', pre: '2 Kugeln', split: true },
-  { img: '../assets/matcha.jpg', label: 'Matcha', title: ['Matcha', 'Latte'], sub: 'Ceremonial Grade aus Japan, auch iced', price: '4,50 €', align: 'right' },
-  { img: '../assets/cones.jpg', label: 'Eis', title: ['Schoko', 'Gelato'], sub: 'In der Waffel, die wir selbst backen', price: '1,90 €', pre: '1 Kugel', split: true },
-  { img: '../assets/v60.jpg', label: 'Filter', title: ['Filter', 'Kaffee'], sub: 'Specialty Bohnen, frisch per Hand gebrüht', price: '3,40 €', align: 'left' },
+  { img: '../assets/coldbrew.jpg', label: 'Specials', title: ['Freddo', 'Cappuccino'], sub: 'Eiskalt aufgeschäumt, wie in Griechenland', price: '4,30 €', align: 'right' },
+  { img: '../assets/flatwhite.jpg', label: 'Coffee', title: ['Flat', 'White'], sub: 'Doppelter Espresso und samtige Milch', price: '4,40 €', align: 'left' },
+  { img: '../assets/caramel.jpg', label: 'Eisbecher', title: ['Frezzo', 'Becher'], sub: '3 Kugeln, Sahne und Topping nach Wahl', price: '7,50 €', split: true },
+  { img: '../assets/matcha.jpg', label: 'Specials', title: ['Matcha', 'Latte'], sub: 'Auch mit Erdbeere, Himbeere oder Mango', price: '4,30 €', align: 'right' },
+  { img: '../assets/cones.jpg', label: 'Gelato', title: ['Schoko', 'Gelato'], sub: 'Italienisches Eis, jeden Tag frisch', price: '1,80 €', pre: '1 Kugel', split: true },
+  { img: '../assets/v60.jpg', label: 'Coffee', title: ['Caffè', 'Lungo'], sub: 'Länger extrahiert, mild und rund', price: '3,30 €', align: 'left' },
 ];
 const SLIDE_MS = 8000;
 
-/* прайс экрана 2 */
+/* прайс экрана 2: две страницы, сменяются сами.
+   элемент: [название, цена, пояснение] */
 const BOARD = [
-  [
-    { title: 'Kaffee', items: [
-      ['Espresso', '2,40'], ['Americano', '2,90'], ['Cappuccino', '3,60'], ['Flat White', '3,90'], ['Latte', '3,90'], ['Frezzo Latte', '4,60'],
-    ]},
-    { title: 'Kalt', items: [
-      ['Iced Latte', '4,20'], ['Cold Brew', '4,20'], ['Espresso Tonic', '4,40'], ['Affogato', '4,90'],
-    ]},
-  ],
-  [
-    { title: 'Matcha & Co', items: [
-      ['Matcha Latte', '4,50'], ['Iced Matcha', '4,80'], ['Kakao', '3,50'], ['Chai Latte', '4,20'],
-    ]},
-    { title: 'Eis', items: [
-      ['1 Kugel', '1,90'], ['2 Kugeln', '3,60'], ['3 Kugeln', '5,00'], ['Eisbecher Caramel', '6,90'], ['Milkshake', '5,20'],
-    ]},
-  ],
+  { foot: 'Extra Shot +1,00 € / Geeist +0,40 € / Pflanzliche Milch +0,50 € / Sahne +0,30 €', cols: [
+    [{ title: 'Coffee', items: [
+      ['Espresso', '2,30'], ['Espresso Doppio', '3,70'], ['Espresso Macchiato', '2,50'], ['Doppio Macchiato', '3,90'],
+      ['Cortado Natural', '3,60'], ['Flat White', '4,40'], ['Caffè Lungo', '3,30'], ['Grande Caffè Lungo', '4,30'],
+      ['Cappuccino', '3,70'], ['Grande Cappuccino', '4,70'], ['Caffè Latte', '4,10'], ['Latte Macchiato', '4,10'],
+    ]}],
+    [{ title: 'Specials & Fresh', items: [
+      ['Matcha Latte', '4,30'], ['Frucht Matcha Latte', '6,30', 'Erdbeere / Himbeere / Mango'], ['Heiße Schokolade', '4,30', 'dunkel oder hell'],
+      ['Chai Latte', '4,30'], ['Tee-Auswahl', '3,80'], ['Minz-Ingwertee', '4,30', 'frisch aufgegossen'],
+      ['Affogato', '3,80'], ['Freddo Cappuccino', '4,30'], ['Frappé', '4,80'],
+    ]}],
+  ]},
+  { foot: 'Toppings +0,50 €: Schokosoße / Erdbeersoße / Karamellsoße / bunte Streusel / Oreo Crunch / Haselnuss Crunch / weiße Schokoraspeln', cols: [
+    [{ title: 'Gelato', items: [
+      ['Eine Kugel', '1,80'], ['2 Kugeln', '3,60'], ['3 Kugeln', '5,40'], ['Sahne extra', '+0,80'],
+    ]}],
+    [{ title: 'Eisbecher', items: [
+      ['Frezzo Becher', '7,50', '3 Kugeln, Sahne, Topping'], ['Unser Liebling', '7,50', '3 Kugeln, Sahne, Erdbeersoße'],
+      ['Cookies Dream', '7,80', '3 Kugeln, Sahne, Oreo Crunch'], ['Schoko Deluxe', '7,80', '3 Kugeln, Sahne, Schokosoße, Brownie'],
+      ['Mango Dream', '7,80', '3 Kugeln, Sahne, Mangosoße'], ['Berry Love', '7,80', '3 Kugeln, Sahne, Beeren'],
+    ]}],
+  ]},
 ];
-const FLAVOURS = ['Salted Caramel', 'Pistazie', 'Mango', 'Vanille', 'Schoko', 'Erdbeere'];
-const BOARD_PHOTOS = ['../assets/cones.jpg', '../assets/caramel.jpg', '../assets/coldbrew.jpg'];
+const PAGE_MS = 16000;
+const BOARD_PHOTOS = [['../assets/flatwhite.jpg', '../assets/matcha.jpg'], ['../assets/cones.jpg', '../assets/caramel.jpg']];
 
 /* ---------------------------------------------------------------------
    общее
@@ -131,29 +138,42 @@ function promo() {
    --------------------------------------------------------------------- */
 function board() {
   const RING = '<svg class="item__ring" viewBox="0 0 200 80" preserveAspectRatio="none" aria-hidden="true"><path d="M150 8 C60 0 6 18 10 42 C14 70 120 82 182 62 C206 52 196 18 140 10"/></svg>';
-  $('#cols').innerHTML = BOARD.map((col, c) => `<div class="col">${col.map((g, gi) => `
-    <section class="group rise" style="--d:${600 + (c * 2 + gi) * 100}ms">
+  const host = $('#cols');
+  host.innerHTML = BOARD.map((pg, pi) => `<div class="page${pi ? '' : ' is-on'}">${pg.cols.map((col, c) => `<div class="col">${col.map((g) => `
+    <section class="group">
       <h2 class="group__title">${esc(g.title)}</h2>
-      ${g.items.map(([n, p]) => `<div class="item"><span class="item__name">${esc(n)}</span><span class="item__dots"></span><span class="item__price">${esc(p)}&nbsp;€${RING}</span></div>`).join('')}
-    </section>`).join('')}</div>`).join('');
-  // style="--d" — только задержка входа
+      ${g.items.map(([n, p, note]) => `<div class="item"><span class="item__text"><span class="item__name">${esc(n)}</span>${note ? `<span class="item__note">${esc(note)}</span>` : ''}</span><span class="item__dots"></span><span class="item__price">${esc(p)}&nbsp;€${RING}</span></div>`).join('')}
+    </section>`).join('')}</div>`).join('')}</div>`).join('');
 
-  $('#flavours').innerHTML = `<b>Sorten heute</b>${FLAVOURS.map(esc).join(' / ')}`;
-
+  const foot = $('#flavours');
   const media = $('#media');
-  media.innerHTML = BOARD_PHOTOS.map((s) => `<img src="${esc(s)}" alt="">`).join('');
+  media.innerHTML = BOARD_PHOTOS.flat().map((s) => `<img src="${esc(s)}" alt="">`).join('');
   const pics = $$('img', media);
-  let p = 0;
-  pics[0].classList.add('is-on');
-  setInterval(() => { pics[p].classList.remove('is-on'); p = (p + 1) % pics.length; pics[p].classList.add('is-on'); }, 9000);
+  const pages = $$('.page', host);
+  let page = 0, h = 0, sub = 0;
 
-  // цена дня: кружок перебегает по позициям
-  const items = $$('.item');
-  const order = [5, 7, 15, 10, 18, 3];
-  let h = 0;
-  const hot = () => { items.forEach((x) => x.classList.remove('is-hot')); items[order[h % order.length] % items.length].classList.add('is-hot'); h++; };
-  setTimeout(hot, 1800);
-  setInterval(hot, 6000);
+  const photo = () => {
+    const idx = BOARD_PHOTOS.slice(0, page).flat().length + (sub % BOARD_PHOTOS[page].length);
+    pics.forEach((x, j) => x.classList.toggle('is-on', j === idx));
+  };
+  // цена дня: кружок перебегает по позициям текущей страницы
+  const hot = () => {
+    const items = $$('.item', pages[page]);
+    $$('.item').forEach((x) => x.classList.remove('is-hot'));
+    items[(h * 5 + 3) % items.length].classList.add('is-hot');
+    h++;
+  };
+  const showPage = (n) => {
+    pages.forEach((p, j) => p.classList.toggle('is-on', j === n));
+    page = n; sub = 0;
+    foot.textContent = BOARD[n].foot;
+    photo();
+    setTimeout(hot, 1400);
+  };
+  showPage(Math.min(pages.length - 1, Number(new URLSearchParams(location.search).get('p')) || 0));
+  setInterval(() => showPage((page + 1) % pages.length), PAGE_MS);
+  setInterval(() => { sub++; photo(); }, PAGE_MS / 2);
+  setInterval(hot, 5000);
 }
 
 /* ---------------------------------------------------------------------

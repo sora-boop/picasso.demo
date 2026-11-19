@@ -119,25 +119,27 @@ body.tv.is-idle { cursor: none; }
 /* ---------- экран 2: прайс ---------- */
 .board { position: absolute; inset: 0 740px 0 0; padding: 64px 88px 56px; display: flex; flex-direction: column; background: var(--ink); }
 .board__head { display: flex; align-items: baseline; justify-content: space-between; --d: 300ms; }
-.board__cols { flex: 1; display: grid; grid-template-columns: 1fr 1fr; gap: 0 88px; margin-top: 44px; }
+.board__cols { position: relative; flex: 1; margin-top: 36px; }
+.page { position: absolute; inset: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 0 72px; opacity: 0; transform: translateY(28px); filter: blur(14px); transition: opacity 900ms var(--ease), transform 900ms var(--ease), filter 900ms var(--ease); }
+.page.is-on { opacity: 1; transform: none; filter: blur(0); transition-delay: 300ms; }
 .group { display: flex; flex-direction: column; }
 .group + .group { margin-top: 28px; }
 .group__title { font-size: 64px; line-height: 1; color: var(--spray); text-shadow: .04em .04em 0 #000; margin-bottom: 14px; }
-.col:first-child .group:last-child .group__title { color: var(--teal); }
-.col:last-child .group:first-child .group__title { color: var(--yellow); }
-.col:last-child .group:last-child .group__title { color: var(--teal); }
-.item { position: relative; display: flex; align-items: baseline; gap: 16px; padding: 6px 0; }
-.item__name { font-size: 36px; line-height: 1.1; white-space: nowrap; }
-.item__note { font-size: 20px; opacity: .58; white-space: nowrap; }
+.col:last-child .group__title { color: var(--yellow); }
+.page + .page .col:first-child .group__title { color: var(--teal); }
+.item { position: relative; display: flex; align-items: baseline; gap: 16px; padding: 5px 0; }
+.item__text { display: flex; flex-direction: column; }
+.item__name { font-size: 32px; line-height: 1.1; white-space: nowrap; }
+.item__note { font-size: 19px; line-height: 1.2; opacity: .6; white-space: nowrap; }
 .item__dots { flex: 1; min-width: 24px; border-bottom: 2px dotted color-mix(in srgb, var(--wall) 30%, transparent); transform: translateY(-8px); }
-.item__price { position: relative; font-size: 40px; line-height: 1.1; white-space: nowrap; font-variant-numeric: tabular-nums; }
+.item__price { position: relative; font-size: 36px; line-height: 1.1; white-space: nowrap; font-variant-numeric: tabular-nums; }
 
 /* фирменная деталь: кружок баллончиком вокруг цены дня */
 .item__ring { position: absolute; left: -26px; top: -18px; width: calc(100% + 52px); height: calc(100% + 36px); overflow: visible; pointer-events: none; }
 .item__ring path { fill: none; stroke: var(--spray); stroke-width: 5; stroke-linecap: round; stroke-dasharray: 520; stroke-dashoffset: 520; }
 .item.is-hot .item__ring path { stroke-dashoffset: 0; transition: stroke-dashoffset 1100ms var(--ease); }
 
-.board__flavours { margin-top: 24px; font-size: 26px; line-height: 1.4; opacity: .8; --d: 1300ms; }
+.board__flavours { margin-top: 20px; max-width: 60ch; text-wrap: balance; font-size: 24px; line-height: 1.4; color: var(--yellow); --d: 1300ms; }
 .board__flavours b { font-weight: 400; color: var(--yellow); margin-right: 12px; }
 
 .board__media { position: absolute; top: 0; right: 0; bottom: 0; width: 740px; overflow: hidden; }

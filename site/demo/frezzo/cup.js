@@ -47,7 +47,7 @@ function printTexture() {
   g.fillText('FREZZO', W / 2, Hh * 0.47);
   g.font = '400 30px Manrope, system-ui, sans-serif';
   g.letterSpacing = '9px';
-  g.fillText('ITALIAN TASTE  /  MODERN MOOD', W / 2, Hh * 0.47 + 62);
+  g.fillText('TASTEFUL  LIVING', W / 2, Hh * 0.47 + 62);
   g.fillRect(W / 2 - 34, Hh * 0.47 + 96, 68, 3);
   // мерные риски сзади (u = 0): уровни льда, молока и эспрессо
   g.textAlign = 'left';
@@ -96,7 +96,7 @@ function sleeveTexture() {
   g.fillText('FREZZO', W / 2, 270);
   g.font = '400 26px Manrope, system-ui, sans-serif';
   g.letterSpacing = '8px';
-  g.fillText('ITALIAN TASTE  /  MODERN MOOD', W / 2, 335);
+  g.fillText('TASTEFUL  LIVING', W / 2, 335);
   g.fillStyle = '#19a34a'; g.fillRect(W / 2 - 45, 368, 30, 6);
   g.fillStyle = '#ffffff'; g.fillRect(W / 2 - 15, 368, 30, 6);
   g.fillStyle = '#e0323a'; g.fillRect(W / 2 + 15, 368, 30, 6);
