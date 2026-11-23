@@ -3,7 +3,7 @@ const D = window.LUNA;
 const $ = (q, r = document) => r.querySelector(q);
 const $$ = (q, r = document) => [...r.querySelectorAll(q)];
 const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
-const money = (n) => n.toLocaleString('ru-RU').replace(/\s/g, ' ') + ' ₸';
+const money = (n) => n.toLocaleString('ru-RU').replace(/\s/g, '\u00a0') + '\u00a0₸';
 const PLUS = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>';
 
 const cart = new Map();
@@ -21,9 +21,10 @@ $('[data-addr]').textContent = `${D.city}, ${D.addr} / Instagram @${D.instagram}
 $('[data-cats]').innerHTML = D.menu.map((g, i) => `<button class="cat" type="button" data-go="${g.id}" aria-current="${i === 0}">${esc(g.t)}</button>`).join('');
 
 function render(q = '') {
-  const s = q.trim().toLowerCase();
+  const norm = (t) => t.toLowerCase().replace(/ё/g, 'е');
+  const s = norm(q.trim());
   const html = D.menu.map((g) => {
-    const items = flat.filter((it) => it.g === g.id && (!s || (it.n + ' ' + it.d).toLowerCase().includes(s)));
+    const items = flat.filter((it) => it.g === g.id && (!s || norm(it.n + ' ' + it.d).includes(s)));
     if (!items.length) return '';
     return `<section class="group" id="${g.id}">
       <div class="group__head"><h2>${esc(g.t)}</h2></div>
@@ -49,7 +50,8 @@ $('[data-cats]').addEventListener('click', (e) => {
   if (!b) return;
   const el = document.getElementById(b.dataset.go);
   if (!el) return;
-  const y = el.getBoundingClientRect().top + scrollY - ($('.search').hidden ? 120 : 186);
+  const off = $('.top').offsetHeight + $('.cats').offsetHeight + ($('.search').hidden ? 0 : $('.search').offsetHeight) - 1;
+  const y = el.getBoundingClientRect().top + scrollY - off;
   scrollTo({ top: y, behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
 });
 /* лента разделов крутится только по горизонтали и только при смене раздела:
@@ -94,10 +96,12 @@ function paintAdds() {
     const q = cart.get(+b.dataset.add) || 0;
     b.classList.toggle('is-in', q > 0);
     b.innerHTML = q ? String(q) : PLUS;
+    b.setAttribute('aria-label', (q ? `В заказе ${q}, добавить ещё: ` : 'Добавить: ') + flat[+b.dataset.add].n);
   });
 }
 function setQty(id, q) {
   if (q <= 0) cart.delete(id); else cart.set(id, Math.min(30, q));
+  try { sessionStorage.setItem('luna-cart', JSON.stringify([...cart])); } catch (e) {}
   paintAdds(); paintCart();
 }
 document.addEventListener('click', (e) => {
@@ -123,9 +127,19 @@ function paintCart() {
   $('[data-hint]').textContent = mode === 'hall'
     ? 'Покажите этот экран официанту, или отправьте заказ, и он придёт на кухню.'
     : 'Заказ придёт администратору в WhatsApp. Заберёте по адресу ' + D.addr + '.';
+  $('.sheet__demo').hidden = true;   // старый текст заказа не показываем после изменений
   if (!n) openSheet(false);
 }
-function openSheet(v) { sheet.hidden = !v; document.body.classList.toggle('is-locked', v); }
+function openSheet(v, fromHistory) {
+  if (sheet.hidden === !v) return;
+  sheet.hidden = !v;
+  document.body.classList.toggle('is-locked', v);
+  if (fromHistory) return;
+  if (v) history.pushState({ sheet: 1 }, '');
+  else if (history.state && history.state.sheet) history.back();
+}
+addEventListener('popstate', () => openSheet(false, true));
+document.addEventListener('keydown', (e) => { if (e.key === 'Escape') openSheet(false); });
 bar.addEventListener('click', () => openSheet(true));
 $('.sheet__close').addEventListener('click', () => openSheet(false));
 sheet.addEventListener('click', (e) => { if (e.target === sheet) openSheet(false); });
@@ -151,4 +165,8 @@ $('[data-send]').addEventListener('click', () => {
   }
   window.open(`https://wa.me/${D.whatsapp}?text=${encodeURIComponent(text)}`, '_blank', 'noopener');
 });
+try {
+  JSON.parse(sessionStorage.getItem('luna-cart') || '[]').forEach(([id, q]) => { if (flat[id] && q > 0) cart.set(id, Math.min(30, q)); });
+} catch (e) {}
+paintAdds();
 paintCart();
