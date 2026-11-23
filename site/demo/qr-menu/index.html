@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Luna — меню</title>
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#1f3653">
+<meta property="og:title" content="Luna cafe & terrace — меню">
+<meta property="og:description" content="Электронное меню: блюда, цены и заказ с телефона.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Onest:wght@300;500&display=swap">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header class="top">
+  <div class="top__brand">
+    <span class="logo">LUNA</span>
+    <span class="logo__sub">cafe &amp; terrace</span>
+  </div>
+  <button class="search-btn" type="button" aria-label="Поиск по меню">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+  </button>
+</header>
+
+<section class="hero">
+  <img class="hero__img" src="img/hero.jpg" alt="Зал кафе вечером">
+  <div class="hero__text">
+    <p class="hero__meta" data-hours></p>
+    <h1>Меню</h1>
+    <p class="hero__lead">Выберите блюда и покажите заказ официанту. Или оформите с&nbsp;собой через WhatsApp.</p>
+  </div>
+</section>
+
+<nav class="cats" aria-label="Разделы меню"><div class="cats__in" data-cats></div></nav>
+
+<div class="search" hidden>
+  <input type="search" placeholder="Найти блюдо: том ям, филадельфия…" aria-label="Поиск по меню">
+</div>
+
+<main data-menu></main>
+
+<footer class="foot">
+  <p class="foot__note">Если у вас аллергия на какой-либо продукт, сообщите официанту. Именинникам скидка 10% при предъявлении удостоверения до выставления счёта.</p>
+  <p class="foot__addr" data-addr></p>
+  <p class="foot__made">Демо электронного меню. Сделано Ilya Web Design</p>
+</footer>
+
+<button class="cartbar" type="button" hidden>
+  <span class="cartbar__count"></span>
+  <span class="cartbar__label">Мой заказ</span>
+  <span class="cartbar__sum"></span>
+</button>
+
+<div class="sheet" hidden>
+  <div class="sheet__panel" role="dialog" aria-modal="true" aria-labelledby="sheet-title">
+    <div class="sheet__head">
+      <h2 id="sheet-title">Мой заказ</h2>
+      <button class="sheet__close" type="button" aria-label="Закрыть">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>
+      </button>
+    </div>
+    <ul class="sheet__list" data-cart></ul>
+    <div class="sheet__total">
+      <span>Блюда</span><span data-sub></span>
+      <span>Обслуживание 10%</span><span data-svc></span>
+      <b>Итого</b><b data-total></b>
+    </div>
+    <div class="sheet__modes" role="radiogroup" aria-label="Как получить">
+      <button type="button" class="mode" data-mode="hall" aria-pressed="true">В зале</button>
+      <button type="button" class="mode" data-mode="go" aria-pressed="false">С собой</button>
+    </div>
+    <p class="sheet__hint" data-hint></p>
+    <button class="btn" type="button" data-send><span class="btn__fill"></span><span class="btn__label">Отправить в WhatsApp</span></button>
+    <p class="sheet__demo" hidden></p>
+  </div>
+</div>
+
+<script src="data.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
