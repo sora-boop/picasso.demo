@@ -48,13 +48,21 @@ $('[data-cats]').addEventListener('click', (e) => {
   const b = e.target.closest('[data-go]');
   if (!b) return;
   const el = document.getElementById(b.dataset.go);
-  if (el) el.scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
+  if (!el) return;
+  const y = el.getBoundingClientRect().top + scrollY - ($('.search').hidden ? 120 : 186);
+  scrollTo({ top: y, behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
 });
+/* лента разделов крутится только по горизонтали и только при смене раздела:
+   scrollIntoView на iPhone дёргал всю страницу */
+const strip = $('[data-cats]');
+let current = '';
 const setCurrent = (id) => {
+  if (id === current) return;
+  current = id;
   $$('.cat').forEach((c) => {
     const on = c.dataset.go === id;
     c.setAttribute('aria-current', String(on));
-    if (on) c.scrollIntoView({ block: 'nearest', inline: 'center' });
+    if (on) strip.scrollTo({ left: c.offsetLeft - (strip.clientWidth - c.offsetWidth) / 2, behavior: 'smooth' });
   });
 };
 let ticking = false;
@@ -115,11 +123,12 @@ function paintCart() {
   $('[data-hint]').textContent = mode === 'hall'
     ? 'Покажите этот экран официанту, или отправьте заказ, и он придёт на кухню.'
     : 'Заказ придёт администратору в WhatsApp. Заберёте по адресу ' + D.addr + '.';
-  if (!n) sheet.hidden = true;
+  if (!n) openSheet(false);
 }
-bar.addEventListener('click', () => { sheet.hidden = false; });
-$('.sheet__close').addEventListener('click', () => { sheet.hidden = true; });
-sheet.addEventListener('click', (e) => { if (e.target === sheet) sheet.hidden = true; });
+function openSheet(v) { sheet.hidden = !v; document.body.classList.toggle('is-locked', v); }
+bar.addEventListener('click', () => openSheet(true));
+$('.sheet__close').addEventListener('click', () => openSheet(false));
+sheet.addEventListener('click', (e) => { if (e.target === sheet) openSheet(false); });
 $('[data-cart]').addEventListener('click', (e) => {
   const i = e.target.closest('[data-inc]'), d = e.target.closest('[data-dec]');
   if (i) setQty(+i.dataset.inc, (cart.get(+i.dataset.inc) || 0) + 1);
